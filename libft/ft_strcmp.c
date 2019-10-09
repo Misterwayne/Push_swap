@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 13:55:52 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/09 15:56:09 by mwane            ###   ########.fr       */
+/*   Created: 2019/06/09 16:45:00 by mwane             #+#    #+#             */
+/*   Updated: 2019/10/09 16:39:00 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-//#include "libft.h"
-
-void	*ft_memccpy(void *dest, const void *src, int c, size_t size)
+int		ft_strcmp(char *s1, char *s2)
 {
-	unsigned char *psrc;
-	unsigned char *pdest;
+	int i;
+	int j;
 
-	pdest = (unsigned char*)dest;
-	psrc = (unsigned char*)src;
-	while (size-- > 0)
-	{
-		if (*psrc == (unsigned char)c)
-			return (pdest);
-		*(pdest++) = *(psrc++);
-	}
-	return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i] == s2[i] && (s1[i] != '\0' || s2[i] != '\0'))
+		i++;
+	j += (unsigned char)s1[i] - (unsigned char)s2[i];
+	return (j);
 }
-
-
-

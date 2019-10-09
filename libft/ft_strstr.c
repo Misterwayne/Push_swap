@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mwane <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 13:52:37 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/09 16:47:27 by mwane            ###   ########.fr       */
+/*   Created: 2019/06/09 16:54:19 by mwane             #+#    #+#             */
+/*   Updated: 2019/06/12 17:53:00 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-char	*ft_strnstr(char *str, char *to_find, unsigned int len)
+char	*ft_strstr(char *str, char *to_find)
 {
-	unsigned int	j;
-	unsigned int	i;
+	int j;
 
 	j = 0;
-	i = 0;
 	if (to_find[j] == '\0')
 		return (str);
-	while (*str != '\0' && i < len)
+	while (*str != '\0')
 	{
 		j = 0;
 		while (str[j] == to_find[j])
 		{
-			if (to_find[j + 1] == '\0' || len == 0)
+			if (to_find[j + 1] == '\0')
 				return (str);
 			j++;
-			len--;
 		}
 		str++;
-		i++;
 	}
-	return (NULL);
+	return (0);
 }
