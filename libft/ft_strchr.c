@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 17:52:04 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/09 17:52:10 by mwane            ###   ########.fr       */
+/*   Created: 2019/10/09 17:19:01 by mwane             #+#    #+#             */
+/*   Updated: 2019/10/09 17:50:11 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strlcat(char *dest, char *src, unsigned int size)
-{
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	a;
-	unsigned int	b;
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
-	i = 0;
-	j = 0;
-	a = 0;
-	b = 0;
-	while (dest[a] != '\0')
-		a++;
-	while (src[b] != '\0')
-		b++;
-	i = a;
-	if (size == 0 || a > size)
-		return (b + size);
-	while (src[j] != '\0' && j < size + 1)
+char	*ft_strchr(const char *str, int c)
+{
+	while (*str)
 	{
-		dest[i] = src[j];
-		i++;
-		j++;
+		if ((char)c == *str)
+			return ((char*)str);
+		str++;
 	}
-	if (size > 0)
-		dest[i] = '\0';
-	return (a + b);
+	if (c == '\0')
+		return ((char*)str);
+	return (NULL);
 }
+
+/*
+	int main(void)
+{
+	printf("my func : %s\n",ft_strchr("there is so \0ma\0ny \0 \\0",'\0'));
+	printf("their func : %s\n",strchr("there is so \0ma\0ny \0 \\0",'\0'));
+}*/
