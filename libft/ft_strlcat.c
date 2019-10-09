@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 17:52:04 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/09 17:52:10 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/09 17:59:04 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		ft_strlcat(char *dest, char *src, unsigned int size)
 	i = a;
 	if (size == 0 || a > size)
 		return (b + size);
-	while (src[j] != '\0' && j < size + 1)
+	while (src[j] != '\0' && j < size - 1)
 	{
 		dest[i] = src[j];
 		i++;
