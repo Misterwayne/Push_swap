@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 14:13:52 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 15:07:36 by mwane            ###   ########.fr       */
+/*   Created: 2019/10/10 15:03:15 by mwane             #+#    #+#             */
+/*   Updated: 2019/10/10 15:07:18 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include <stdlib.h>
 
-void	*ft_memmove(void *dest, const void *src, size_t size)
+void	*ft_memcpy(void *dest, const void *src, size_t size)
 {
-	unsigned char	*psrc;
-	size_t			i;
-	unsigned char	*pdest;
+	unsigned char *psrc;
+	unsigned char *pdest;
 
-	i = 0;
-	pdest = (unsigned char*)dest;
-	psrc = (unsigned char*)src;
 	if ((!dest && !src) || !size)
 		return (dest);
-	if (psrc < pdest)
-		while (++i <= size)
-			pdest[size - i] = psrc[size - i];
-	else
-		while (size-- > 0)
-			*(pdest++) = *(psrc++);
+	pdest = (unsigned char*)dest;
+	psrc = (unsigned char*)src;
+	while (size-- > 0)
+		*(pdest++) = *(psrc++);
 	return (dest);
 }
