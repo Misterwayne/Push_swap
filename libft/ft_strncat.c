@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 16:50:02 by mwane             #+#    #+#             */
-/*   Updated: 2019/06/09 17:16:33 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/10 16:04:39 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strncat(char *dest, char *src, unsigned int n)
 {

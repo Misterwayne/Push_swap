@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 08:20:08 by mwane             #+#    #+#             */
-/*   Updated: 2019/06/09 08:45:43 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/10 16:05:32 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {

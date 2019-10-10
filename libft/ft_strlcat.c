@@ -6,9 +6,11 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 17:52:04 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/09 17:59:04 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/10 16:04:27 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int		ft_strlcat(char *dest, char *src, unsigned int size)
 {
@@ -28,13 +30,9 @@ int		ft_strlcat(char *dest, char *src, unsigned int size)
 	i = a;
 	if (size == 0 || a > size)
 		return (b + size);
-	while (src[j] != '\0' && j < size - 1)
-	{
-		dest[i] = src[j];
-		i++;
-		j++;
-	}
-	if (size > 0)
+	while (src[j] != '\0' && j <= size)
+		dest[i++] = src[j++];
+	if (size >= 0)
 		dest[i] = '\0';
 	return (a + b);
 }

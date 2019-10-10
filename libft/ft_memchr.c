@@ -6,11 +6,12 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:57:03 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 14:11:23 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/10 16:03:18 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, int size)
 {

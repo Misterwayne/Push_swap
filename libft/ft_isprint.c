@@ -6,11 +6,12 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:40:56 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/08 13:41:49 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/10 16:03:11 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 
 int		ft_isprint(int c)
 {

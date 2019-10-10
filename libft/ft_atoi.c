@@ -6,12 +6,12 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 10:08:35 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/09 16:05:52 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/10 15:53:17 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
 int		ft_atoi(char *nbr)
 {

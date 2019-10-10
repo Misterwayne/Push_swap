@@ -6,13 +6,12 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 16:19:30 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/09 16:38:01 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/10 16:05:27 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
+#include <stdlib.h>
 
 int		ft_strncmp(char *str1, char *str2, size_t n)
 {
@@ -37,11 +36,4 @@ int		ft_strncmp(char *str1, char *str2, size_t n)
 		}
 	}
 	return (j);
-}
-
-int main(void)
-{
-	printf("my cmp %d\n",ft_strncmp("\x12\xff\x65\x12\xbd\xde\xad", "\x12\x02", 6));
-	printf("thier cmp %d\n",strncmp("\x12\xff\x65\x12\xbd\xde\xad", "\x12\x02", 6));
-	printf("%d\n",'\xff' - '\x02');
 }

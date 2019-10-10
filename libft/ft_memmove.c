@@ -6,11 +6,12 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 14:13:52 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 15:07:36 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/10 16:03:54 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 
 void	*ft_memmove(void *dest, const void *src, size_t size)
 {

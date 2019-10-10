@@ -6,13 +6,12 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 17:19:01 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/09 17:50:11 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/10 16:02:32 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
+#include "libft.h"
 
 char	*ft_strchr(const char *str, int c)
 {
@@ -26,10 +25,3 @@ char	*ft_strchr(const char *str, int c)
 		return ((char*)str);
 	return (NULL);
 }
-
-/*
-	int main(void)
-{
-	printf("my func : %s\n",ft_strchr("there is so \0ma\0ny \0 \\0",'\0'));
-	printf("their func : %s\n",strchr("there is so \0ma\0ny \0 \\0",'\0'));
-}*/

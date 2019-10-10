@@ -6,12 +6,12 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:55:52 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 14:05:40 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/10 15:55:23 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-//#include "libft.h"
+#include "libft.h"
 
 void	*ft_memccpy(void *dest, const void *src, int c, size_t size)
 {
