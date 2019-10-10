@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 15:05:22 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 15:08:46 by mwane            ###   ########.fr       */
+/*   Created: 2019/10/10 15:08:52 by mwane             #+#    #+#             */
+/*   Updated: 2019/10/10 15:09:22 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void	*ft_memset(void *s, int c, size_t size)
+void	*ft_bzero(void *s, size_t size)
 {
 	unsigned char *str;
 
 	str = (unsigned char*)s;
 	while (size-- > 0)
-		*(str++) = (unsigned char)c;
+		*(str++) = 0;
 	return (s);
 }

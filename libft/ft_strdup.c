@@ -6,11 +6,12 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:45:06 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/09 18:23:32 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/10 15:29:04 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 char	*ft_strdup(const char *str)
 {
@@ -18,12 +19,12 @@ char	*ft_strdup(const char *str)
 	int		i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != 0)
 		i++;
-	if (!(nstr = malloc((sizeof(char) * i) + 1)))
+	if (!(nstr = malloc((sizeof(char) * (i + 1)))))
 		return (NULL);
-	i = 0;
-	while (str[i++])
+	i = -1;
+	while (str[++i])
 		nstr[i] = str[i];
 	nstr[i] = '\0';
 	return (nstr);
