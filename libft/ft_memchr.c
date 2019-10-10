@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:57:03 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/08 14:28:38 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/10 14:11:23 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 void	*ft_memchr(const void *s, int c, int size)
 {
-	while (size >= 0)
+	unsigned char *ps;
+
+	ps = (unsigned char *)s;
+	while (size-- > 0)
 	{
-		if ((unsigned char)s == c)
+		if (*ps == (unsigned char)c)
 		{
-			return (void*)s;
+			return (ps);
 		}
-		s++;
+		ps++;
 	}
 	return (NULL);
 }
