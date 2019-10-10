@@ -6,13 +6,14 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 15:51:19 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 16:06:25 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/10 19:39:55 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _LIBFT_H_
-# define _LIBFT_H_
+#ifndef LIBFT_H
+# define LIBFT_H
 #include <stdlib.h>
+
 
 int		ft_isalpha(int c);
 int		ft_isalnum(int c);
