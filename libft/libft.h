@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 15:51:19 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 19:39:55 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/11 13:53:42 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ char	*ft_strnstr(char *str, char *to_find, unsigned int len);
 char	*ft_strrchr(const char *str, int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+char	*ft_substr(const char *s, unsigned int start, size_t len);
 
 #endif
