@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 15:51:19 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/11 13:53:42 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/13 18:39:59 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_isascii(int c);
 int 	ft_isdigit(int c);
 int		ft_isprint(int c);
 int		ft_atoi(char *nbr);
-void	*ft_bzero(void *s, size_t size);
+void	ft_bzero(void *s, size_t size);
 void	*ft_memccpy(void *dest, const void *src, int c, size_t size);
 void	*ft_memchr(const void *s, int c, int size);
 int		ft_memcmp(const void *str1, const void *str2, size_t size);
