@@ -84,7 +84,7 @@ show:
 
 ## regle de compilation du produit
 $(NAME): $(OBJ)
-	@echo "${IWHITE}Compiling $(COLOR_CYAN)$(NAME)$(COLOR_WHITE) ... \c"
+	@echo "${IBLUE}Compiling $(COLOR_CYAN)$(NAME)$(COLOR_WHITE) ... \c"
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "$(COLOR_GREEN)DONE$(COLOR_WHITE)"
@@ -97,7 +97,7 @@ $(OBJ_DIR)/%.o : %.c
 ## compile avec les flags (-o = --object / $@ = destination -> nom de la regle appellee 
 ## -c = sources a compiler / $< = dependance, ce qui est envoye)
 	@$(CC) $(CFLAGS) $(IFLAGS) -o $@ -c $<
-	@echo "$(COLOR_GREEN)⃠$(COLOR_WHITE)"
+	@echo "$(COLOR_GREEN)シ$(COLOR_WHITE)"
 
 clean:
 	@rm -rf $(OBJ_DIR)
