@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 15:51:19 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/14 11:26:10 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/14 16:59:46 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ char	*ft_substr(const char *s, unsigned int start, size_t len);
 char    **ft_split(char const *s, char c);
 char	*ft_strtrim(char const *s1, char const *set);
 void	ft_putstr_fd(char *s, int fd);
+char	**ft_split(char const *s, char c);
 
 #endif
