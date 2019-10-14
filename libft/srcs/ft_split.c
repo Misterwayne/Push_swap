@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pustr_fd.c                                      :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 19:47:27 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/14 11:25:43 by mwane            ###   ########.fr       */
+/*   Created: 2019/10/14 11:20:33 by mwane             #+#    #+#             */
+/*   Updated: 2019/10/14 11:28:15 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+char    **ft_split(char const *s, char c)
 {
-	if (!*s || !fd)
-		return ;
-	while (*s)
-		write(fd, (s++), 1);
+
 }

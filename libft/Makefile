@@ -66,7 +66,8 @@ IWHITE = \033[0;47m
 
 ## porte du garage
 all:
-	make $(NAME)
+	@echo "${IRED}Compiling :${COLOR_WHITE}"
+	@make $(NAME)
 
 ## permet dacceder a un autre makefile
 ##	make -C yolo_folder
@@ -84,32 +85,35 @@ show:
 
 ## regle de compilation du produit
 $(NAME): $(OBJ)
-	@echo "${IBLUE}Compiling $(COLOR_CYAN)$(NAME)$(COLOR_WHITE) ... \c"
+	@echo "\n${IBLUE}1${COLOR_CYAN}$(NAME)$(COLOR_WHITE) ... \c"
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "$(COLOR_GREEN)DONE$(COLOR_WHITE)"
+	@echo "$(COLOR_GREEN)Doneシ$(COLOR_WHITE)"
 
 ## cherche dans le OBJDIR le .o, si pb, elle va chercher le .c correspondant grace a vpath et le compile
-$(OBJ_DIR)/%.o : %.c
+$(OBJ_DIR)/%.o : %.c 
 	@mkdir -p $(OBJ_DIR)
 ## \c evite les retours chariot(s)
-	@echo "${IBLUE}Compiling $(COLOR_CYAN)$*$(COLOR_WHITE) ... \c"
+##	@echo "${IBLUE}Compiling $(COLOR_CYAN)$*$(COLOR_WHITE) ... \c"
+	
+	@echo "${IGREEN} \c"
 ## compile avec les flags (-o = --object / $@ = destination -> nom de la regle appellee 
 ## -c = sources a compiler / $< = dependance, ce qui est envoye)
 	@$(CC) $(CFLAGS) $(IFLAGS) -o $@ -c $<
-	@echo "$(COLOR_GREEN)シ$(COLOR_WHITE)"
+##	@echo "$(COLOR_GREEN)シ$(COLOR_WHITE)"
 
 clean:
 	@rm -rf $(OBJ_DIR)
-	@echo "clean"
+	@echo "${COLOR_RED}Removing object file."
 
 fclean:
 	@make clean
 	@rm -f $(NAME)
-	@echo "fclean"
+	@echo "${COLOR_RED}Removing bineries"
 
 re:
 	@make fclean
+	@echo "${COLOR_BLUE}Compiling :${COLOR_WHITE}"
 	@make $(NAME)
 
 ## si un fichier/dossier a le meme nom, donne priorite a la regle du makefile
