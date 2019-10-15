@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pustr_fd.c                                      :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 19:47:27 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/14 11:25:43 by mwane            ###   ########.fr       */
+/*   Created: 2019/10/10 15:51:34 by mwane             #+#    #+#             */
+/*   Updated: 2019/10/15 15:17:43 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int		ft_isalpha(int c)
 {
-	if (!*s || !fd)
-		return ;
-	while (*s)
-		write(fd, (s++), 1);
+	if ((c >= 65 && c <= 90) || (c <= 122 && c >= 97))
+		return (1);
+	else
+		return (0);
 }

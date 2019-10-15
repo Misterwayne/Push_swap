@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 15:51:34 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 16:02:11 by mwane            ###   ########.fr       */
+/*   Created: 2019/10/08 13:55:52 by mwane             #+#    #+#             */
+/*   Updated: 2019/10/15 15:17:20 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-int		ft_isalpha(int c)
+void	*ft_memccpy(void *dest, const void *src, int c, size_t size)
 {
-	if ((c >= 65 && c <= 90) || (c <= 122 && c >= 97))
-		return 1;
-	else
-		return 0;
+	unsigned char *psrc;
+	unsigned char *pdest;
+
+	pdest = (unsigned char*)dest;
+	psrc = (unsigned char*)src;
+	while (size-- > 0)
+	{
+		*(pdest++) = *(psrc++);
+		if (*psrc == (unsigned char)c)
+		{
+			*pdest = *psrc;
+			return (++pdest);
+		}
+	}
+	return (NULL);
 }

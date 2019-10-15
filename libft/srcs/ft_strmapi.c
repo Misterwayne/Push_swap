@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 19:45:32 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 19:46:56 by mwane            ###   ########.fr       */
+/*   Created: 2019/10/15 16:18:37 by mwane             #+#    #+#             */
+/*   Updated: 2019/10/15 17:06:18 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
+#include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	write(fd, &c, 1);
+	char	*nstr;
+
+	if (!(nstr = malloc(sizeof(char) * ft_strlen(s))))
+		return (NULL);
+	
 }

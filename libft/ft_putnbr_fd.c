@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 13:55:52 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 15:55:23 by mwane            ###   ########.fr       */
+/*   Created: 2019/10/15 16:30:44 by mwane             #+#    #+#             */
+/*   Updated: 2019/10/15 16:52:23 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <unistd.h>
 #include "libft.h"
+#include <stdio.h>
 
-void	*ft_memccpy(void *dest, const void *src, int c, size_t size)
+void	putchar_fd(char c, int fd)
 {
-	unsigned char *psrc;
-	unsigned char *pdest;
-
-	pdest = (unsigned char*)dest;
-	psrc = (unsigned char*)src;
-	while (size-- > 0)
-	{
-		*(pdest++) = *(psrc++);
-		if (*psrc == (unsigned char)c)
-		{
-			*pdest = *psrc;
-			return (++pdest);
-		}
-	}
-	return (NULL);
+	write(fd, &c, 1);
 }
 
+void	ft_putnbr_fd(int n, int fd)
+{
+	long	nbr;
 
-
+	nbr = n;
+	if (nbr < 0)
+	{
+		nbr *= -1;
+		write(fd, "-", 1);
+	}
+	if (nbr > 9)
+	{
+		ft_putnbr_fd(nbr / 10, fd);
+		ft_putnbr_fd(nbr % 10, fd);
+	}
+	else
+		putchar_fd(nbr + 48, fd);
+}

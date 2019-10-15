@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 11:20:33 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/14 16:59:57 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/15 16:57:15 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		fill_tab(char const *s, char *res, char c)
 	return (j);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_strsplit(char const *s, char c)
 {
 	char	**res;
 	int		tablen;

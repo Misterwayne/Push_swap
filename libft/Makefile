@@ -1,120 +1,74 @@
-## nom du produit
-NAME = libft.a
 
-## liste des dossiers d'includes
-## cherche tous les includes de type dossier
-INC_DIR = 	$(shell find includes -type d)
+SRCS	=  ft_calloc.c \
+ ft_isdigit.c \
+ ft_memchr.c \
+ ft_memset.c \
+ ft_strchr.c \
+ ft_strjoin.c \
+ ft_strncat.c \
+ ft_strrchr.c \
+ ft_tolower.c \
+ ft_isalnum.c \
+ ft_isprint.c \
+ ft_memcmp.c \
+ ft_putstr_fd.c \
+ ft_strcmp.c \
+ ft_strlcat.c \
+ ft_strncmp.c \
+ ft_strstr.c \
+ ft_toupper.c \
+ ft_atoi.c \
+ ft_isalpha.c \
+ ft_itoa.c \
+ ft_memcpy.c \
+ ft_putchar_fd.c \
+ ft_strcpy.c \
+ ft_strlcpy.c \
+ ft_strncpy.c \
+ ft_strtrim.c \
+ ft_bzero.c \
+ ft_isascii.c \
+ ft_memccpy.c \
+ ft_memmove.c \
+ ft_strcat.c \
+ ft_strdup.c \
+ ft_strlen.c \
+ ft_strnstr.c \
+ ft_strsub.c 
 
-## liste des dossiers de sources
-## cherche tous les sources de type dossier
-SRC_DIR = 	$(shell find srcs -type d)
+OBJS	= $(SRCS:%.c=%.o)
 
-## dossier contenant les .o
-OBJ_DIR	=	obj
+CFLAGS 	= -Werror -Wextra -Wall
 
-## chemin virtuel amenant aux .c
-vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
+NAME	= libft.a
 
-## liste des .c sans leur path recursivement
-SRC = $(foreach dir, $(SRC_DIR), $(foreach file, $(wildcard $(dir)/*.c), $(notdir $(file))))
+CC 		= gcc
 
-## remplace '.c' par '.o' dans $(SRC)
-TMP_OBJ = $(SRC:%.c=%.o)
+HEAD	= libft.h
 
-## ajoute le path a chaque element de $(TMP_OBJ)
-OBJ = $(addprefix $(OBJ_DIR)/, $(TMP_OBJ))
 
-## path menant a des librairies (utile qd plusieurs libs)
-LIB_PATH = libft
+all :
+		@make ${NAME}
 
-## nom des libs a linker (NE PAS METTRE 'lib')
-LIBS = ft.a
+$(NAME)	: $(OBJS)
+		ar rc $(NAME) $(OBJS)
+		@ranlib $(NAME)
+		@echo "LIBFT DONE"
+		@make clean
 
-## liste des flags de compilation
-CFLAGS = -Werror -Wextra -Wall
-
-## liste des flags d'include
-IFLAGS = $(foreach dir, $(INC_DIR),-I$(dir) )
-
-## liste des flags de librairies
-LFLAGS = $(foreach dir, $(LIB_PATH),-L$(dir) ) $(foreach lib, $(LIBS),-l$(lib) )
-
-## programme de compilation
-CC = gcc
-
-## liste de couleurs pour personnaliser sa mere
-COLOR_GREY = \033[0;30m
-COLOR_RED = \033[0;31m
-COLOR_GREEN = \033[0;32m
-COLOR_YELLOW = \033[0;33m
-COLOR_WHITE = \033[0m
-COLOR_GREEN = \033[0;32m
-COLOR_CYAN = \033[0;36m
-COLOR_BLUE = \033[0;34m
-
-##couleur de background
-IGREY = \033[0;40m
-IRED = \033[0;41m
-IGREEN = \033[0;42m
-IYELLOW = \033[0;43m
-IBLUE = \033[0;44m
-IPURPLE = \033[0;45m
-ICYAN = \033[0;46m
-IWHITE = \033[0;47m
-
-## style d'ecriture
-
-## porte du garage
-all:
-	@echo "${IRED}Compiling :${COLOR_WHITE}"
-	@make $(NAME)
-
-## permet dacceder a un autre makefile
-##	make -C yolo_folder
-
-## print les alias
-show:
-	@echo "SRC_DIR : $(SRC_DIR)"
-	@echo "IFLAGS : $(IFLAGS)"
-	@echo "CFLAGS : $(CFLAGS)"
-	@echo "LFLAGS : $(LFLAGS)"
-	@echo "SRC : "
-	@echo $(foreach src, $(SRC), $(src))
-	@echo "OBJ : "
-	@echo $(foreach obj, $(OBJ), $(obj))
-
-## regle de compilation du produit
-$(NAME): $(OBJ)
-	@echo "\n${IBLUE}1${COLOR_CYAN}$(NAME)$(COLOR_WHITE) ... \c"
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
-	@echo "$(COLOR_GREEN)Doneシ$(COLOR_WHITE)"
-
-## cherche dans le OBJDIR le .o, si pb, elle va chercher le .c correspondant grace a vpath et le compile
-$(OBJ_DIR)/%.o : %.c 
-	@mkdir -p $(OBJ_DIR)
-## \c evite les retours chariot(s)
-##	@echo "${IBLUE}Compiling $(COLOR_CYAN)$*$(COLOR_WHITE) ... \c"
-	
-	@echo "${IGREEN} \c"
-## compile avec les flags (-o = --object / $@ = destination -> nom de la regle appellee 
-## -c = sources a compiler / $< = dependance, ce qui est envoye)
-	@$(CC) $(CFLAGS) $(IFLAGS) -o $@ -c $<
-##	@echo "$(COLOR_GREEN)シ$(COLOR_WHITE)"
+%.o 	: %.c
+		 $(CC) $(CFLAGS) -I$(HEAD) -o $@ -c $<
 
 clean:
-	@rm -rf $(OBJ_DIR)
-	@echo "${COLOR_RED}Removing object file."
+	@rm -rf $(OBJS)
+##	@echo "Removing object file."
 
 fclean:
 	@make clean
 	@rm -f $(NAME)
-	@echo "${COLOR_RED}Removing bineries"
+##	@echo "${COLOR_RED}Removing bineries"
 
 re:
 	@make fclean
-	@echo "${COLOR_BLUE}Compiling :${COLOR_WHITE}"
+##	@echo "${COLOR_BLUE}Compiling :${COLOR_WHITE}"
 	@make $(NAME)
-
-## si un fichier/dossier a le meme nom, donne priorite a la regle du makefile
-.PHONY: all clean fclean re show
