@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:52:37 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 16:05:35 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/16 19:35:01 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ char	*ft_strnstr(char *str, char *to_find, unsigned int len)
 	i = 0;
 	if (to_find[j] == '\0')
 		return (str);
-	while (*str != '\0' && i < len)
+	while (*str && i < len)
 	{
 		j = 0;
-		while (str[j] == to_find[j])
+		while (str[j] == to_find[j] && str[j] && i < len)
 		{
-			if (to_find[j + 1] == '\0' || len == 0)
+			if (to_find[j + 1] == '\0')
 				return (str);
 			j++;
-			len--;
+			i++;
 		}
 		str++;
 		i++;
