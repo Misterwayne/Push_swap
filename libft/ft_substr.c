@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 15:50:03 by startne           #+#    #+#             */
-/*   Updated: 2019/10/15 17:02:40 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/16 13:49:54 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strsub(const char *s, unsigned int start, size_t len)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	char		*newstr;
 	size_t		i;
@@ -22,7 +22,7 @@ char	*ft_strsub(const char *s, unsigned int start, size_t len)
 	if (!(newstr = malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	if (s == NULL)
-		return (newstr);
+		return (NULL);
 	while (s[start] && i + 1 <= len)
 	{
 		newstr[i++] = s[start++];

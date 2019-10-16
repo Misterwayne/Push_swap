@@ -1,5 +1,6 @@
 
-SRCS	=  ft_calloc.c \
+SRCS	=  $(wildcard *.c)
+## ft_calloc.c \
  ft_isdigit.c \
  ft_memchr.c \
  ft_memset.c \
@@ -34,7 +35,7 @@ SRCS	=  ft_calloc.c \
  ft_strdup.c \
  ft_strlen.c \
  ft_strnstr.c \
- ft_strsub.c 
+ ft_substr.c 
 
 OBJS	= $(SRCS:%.c=%.o)
 

@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 15:51:19 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/14 19:01:01 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/16 13:31:57 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_strcat(char *dest, char *src);
 char	*ft_strchr(const char *str, int c);
 int		ft_strcmp(char *s1, char *s2);
 char	*ft_strcpy(char *dest, char *src);
-char	*ft_strdup(const char *str);
+char	*ft_strstr(char *str, char *to_find);
 char	*ft_strdup(const char *str);
 int		ft_strlcat(char *dest, char *src, unsigned int size);
 int		ft_strlcpy(char *dest, const char *src, int size);
@@ -48,6 +48,9 @@ char	*ft_substr(const char *s, unsigned int start, size_t len);
 char    **ft_split(char const *s, char c);
 char	*ft_strtrim(char const *s1, char const *set);
 void	ft_putstr_fd(char *s, int fd);
-char	**ft_split(char const *s, char c);
+char	*ft_strjoin(char const *s1, char const *s2);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 
 #endif

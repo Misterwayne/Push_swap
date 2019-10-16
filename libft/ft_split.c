@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 11:20:33 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/15 16:57:15 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/16 17:20:54 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		count_word(char const *str, char c)
 
 	i = 0;
 	count = 0;
-	while (str[i] == c)
+	while (str[i] == c && str[i + 1])
 		i++;
 	while (str[i])
 	{
@@ -40,8 +40,11 @@ int		count_letter(char const *s, char c)
 	i = 0;
 	while (*s == c && *s)
 		s++;
-	while (*s != c && *(s++))
+	while (*s != c && *s)
+	{
 		i++;
+		s++;
+	}
 	return (i);
 }
 
@@ -52,37 +55,44 @@ int		fill_tab(char const *s, char *res, char c)
 
 	i = 0;
 	j = 0;
-	while (*s == c && *(s++))
+	while (*s == c && *s)
+	{
 		j++;
+		s++;
+	}
 	while (*s != c && *s)
 	{
 		res[i++] = *(s++);
 		j++;
 	}
 	res[i] = '\0';
-	while (*s == c && *(s++))
+	while (*s == c && *s)
+	{
+		j++;
 		s++;
+	}
 	return (j);
 }
 
-char	**ft_strsplit(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**res;
 	int		tablen;
 	int		i;
 
+	if (!*s)
+		return (NULL);
 	tablen = count_word(s, c) + 1;
 	i = 0;
 	if (!(res = malloc(sizeof(char *) * tablen)))
 		return (0);
 	res[tablen] = NULL;
-	while (i < tablen)
+	while (i < tablen && *s)
 	{
 		if (!(res[i] = malloc(sizeof(char) * (count_letter(s, c) + 1))))
 			return (NULL);
 		s += fill_tab(s, res[i], c);
 		i++;
 	}
-	res[tablen - 1] = NULL;
 	return (res);
 }
