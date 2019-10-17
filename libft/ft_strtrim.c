@@ -6,14 +6,14 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 14:34:24 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/16 16:59:33 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/17 12:10:40 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-int		lstrlen(char *str)
+int					lstrlen(char *str)
 {
 	int i;
 
@@ -23,7 +23,7 @@ int		lstrlen(char *str)
 	return (i);
 }
 
-int		is_in_set(char c, char const *set)
+int					is_in_set(char c, char const *set)
 {
 	int i;
 
@@ -36,11 +36,10 @@ int		is_in_set(char c, char const *set)
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+unsigned int		count_trimed(char const *s1, char const *set)
 {
-	char	*newstr;
-	int		i;
-	int		len_str;
+	int				i;
+	unsigned int	len_str;
 
 	i = 0;
 	len_str = lstrlen((char *)s1);
@@ -49,18 +48,29 @@ char	*ft_strtrim(char const *s1, char const *set)
 	i = lstrlen((char *)s1) - 1;
 	while (is_in_set(s1[i--], set) && i >= 0)
 		len_str--;
+	return (len_str);
+}
+
+char				*ft_strtrim(char const *s1, char const *set)
+{
+	char				*newstr;
+	int					i;
+	unsigned int		len_str;
+
+	len_str = count_trimed(s1, set);
 	if (!(newstr = malloc(sizeof(char) * len_str + 1)))
 		return (NULL);
-	newstr[len_str + 1] = '\0';
-	len_str--;
-	i = lstrlen((char *)s1) - 1;
-	while (is_in_set(s1[i], set) && i >= 0)
-		i--;
-	while (s1[i] && len_str >= 0 && i >= 0)
+	i = 0;
+	if (len_str != (unsigned int)lstrlen((char *)s1))
 	{
-		newstr[len_str] = s1[i];
-		i--;
-		len_str--;
+		while (is_in_set(s1[i], set) && s1[i])
+			i++;
 	}
+	len_str = 0;
+	while (s1[i] && len_str < count_trimed(s1, set))
+	{
+		newstr[len_str++] = s1[i++];
+	}
+	newstr[len_str] = '\0';
 	return (newstr);
 }

@@ -6,12 +6,14 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 11:20:33 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/16 17:20:54 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/17 14:56:58 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "libft.h"
+#include <unistd.h>
 
 int		count_word(char const *str, char c)
 {
@@ -20,15 +22,24 @@ int		count_word(char const *str, char c)
 
 	i = 0;
 	count = 0;
-	while (str[i] == c && str[i + 1])
+	while (str[i] == c && str[i])
 		i++;
 	while (str[i])
 	{
-		if ((str[i + 1] != c && str[i] == c))
-			count++;
+		if (str[i] == c)
+		{
+			while (str[i] == c && str[i])
+				i++;
+			if (str[i])
+				count++;
+			else
+				i--;
+		}
 		i++;
 	}
-	if (str[i - 1] != c)
+	if (count == 0 && str[i - 1] == c)
+		return (count);
+	if (str[i] != c)
 		count++;
 	return (count);
 }
@@ -81,18 +92,23 @@ char	**ft_split(char const *s, char c)
 	int		i;
 
 	if (!*s)
-		return (NULL);
-	tablen = count_word(s, c) + 1;
-	i = 0;
-	if (!(res = malloc(sizeof(char *) * tablen)))
-		return (0);
-	res[tablen] = NULL;
-	while (i < tablen && *s)
 	{
-		if (!(res[i] = malloc(sizeof(char) * (count_letter(s, c) + 1))))
+		if (!(res = malloc(sizeof(char *) * 1)))
+			return (0);
+		*res = NULL;
+		return (res);
+	}
+	tablen = (count_word(s, c) + 1);
+	i = 0;
+	if (!(res = malloc(sizeof(char *) * (tablen))))
+		return (0);
+	while (i < tablen && *s && tablen != 1)
+	{
+		if (!(res[i] = malloc(sizeof(char) * ((count_letter(s, c) + 1)))))
 			return (NULL);
 		s += fill_tab(s, res[i], c);
 		i++;
 	}
+	res[tablen - 1] = NULL;
 	return (res);
 }
