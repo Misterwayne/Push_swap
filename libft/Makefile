@@ -35,7 +35,8 @@ SRCS	=  $(wildcard *.c)
  ft_strdup.c \
  ft_strlen.c \
  ft_strnstr.c \
- ft_substr.c 
+ ft_substr.c \
+ ft_strmapi.c \
 
 OBJS	= $(SRCS:%.c=%.o)
 
@@ -55,7 +56,7 @@ $(NAME)	: $(OBJS)
 		ar rc $(NAME) $(OBJS)
 		@ranlib $(NAME)
 		@echo "LIBFT DONE"
-		@make clean
+		##@make clean
 
 %.o 	: %.c
 		 $(CC) $(CFLAGS) -I$(HEAD) -o $@ -c $<

@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 15:51:19 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/17 13:19:03 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/17 17:38:15 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 # define LIBFT_H
 # include <stdlib.h>
 
-
 int		ft_isalpha(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
-int 	ft_isdigit(int c);
+int		ft_isdigit(int c);
 int		ft_isprint(int c);
 int		ft_atoi(char *nbr);
 void	ft_bzero(void *s, size_t size);
@@ -36,7 +35,7 @@ char	*ft_strstr(char *str, char *to_find);
 char	*ft_strdup(const char *str);
 int		ft_strlcat(char *dest, char *src, unsigned int size);
 int		ft_strlcpy(char *dest, const char *src, int size);
-int 	ft_strlen(char *str);
+int		ft_strlen(char *str);
 char	*ft_strncat(char *dest, char *src, unsigned int n);
 int		ft_strncmp(char *str1, char *str2, size_t n);
 char	*ft_strncpy(char *dest, char *src, unsigned int n);
@@ -45,7 +44,7 @@ char	*ft_strrchr(const char *str, int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
-char    **ft_split(char const *s, char c);
+char	**ft_split(char const *s, char c);
 char	*ft_strtrim(char const *s1, char const *set);
 void	ft_putstr_fd(char *s, int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -53,5 +52,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	*ft_calloc(size_t nmemb, size_t size);
+char	*ft_itoa(int n);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
-#endif
+# endif
