@@ -6,23 +6,29 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 17:01:31 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/14 23:20:48 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/17 17:23:40 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
-int     get_str_len(int nbr)
+int		get_str_len(long nbr)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (nbr > 0)
-    {
-        nbr /= 10;
-        i++;
-    }
-    return (i);
+	i = 0;
+	if (nbr <= 0)
+	{
+		i++;
+		nbr *= -1;
+	}
+	while (nbr > 0)
+	{
+		nbr /= 10;
+		i++;
+	}
+	return (i);
 }
 
 char	*ft_itoa(int n)
@@ -33,35 +39,23 @@ char	*ft_itoa(int n)
 	int		i;
 	int		j;
 
-    nbr = n;
-    nega = 1;
-    j = 0;
-    if (nbr < 0)
-    {
-        nbr *= -1;
-        nega++;
-        j += 1;
-    }
-    i = get_str_len(nbr);
-    if (!(result = malloc(sizeof(char) * (i + nega))))
-        return (0);
-    if (n < 0)
-        result[0] = '-';
-	nega -= 1;
-    nega += i;
-    i--;
-    while (j < nega)
-    {
-        result[j] = (nbr % 10^i) + '0';
-        i--;
-        j++;
-    }
-    result[j] = '\0';
-    return (result);
-}
-#include <stdio.h>
-int main(void)
-{
-    printf("%s\n",ft_itoa(-405));
-    return (0);
+	nbr = n;
+	j = -1;
+	i = get_str_len(nbr);
+	if (!(result = malloc(sizeof(char) * (i + 1))))
+		return (0);
+	if (nbr < 0)
+	{
+		nbr *= -1;
+		result[0] = '-';
+		j += 1;
+	}
+	result[i] = '\0';
+	nega = i--;
+	while (++j < nega && result[i] != '-')
+	{
+		result[i--] = (nbr % 10) + '0';
+		nbr /= 10;
+	}
+	return (result);
 }
