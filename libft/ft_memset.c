@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 15:05:22 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 16:03:59 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/22 13:55:03 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*ft_memset(void *s, int c, size_t size)
 {
 	unsigned char *str;
 
+	if (!s)
+		return (s);
 	str = (unsigned char*)s;
 	while (size-- > 0)
 		*(str++) = (unsigned char)c;

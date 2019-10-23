@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 15:50:03 by startne           #+#    #+#             */
-/*   Updated: 2019/10/18 13:31:47 by mwane            ###   ########.fr       */
+/*   Created: 2019/10/20 16:42:22 by mwane             #+#    #+#             */
+/*   Updated: 2019/10/22 11:20:04 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+int		ft_lstsize(t_list *lst)
 {
-	char		*newstr;
-	size_t		i;
+	int		i;
 
 	i = 0;
-	if (s == NULL)
-		return (NULL);
-	if (!(newstr = malloc(sizeof(char) * (len + 1))))
-		return (NULL);
-	if (ft_strlen((char *)s) < (int)start)
+	while (lst)
 	{
-		*newstr = '\0';
-		return (newstr);
+		lst = lst->next;
+		i++;
 	}
-	while (s[start] && i + 1 <= len)
-	{
-		newstr[i++] = s[start++];
-	}
-	newstr[i] = '\0';
-	return (newstr);
+	return (i);
 }

@@ -6,14 +6,14 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 14:34:24 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/17 12:10:40 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/18 13:29:15 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-int					lstrlen(char *str)
+static int					lstrlen(char *str)
 {
 	int i;
 
@@ -23,11 +23,13 @@ int					lstrlen(char *str)
 	return (i);
 }
 
-int					is_in_set(char c, char const *set)
+static int					is_in_set(char c, char const *set)
 {
 	int i;
 
 	i = -1;
+	if (set == NULL)
+		return (0);
 	while (set[++i])
 	{
 		if (c == set[i])
@@ -36,7 +38,7 @@ int					is_in_set(char c, char const *set)
 	return (0);
 }
 
-unsigned int		count_trimed(char const *s1, char const *set)
+static unsigned int			count_trimed(char const *s1, char const *set)
 {
 	int				i;
 	unsigned int	len_str;
@@ -51,12 +53,14 @@ unsigned int		count_trimed(char const *s1, char const *set)
 	return (len_str);
 }
 
-char				*ft_strtrim(char const *s1, char const *set)
+char						*ft_strtrim(char const *s1, char const *set)
 {
 	char				*newstr;
 	int					i;
 	unsigned int		len_str;
 
+	if (s1 == NULL)
+		return (NULL);
 	len_str = count_trimed(s1, set);
 	if (!(newstr = malloc(sizeof(char) * len_str + 1)))
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 16:54:19 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 16:05:43 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/18 13:30:33 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strstr(char *str, char *to_find)
 	int j;
 
 	j = 0;
-	if (to_find[j] == '\0')
+	if (to_find[j] == '\0' || to_find == NULL)
 		return (str);
 	while (*str != '\0')
 	{

@@ -6,14 +6,14 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 10:08:35 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/16 16:40:42 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/18 19:21:33 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-int		ft_atoi(char *nbr)
+int		ft_atoi(const char *nbr)
 {
 	long	nb;
 	int		i;

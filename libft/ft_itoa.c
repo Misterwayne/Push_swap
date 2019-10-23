@@ -6,14 +6,14 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 17:01:31 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/17 17:23:40 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/18 11:36:27 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-int		get_str_len(long nbr)
+static int		get_str_len(long nbr)
 {
 	int i;
 
@@ -31,7 +31,7 @@ int		get_str_len(long nbr)
 	return (i);
 }
 
-char	*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	long	nbr;
 	char	*result;

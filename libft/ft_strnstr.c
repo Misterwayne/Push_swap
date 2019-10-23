@@ -6,17 +6,17 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:52:37 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/16 19:35:01 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/22 13:41:01 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strnstr(char *str, char *to_find, unsigned int len)
+char	*ft_strnstr(char *str, char *to_find, size_t len)
 {
-	unsigned int	j;
-	unsigned int	i;
+	size_t	j;
+	size_t	i;
 
 	j = 0;
 	i = 0;

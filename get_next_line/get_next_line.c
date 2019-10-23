@@ -1,31 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 13:45:06 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/22 13:48:08 by mwane            ###   ########.fr       */
+/*   Created: 2019/10/23 11:11:15 by mwane             #+#    #+#             */
+/*   Updated: 2019/10/23 11:20:10 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft.h"
-
-char	*ft_strdup(const char *str)
+int get_next_line(int fd, char **line)
 {
-	char	*nstr;
-	int		i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	if (!(nstr = malloc((sizeof(char) * (i + 1)))))
-		return (NULL);
-	i = -1;
-	while (str[++i])
-		nstr[i] = str[i];
-	nstr[i] = '\0';
-	return (nstr);
+	
 }

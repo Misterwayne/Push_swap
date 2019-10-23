@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 15:50:03 by startne           #+#    #+#             */
-/*   Updated: 2019/10/18 13:31:47 by mwane            ###   ########.fr       */
+/*   Created: 2019/10/21 16:07:05 by mwane             #+#    #+#             */
+/*   Updated: 2019/10/23 11:14:51 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char		*newstr;
-	size_t		i;
+	t_list	*newlst;
+	t_list	*savelst;
 
-	i = 0;
-	if (s == NULL)
+	if (!lst || !f || !del)
 		return (NULL);
-	if (!(newstr = malloc(sizeof(char) * (len + 1))))
+	if (!(newlst = ft_lstnew(f(lst->content))))
+	{
+		ft_lstdelone(newlst, del);
 		return (NULL);
-	if (ft_strlen((char *)s) < (int)start)
-	{
-		*newstr = '\0';
-		return (newstr);
 	}
-	while (s[start] && i + 1 <= len)
+	savelst = newlst;
+	while (lst)
 	{
-		newstr[i++] = s[start++];
+		if (!(newlst->next = ft_lstnew(f(lst->content))))
+		{
+			ft_lstclear(&newlst, del);
+			return (NULL);
+		}
+		newlst = newlst->next;
+		lst = lst->next;
 	}
-	newstr[i] = '\0';
-	return (newstr);
+	return (savelst);
 }

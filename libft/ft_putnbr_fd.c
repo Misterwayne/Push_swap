@@ -6,24 +6,25 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:30:44 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/15 16:52:23 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/22 13:50:36 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "libft.h"
-#include <stdio.h>
 
-void	putchar_fd(char c, int fd)
+static void		putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+void			ft_putnbr_fd(int n, int fd)
 {
 	long	nbr;
 
 	nbr = n;
+	if (fd < 0)
+		return ;
 	if (nbr < 0)
 	{
 		nbr *= -1;

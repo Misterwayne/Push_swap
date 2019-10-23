@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 15:50:03 by startne           #+#    #+#             */
-/*   Updated: 2019/10/18 13:31:47 by mwane            ###   ########.fr       */
+/*   Created: 2019/10/21 14:18:44 by mwane             #+#    #+#             */
+/*   Updated: 2019/10/22 11:04:29 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
+#include <stdlib.h>
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	char		*newstr;
-	size_t		i;
+	t_list	*templst;
 
-	i = 0;
-	if (s == NULL)
-		return (NULL);
-	if (!(newstr = malloc(sizeof(char) * (len + 1))))
-		return (NULL);
-	if (ft_strlen((char *)s) < (int)start)
+	if (!lst || !del)
+		return ;
+	while ((*lst))
 	{
-		*newstr = '\0';
-		return (newstr);
+		del((*lst)->content);
+		templst = (*lst);
+		free((*lst));
+		(*lst) = templst->next;
 	}
-	while (s[start] && i + 1 <= len)
-	{
-		newstr[i++] = s[start++];
-	}
-	newstr[i] = '\0';
-	return (newstr);
 }

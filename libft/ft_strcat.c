@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 16:47:27 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 16:04:05 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/18 13:37:25 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,12 @@ char	*ft_strcat(char *dest, char *src)
 
 	i = 0;
 	j = 0;
+	if (dest == NULL || src == NULL)
+		return (NULL);
 	while (dest[i] != '\0')
 		i++;
 	while (src[j] != '\0')
-	{
-		dest[i] = src[j];
-		i++;
-		j++;
-	}
+		dest[i++] = src[j++];
 	dest[i] = '\0';
 	return (dest);
 }

@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 14:13:52 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 16:03:54 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/22 13:54:17 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memmove(void *dest, const void *src, size_t size)
 	i = 0;
 	pdest = (unsigned char*)dest;
 	psrc = (unsigned char*)src;
-	if ((!dest && !src) || !size)
+	if (!dest || !src || !size)
 		return (dest);
 	if (psrc < pdest)
 		while (++i <= size)
