@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:11:15 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/28 17:41:01 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/29 12:37:16 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,64 @@ char     *reallocbuff(char *buffer, char *str, int size, int i)
 	tmp = malloc(sizeof(char) * ((size * i) + sizeof(str) + 1));
 	if (str)
 	{
-		while (str[j])
+		while (str[x] != '\n' && str[x])
+			x++;
+		while (str[x])
 		{
-			tmp[j] = str[j];
+			x++;
+			tmp[j] = str[x];
 			j++;
 		}
 		free(str);
 	}
-	while (buffer[x] && buffer[x] != '\n')
+	x = 0;
+	while (buffer[x])
 		tmp[j++] = buffer[x++];
 	tmp[j] = '\0';
 	str = tmp;
-	return (str);
+	return (tmp);
+}
+
+char *giveline(char* str)
+{
+	int i;
+	char *line;
+
+	i = 0;
+	while (str[i] != '\n' && str[i])
+		i++;
+	line = malloc(sizeof(char) * (i +1));
+	i = 0;
+	while (str[i] != '\n' && str[i])
+	{
+		line[i] = str[i];
+		i++;
+	}
+	printf("%d\n",i);
+	line[i] = '\0';
+	return (line);
 }
 
 char	*setup_save(char *buff)
 {
 	int i;
+	int j;
 	char *newsave;
 
 	i = 0;
-	newsave = malloc(sizeof(BUFFER_SIZE));
-	while (*buff && *buff != '\n')
-		buff++;
-	if (*buff)
+	j = 0;
+	newsave = malloc(sizeof(BUFFER_SIZE + 1));
+	while (buff[i] != '\n' && buff[i])
+		i++;
+	printf("i1 = %d\n",i);
+	if (buff[i++])
 	{
-		buff++;
-		while (*buff && *buff != '\n')
-			newsave[i++] = *buff++;
-		newsave[i] = '\0';
+		while (buff[i])
+			newsave[j++] = buff[i++];
+		printf("i2 = %d\n",i);
+		newsave[j] = '\0';
 	}
+	printf("newsave = %s\n",newsave);
 	return(newsave);
 }
 
@@ -86,19 +114,30 @@ int get_next_line(int fd, char **line)
 		save = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	while ((count = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
+		printf("save2 = %s\n",save);
 		buffer[count] = '\0';
+		save = reallocbuff(buffer, save, BUFFER_SIZE, i);
+		//printf("save = %s\n",save);
 		if (!scan_buffer(buffer))
 		{
-			save = reallocbuff(buffer, save, BUFFER_SIZE, i);
+			save = setup_save(buffer);
 			i++;
 		}
 		else
 		{
-			*line = reallocbuff(buffer, save, BUFFER_SIZE, i);
-			save = setup_save(buffer);
+			*line = giveline(save);
+			save = setup_save(save);
 			return count;
 		}
 	}
+	*line = giveline(save);
+	if (buffer)
+		save = reallocbuff(buffer, save, BUFFER_SIZE, i);
+	else
+		save = reallocbuff(save, save, BUFFER_SIZE, i);
+	printf("save1 = %s\n",save);
+	*line = giveline(save);
+	save = setup_save(save);
 	return 0;
 }
 
