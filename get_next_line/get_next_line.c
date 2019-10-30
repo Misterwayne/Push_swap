@@ -6,13 +6,23 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:11:15 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/30 19:53:38 by mwane            ###   ########.fr       */
+/*   Updated: 2019/10/30 21:11:59 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+void	ft_bzero(void *s, size_t size)
+{
+	unsigned char *str;
+
+	str = (unsigned char*)s;
+	while (size-- > 0)
+		*(str++) = 0;
+}
+
 
 int ft_strlen(char *str)
 {
@@ -21,9 +31,12 @@ int ft_strlen(char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	while (str[i])
+	while (*str)
+	{
 		i++;
-	return i;
+		str++;
+	}
+	return (i);
 }
 
 char     *reallocbuff(char *buffer, char *str)
@@ -52,6 +65,7 @@ char     *reallocbuff(char *buffer, char *str)
 		newstr[i++] = buffer[j++];
 	newstr[i] = '\0';
 	free(str);
+	free(buffer);
 	// printf("newstr = |%s|\n",newstr);
 	return (newstr);
 }
@@ -60,21 +74,30 @@ char *giveline(char* str)
 {
 	int i;
 	char *line;
+	int len;
 
 	i = 0;
 	if (!str)
+	{
+		//printf("\nstr est null\n");
 		return NULL;
-	while (str[i] && str[i] != '\n')
+	}
+	//printf("str de l = %d\n",ft_strlen(str));
+	//printf("str = %s\n",str);
+	while (i < ft_strlen(str) && str[i] != '\n')
 		i++;
+	len = i;
 	line = malloc(sizeof(char) * (i + 1));
 	i = 0;
-	while (str[i] && str[i]!= '\n')
+	// printf("len = %d\n",len);
+	while (str[i] && str[i]!= '\n' && len > i)
 	{
 		line[i] = str[i];
 		i++;
 	}
 	line[i] = '\0';
-	// printf("l = %s\n",line);
+	// printf("len de l = %d\n",ft_strlen(line));
+	//  printf("l = %s\n",line);
 	return (line);
 }
 
@@ -87,15 +110,24 @@ char	*setup_save(char *save)
 	i = 0;
 	j = 0;
 	// printf("oldsave = |%s|\n",save);
+	if (!save)
+	{
+		//printf("\nstr est null\n");
+		return NULL;
+	}
 	while (save[i] && save[i] != '\n')
 		i++;
-	newsave = malloc(sizeof(char) * (ft_strlen(save) - i) + 1);
 	if (save[i])
 	{
+		newsave = malloc(sizeof(char) * (ft_strlen(save) - i) + 1);
 		i++;
 		while (save[i])
 			newsave[j++] = save[i++];
 		newsave[j] = '\0';
+	}
+	else
+	{	
+		return(NULL);
 	}
 	free(save);
 	// printf("newsave = |%s|\n",newsave);
@@ -118,9 +150,12 @@ int		scan_buffer(char *buff)
 
 int		scan_save(char *save)
 {
-	if (*save)
-		return (1);
-	return (0);
+	if (!save)
+	{	
+		// printf(" \nstr est null\n");
+		return (0);
+	}
+	return (1);
 }
 
 int get_next_line(int fd, char **line)
@@ -131,8 +166,11 @@ int get_next_line(int fd, char **line)
 	int i;
 
 	i = 1;
+	// if (*line)
+	// 	free(*line);
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	// printf("lastsave = %s\n",save);
+	// ft_bzero(buffer, BUFFER_SIZE);
 	while ((count = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
 		buffer[count] = '\0';
@@ -152,6 +190,7 @@ int get_next_line(int fd, char **line)
 		return (1);
 	else
 		free(save);
+	save = NULL;
 	return (0);
 }
 
@@ -177,6 +216,7 @@ int main(void)
 		printf("ligne %d |%s|\n",i++ ,line);
 		free(line);
 	}
+	close(fd);
 	// printf("count = %d ligne %d = %s\n\n",get_next_line(fd, &line),i++,line);
 	// printf("count = %d ligne %d = %s\n\n",get_next_line(fd, &line),i++,line);
 	// printf("count = %d ligne %d = %s\n\n",get_next_line(fd, &line),i++,line);
@@ -185,6 +225,5 @@ int main(void)
 	// printf("count = %d ligne %d = %s\n\n",get_next_line(fd, &line),i++,line);
 	// printf("count = %d ligne %d = %s\n\n",get_next_line(fd, &line),i++,line);
 	// printf("count = %d ligne %d = %s\n\n",get_next_line(fd, &line),i++,line);
-	// //while(1){}
 	return 0;
 }
