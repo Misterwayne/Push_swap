@@ -6,11 +6,26 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 13:05:22 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/12 19:30:07 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/19 19:42:29 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	if (!*str)
+		return (0);
+	while(*str)
+	{
+		i++;
+		str++;
+	}
+	return i;
+}
 
 void		ft_putchar(char c, pflags *lflags)
 {
@@ -57,43 +72,26 @@ int			ft_putnbr(long n, pflags *lflags)
 	return (i);
 }
 
-
-int	check_params(const char *str, va_list argv, pflags *lflags);
-
-int		ft_printf(const char *str, ...)
-{
-	va_list argv_list;
-	pflags  lflags = {0,0,NULL};
-
-	va_start(argv_list, str);
-	while (*str)
-	{
-		if (*str != '%')
-		{
-			write(1, str, 1);
-			lflags.total_len += 1;
-		}
-		else
-		{
-			str++;
-			check_params(str, argv_list, &lflags);
-		}
-		str++;
-	}
-	return (lflags.total_len);
-}
-
-int		check_pre_with(const char *str)
+int		check_pre_with(const char *str, pflags * lflags, va_list argv_list)
 {
 	int p;
+	int len1;
 
-	p = ft_atoi((char *)str);
-	while (p >= 0)
+	p = 0;
+	len1 = ft_strlen(str);
+	if ((*str == '-') || (*str == '.') || (*str >= '0' && *str <= '9'))
 	{
-		write(1, " ", 1);
-		p--;
+		lflags->width = ft_atoi(str);
+		//  printf("with = %d\n",lflags->width);
+		while(*str != '.')
+			str++;
+		str++;
+		lflags->preci = ft_atoi(str);
+		//  printf("preci = %d\n",lflags->preci);
+		str++;
 	}
-	return (1);
+	check_params(str, argv_list, lflags);
+	return (len1 - ft_strlen(str));
 }
 
 int	check_params(const char *str, va_list argv, pflags *lflags)
@@ -101,13 +99,13 @@ int	check_params(const char *str, va_list argv, pflags *lflags)
 	unsigned long c;
 
 	c = 0;
-	if ((*str == '-') || (*str == '.') || (*str >= '0' && *str <= '9'))
-	{
-		check_pre_with(str);
-		str++;
-		check_params(str, argv, lflags);
-	}
-	else if (*str == 'd')
+	// if ((*str == '-') || (*str == '.') || (*str >= '0' && *str <= '9'))
+	// {
+	// 	check_pre_with((char *)str, lflags);
+	// 	str++;
+	// 	check_params(str, argv, lflags);
+	// }
+	if (*str == 'd')
 	{
 		c = (int)va_arg(argv, int);
 		lflags->total_len += ft_putnbr(c, lflags);
@@ -156,9 +154,32 @@ int	check_params(const char *str, va_list argv, pflags *lflags)
 	return (0);
 }
 
+int		ft_printf(const char *str, ...)
+{
+	va_list argv_list;
+	pflags  lflags = {0, 0, 0, NULL};
+
+	va_start(argv_list, str);
+	while (*str)
+	{
+		if (*str != '%')
+		{
+			write(1, str, 1);
+			lflags.total_len += 1;
+		}
+		else
+		{
+			str++;
+			str += check_pre_with(str, &lflags, argv_list);
+		}
+		str++;
+	}
+	return (lflags.total_len);
+}
+
 int main(void)
 {
-	int dec = -100000;
+	int dec = 7854;
 	char chara = 'x';
 	char *str = "okidoki";
 	unsigned int ui = -16;
@@ -166,8 +187,8 @@ int main(void)
 	int j = x;
 	int v;
 	
-	v = ft_printf("| %%d = %d |\n| %%c = %c |\n| %%s = %s |\n| %%u = %u |\n| %%p = %p |\n| %%x = %X |\n", dec, chara, str, ui, &j, x);
+	v = ft_printf("| %%d = %-20.4d |\n| %%c = %-9.5c |\n| %%s = %s |\n| %%u = %u |\n| %%p = %p |\n| %%x = %X |\n", dec, chara, str, ui, &j, x);
 	printf("%d---------------------\n",v);
-	v = printf("| %%d = %2d |\n| %%c = %c |\n| %%s = %s |\n| %%u = %u |\n| %%p = %p |\n| %%x = %X |\n", dec, chara, str, ui, &j, x);
+	v = printf("| %%d = %.7d |\n| %%c = %c |\n| %%s = %s |\n| %%u = %u |\n| %%p = %p |\n| %%x = %X |\n", dec, chara, str, ui, &j, x);
 	printf("%d---------------------\n",v);
 }
