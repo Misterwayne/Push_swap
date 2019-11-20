@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:38:10 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/19 19:04:29 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/20 18:54:05 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int     check_width_pre(char *str, pflags *lflags)
 {
     int i;
 
-    i = 0;
-    lflags->width = ft_atoi(str);
-    printf("%d\n",lflags->width);
+    
+    lflags->buffer =
     return 0;
 }

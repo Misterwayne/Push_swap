@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 13:05:22 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/19 19:42:29 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/20 19:33:03 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,16 @@ void		ft_putchar(char c, pflags *lflags)
 	lflags->total_len += 1;
 }
 
-int ft_putstr(char * str)
+int ft_putstr(char * str, pflags *lflags)
 {
 	int i;
 
 	i = 0;
-	while (*str)
+	if (!str)
+		return (0);
+	while (str[i])
 	{
-		write(1, str++, 1);
+		ft_putchar(str[i], lflags);
 		i++;
 	}
 	return (i);
@@ -78,56 +80,45 @@ int		check_pre_with(const char *str, pflags * lflags, va_list argv_list)
 	int len1;
 
 	p = 0;
-	len1 = ft_strlen(str);
+	len1 = ft_strlen((char *)str);
 	if ((*str == '-') || (*str == '.') || (*str >= '0' && *str <= '9'))
 	{
-		lflags->width = ft_atoi(str);
+		lflags->width = ft_atoi((char *)str);
 		//  printf("with = %d\n",lflags->width);
 		while(*str != '.')
 			str++;
 		str++;
-		lflags->preci = ft_atoi(str);
+		lflags->preci = ft_atoi((char *)str);
 		//  printf("preci = %d\n",lflags->preci);
 		str++;
 	}
 	check_params(str, argv_list, lflags);
-	return (len1 - ft_strlen(str));
+	return (len1 - ft_strlen((char *)str));
 }
 
 int	check_params(const char *str, va_list argv, pflags *lflags)
 {
 	unsigned long c;
+	char *res;
 
 	c = 0;
-	// if ((*str == '-') || (*str == '.') || (*str >= '0' && *str <= '9'))
-	// {
-	// 	check_pre_with((char *)str, lflags);
-	// 	str++;
-	// 	check_params(str, argv, lflags);
-	// }
+	res = NULL;
 	if (*str == 'd')
 	{
 		c = (int)va_arg(argv, int);
-		lflags->total_len += ft_putnbr(c, lflags);
-		return (1);
+		res = ft_putnbr_base(c, "0123456789", lflags);
 	}
 	else if (*str == 'c')
 	{
 		c = (char)va_arg(argv, int);
 		ft_putchar(c, lflags);
-		lflags->total_len += 1;
- 		return (1);
 	}
 	else if (*str == 's')
-	{
-		lflags->total_len += ft_putstr(va_arg(argv, char *));
-		return (1);
-	}
+		ft_putstr(va_arg(argv, char *), lflags);
 	else if (*str == 'u')
 	{
-		c = (unsigned int)(4294967295 + 1 +va_arg(argv, unsigned int));
-		ft_putnbr(c, lflags);
-		return (1);
+		c = (unsigned int)(4294967295 + 1 + va_arg(argv, unsigned int));
+		res = ft_putnbr_base(c, "0123456789", lflags);
 	}
 	else if (*str == '%')
 	{
@@ -138,19 +129,22 @@ int	check_params(const char *str, va_list argv, pflags *lflags)
 	else if (*str == 'p')
 	{
 		c = (unsigned long)va_arg(argv, unsigned long);
-		write(1, "0x", 2);
-		ft_putnbr_base(c, "0123456789abcdef", lflags);
+		ft_putchar('0', lflags);
+		ft_putchar('x', lflags);
+		res = ft_putnbr_base(c, "0123456789abcdef", lflags);
 	}
 	else if (*str == 'x')
 	{
 		c = (int)va_arg(argv, int);
-		ft_putnbr_base(c, "0123456789abcdef", lflags);
+		res = ft_putnbr_base(c, "0123456789abcdef", lflags);
 	}
 	else if (*str == 'X')
 	{
 		c = (int)va_arg(argv, int);
-		ft_putnbr_base(c, "0123456789ABCDEF", lflags);
+		res = ft_putnbr_base(c, "0123456789ABCDEF", lflags);
 	}
+	ft_putstr(res, lflags);
+	free(res);
 	return (0);
 }
 
@@ -163,10 +157,7 @@ int		ft_printf(const char *str, ...)
 	while (*str)
 	{
 		if (*str != '%')
-		{
-			write(1, str, 1);
-			lflags.total_len += 1;
-		}
+			ft_putchar(*str, &lflags);
 		else
 		{
 			str++;
@@ -187,7 +178,7 @@ int main(void)
 	int j = x;
 	int v;
 	
-	v = ft_printf("| %%d = %-20.4d |\n| %%c = %-9.5c |\n| %%s = %s |\n| %%u = %u |\n| %%p = %p |\n| %%x = %X |\n", dec, chara, str, ui, &j, x);
+	v = ft_printf("| %%d = %-4.2d |\n| %%c = %-9.5c |\n| %%s = %s |\n| %%u = %u |\n| %%p = %p |\n| %%x = %X |\n", dec, chara, str, ui, &j, x);
 	printf("%d---------------------\n",v);
 	v = printf("| %%d = %.7d |\n| %%c = %c |\n| %%s = %s |\n| %%u = %u |\n| %%p = %p |\n| %%x = %X |\n", dec, chara, str, ui, &j, x);
 	printf("%d---------------------\n",v);

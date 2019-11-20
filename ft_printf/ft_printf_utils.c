@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 13:58:01 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/12 19:24:34 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/20 19:32:32 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,17 @@ int		check_base(char *base)
 	return (1);
 }
 
-int	ft_putnbr_base(long nbr, char *base, pflags *lflags)
+char	*ft_putnbr_base(long nbr, char *base, pflags *lflags)
 {
 	long	size_base;
 	long	nbr_final[100];
+	char	*res;
 	long	i;
 	int		j;
 
 	i = 0;
 	j = 0;
+	res = malloc(sizeof(char) * 100);
 	size_base = 0;
 	if (check_base(base))
 	{
@@ -97,9 +99,10 @@ int	ft_putnbr_base(long nbr, char *base, pflags *lflags)
 		}
 		while (--i >= 0)
 		{
-			ft_putchar(base[nbr_final[i]], lflags);
+			res[j] = base[nbr_final[i]];
 			j++;
 		}
 	}
-	return (j);
+	res[j] = '\0';
+	return (res);
 }
