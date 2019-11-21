@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 13:05:22 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/20 19:33:03 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/21 00:38:36 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int		ft_strlen(char *str)
 	int i;
 
 	i = 0;
-	if (!*str)
+	if (!str)
 		return (0);
-	while(*str)
+	while(str[i])
 	{
 		i++;
 		str++;
@@ -112,9 +112,13 @@ int	check_params(const char *str, va_list argv, pflags *lflags)
 	{
 		c = (char)va_arg(argv, int);
 		ft_putchar(c, lflags);
+		return (1);
 	}
 	else if (*str == 's')
-		ft_putstr(va_arg(argv, char *), lflags);
+	{
+		ft_putstr(do_width(va_arg(argv, char *), lflags->width, lflags->preci), lflags);
+		return (1);
+	}
 	else if (*str == 'u')
 	{
 		c = (unsigned int)(4294967295 + 1 + va_arg(argv, unsigned int));
@@ -143,7 +147,7 @@ int	check_params(const char *str, va_list argv, pflags *lflags)
 		c = (int)va_arg(argv, int);
 		res = ft_putnbr_base(c, "0123456789ABCDEF", lflags);
 	}
-	ft_putstr(res, lflags);
+	ft_putstr(do_width(res, lflags->width, lflags->preci), lflags);
 	free(res);
 	return (0);
 }
@@ -163,6 +167,8 @@ int		ft_printf(const char *str, ...)
 			str++;
 			str += check_pre_with(str, &lflags, argv_list);
 		}
+		lflags.preci = 0;
+		lflags.width = 0;
 		str++;
 	}
 	return (lflags.total_len);
@@ -178,8 +184,8 @@ int main(void)
 	int j = x;
 	int v;
 	
-	v = ft_printf("| %%d = %-4.2d |\n| %%c = %-9.5c |\n| %%s = %s |\n| %%u = %u |\n| %%p = %p |\n| %%x = %X |\n", dec, chara, str, ui, &j, x);
-	printf("%d---------------------\n",v);
-	v = printf("| %%d = %.7d |\n| %%c = %c |\n| %%s = %s |\n| %%u = %u |\n| %%p = %p |\n| %%x = %X |\n", dec, chara, str, ui, &j, x);
-	printf("%d---------------------\n",v);
-}
+	v = ft_printf("| %%d = %10d |\n| %%c = %c |\n| %%s = %s |\n| %%u = %u |\n| %%p = %p |\n| %%x = %X |\n", dec, chara, str, ui, &j, x);
+	// printf("%d---------------------\n",v);
+	// v = printf("| %%d = %d |\n| %%c = %c |\n| %%s = %s |\n| %%u = %u |\n| %%p = %p |\n| %%x = %X |\n", dec, chara, str, ui, &j, x);
+	// printf("%d---------------------\n",v);
+	}
