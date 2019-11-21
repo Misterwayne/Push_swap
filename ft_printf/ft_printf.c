@@ -3,13 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 13:05:22 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/21 00:38:36 by truepath         ###   ########.fr       */
+/*   Updated: 2019/11/21 18:25:25 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+changer putnbrbase pour les negatif.
+gerer la precition et le width au cas par cas.
+Faire le Makefile.
+separer les fonction.
+Organiser les fichier.
+fix le return de la ft_printf.
+
+
+*/
 #include "ft_printf.h"
 
 int		ft_strlen(char *str)
@@ -19,12 +29,9 @@ int		ft_strlen(char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	while(str[i])
-	{
+	while (str[i])
 		i++;
-		str++;
-	}
-	return i;
+	return (i);
 }
 
 void		ft_putchar(char c, pflags *lflags)
@@ -40,7 +47,9 @@ int ft_putstr(char * str, pflags *lflags)
 	i = 0;
 	if (!str)
 		return (0);
-	while (str[i])
+	if (lflags->preci <= 0)
+		lflags->preci = ft_strlen(str);
+	while (str[i] && i < lflags->preci)
 	{
 		ft_putchar(str[i], lflags);
 		i++;
@@ -81,15 +90,13 @@ int		check_pre_with(const char *str, pflags * lflags, va_list argv_list)
 
 	p = 0;
 	len1 = ft_strlen((char *)str);
-	if ((*str == '-') || (*str == '.') || (*str >= '0' && *str <= '9'))
+	lflags->width = ft_atoi((char *)str);
+	while ((*str >= '0' && *str <= '9') || *str == '-')
+		str++;
+	if (*str == '.')
 	{
-		lflags->width = ft_atoi((char *)str);
-		//  printf("with = %d\n",lflags->width);
-		while(*str != '.')
-			str++;
 		str++;
 		lflags->preci = ft_atoi((char *)str);
-		//  printf("preci = %d\n",lflags->preci);
 		str++;
 	}
 	check_params(str, argv_list, lflags);
@@ -147,7 +154,7 @@ int	check_params(const char *str, va_list argv, pflags *lflags)
 		c = (int)va_arg(argv, int);
 		res = ft_putnbr_base(c, "0123456789ABCDEF", lflags);
 	}
-	ft_putstr(do_width(res, lflags->width, lflags->preci), lflags);
+	do_width(res, lflags->width, lflags->preci);
 	free(res);
 	return (0);
 }
@@ -176,16 +183,16 @@ int		ft_printf(const char *str, ...)
 
 int main(void)
 {
-	int dec = 7854;
+	int dec = -7854;
 	char chara = 'x';
 	char *str = "okidoki";
 	unsigned int ui = -16;
 	int x = 44555566;
 	int j = x;
 	int v;
-	
-	v = ft_printf("| %%d = %10d |\n| %%c = %c |\n| %%s = %s |\n| %%u = %u |\n| %%p = %p |\n| %%x = %X |\n", dec, chara, str, ui, &j, x);
-	// printf("%d---------------------\n",v);
-	// v = printf("| %%d = %d |\n| %%c = %c |\n| %%s = %s |\n| %%u = %u |\n| %%p = %p |\n| %%x = %X |\n", dec, chara, str, ui, &j, x);
-	// printf("%d---------------------\n",v);
+
+	v = ft_printf("| %%d = %10d |\n| %%c = %c |\n| %%s = %-14s |\n| %%u = %10.8u |\n| %%p = %10p |\n| %%x = %10.8X |\n", dec, chara, str, ui, &j, x);
+	printf("%d----------------------\n",v);
+	v = printf("| %%d = %10.8d |\n| %%c = %c |\n| %%s = %-14s |\n| %%u = %10.8u |\n| %%p = %10p |\n| %%x = %10.8X |\n", dec, chara, str, ui, &j, x);
+	printf("%d---------------------\n",v);
 	}
