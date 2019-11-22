@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:02:05 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/20 23:10:51 by truepath         ###   ########.fr       */
+/*   Updated: 2019/11/22 20:34:56 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,15 @@ typedef struct pflags
 }              pflags;
 
 void		    ft_putchar(char c, pflags *lflags);
-int             ft_putstr(char * str, pflags *lflags);
+void            ft_putstr(char * str, pflags *lflags);
 int			    ft_putnbr(long n, pflags *lflags);
 int	            check_params(const char *str, va_list argv, pflags *lflags);
 int		        ft_printf(const char *str, ...);
 int		        check_base(char *base);
-char	       *ft_putnbr_base(long nbr, char *base, pflags *lflags);
+char	       *ft_putnbr_base(long nbr, char *base);
 int		        ft_atoi(char *nbr);
-char            *do_width(char * str, int width, int pre);
+char            *do_int_width(char * str, pflags *lflags,void (*ft_put)(char*, pflags*));
 int		        ft_strlen(char *str);
+void		    ft_putstr_int(char *str, pflags *lflags);
 
 #endif

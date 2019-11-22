@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 16:26:51 by truepath          #+#    #+#             */
-/*   Updated: 2019/11/21 17:21:12 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/22 21:09:31 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,69 +15,88 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-void    do_precision(char *str, int pre)
+void		ft_putstr_int(char *str, pflags *lflags)
 {
-	while (*str && pre < 0)
+	int i;
+
+	i = 0;
+	if (!str)
+		return ;
+	if (*str == '-')
 	{
-		write(1, str, 1);
+		ft_putchar('-', lflags);
 		str++;
-		pre--;
 	}
+	if (lflags->preci <= 0)
+		lflags->preci = ft_strlen(str);
+	if (lflags->preci > ft_strlen(str))
+	{
+		while (lflags->preci != ft_strlen(str))
+		{
+			ft_putchar('0', lflags);
+			lflags->preci--;
+		}
+	}
+	while (str[i])
+		ft_putchar(str[i++], lflags);
 }
 
-char *do_width(char *str, int width, int pre)
+void	check_param(pflags *lflags, char *str, int *temp, int *temp2)
 {
-	int 	len;
-	int     temp;
+	int		len;
+
+	*temp = lflags->width;
+	*temp2 = lflags->preci;
+	len = ft_strlen(str);
+	if (*temp < 0)
+		*temp *= -1;
+	if (*temp < len)
+		*temp = len;
+	if (*temp2 < len)
+		*temp2 = len;
+}
+
+void	print_space(int width, pflags *lflags)
+{
+	printf("ok");
+	while (0 < width--)
+		ft_putchar(' ', lflags);
+}
+
+char	*do_int_width(char *str, pflags *lflags, void (*ft_put)(char*, pflags*))
+{
+	int		len;
 	int		i;
+	int		temp;
 	int		temp2;
 
-	temp = width;
-	temp2 = pre;
+	check_param(lflags, str, &temp, &temp2);
 	i = 0;
+	if ((str[0] == '-' && lflags->preci > 0))
+		i = -1;
+	else if (str[0] != '-' && *str && (str[i] > '9' || str[i] < '0'))
+		i = 2;
 	len = ft_strlen(str);
-	//printf("%d\n",len);
-	if (width < 0)
-		temp *= -1;
-	if (temp < len)
-		temp = len;
-	if (pre <= 0)
-		temp2 = len;
-	if (width > len)
-	{
-		while (temp - temp2 > 0)
-		{
-			write(1, " ", 1);
-			temp--;
-		}
-	}
-	while (temp2 > len)
-	{
-		write(1, "0", 1);
-		temp2--;
-		i++;
-	}
-	while (temp2 > 0 && *str)
-	{
-		write(1, str, 1);
-		str++;
-		temp2--;
-	}
-	if (width < 0)
-	{
-		while (0 < temp - (len + i))
-		{
-			write(1, " ", 1);
-			temp--;
-		}
-	}
+	if (lflags->preci == 0 && len > 0 && i == 2 && lflags->width > 0)
+		print_space(temp, lflags);
+	if (lflags->width > temp2 && lflags->preci > 0)
+		print_space(temp - temp2 + i, lflags);
+	// while (lflags->width > len && 0 < temp - temp2 + i)
+	// {
+	// 	ft_putchar(' ', lflags);
+	// 	temp--;
+	// }
+	printf("|i = %d|",i);
+	ft_put(str, lflags);
+	if (lflags->preci == 0 && len > 0 && i == 2 && lflags->width < 0)
+		print_space(temp, lflags);
+	if (lflags->width < 0 && lflags->preci > 0)
+		print_space(temp - temp2 + 1, lflags);
+	// while (lflags->width < 0 && 0 < temp - temp2 + i)
+	// {
+	// 	ft_putchar(' ', lflags);
+	// 	temp--;
+	// }
 	return (NULL);
 }
-/*
-#include <stdio.h>
 
-int main()
-{
-	printf("%20.6s.\n","Bonfour");
-	printf("%s",do_width("Bonjour", 20,6));
-}*/

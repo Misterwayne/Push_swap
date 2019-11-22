@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 13:58:01 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/20 19:32:32 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/22 16:40:06 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		check_base(char *base)
 	return (1);
 }
 
-char	*ft_putnbr_base(long nbr, char *base, pflags *lflags)
+char	*ft_putnbr_base(long nbr, char *base)
 {
 	long	size_base;
 	long	nbr_final[100];
@@ -86,7 +86,7 @@ char	*ft_putnbr_base(long nbr, char *base, pflags *lflags)
 		if (nbr < 0)
 		{
 			nbr = -nbr;
-			ft_putchar('-', lflags);
+			res[j] = '-';
 			j++;
 		}
 		while (base[size_base])
