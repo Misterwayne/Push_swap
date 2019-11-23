@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 13:58:01 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/22 16:40:06 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/23 15:02:38 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,29 +80,44 @@ char	*ft_putnbr_base(long nbr, char *base)
 	i = 0;
 	j = 0;
 	res = malloc(sizeof(char) * 100);
-	size_base = 0;
+	size_base = ft_strlen(base);
 	if (check_base(base))
 	{
 		if (nbr < 0)
-		{
-			nbr = -nbr;
-			res[j] = '-';
-			j++;
-		}
-		while (base[size_base])
-			size_base++;
+			res[j++] = '-';
+		if (nbr < 0)
+			nbr *= -1;
 		while (nbr)
 		{
-			nbr_final[i] = nbr % size_base;
+			nbr_final[i++] = nbr % size_base;
 			nbr = nbr / size_base;
-			i++;
 		}
 		while (--i >= 0)
-		{
-			res[j] = base[nbr_final[i]];
-			j++;
-		}
+			res[j++] = base[nbr_final[i]];
 	}
-	res[j] = '\0';
 	return (res);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*newstr;
+	int		lens1;
+	int		lens2;
+	int		i;
+	int		j;
+
+	i = -1;
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	lens1 = ft_strlen((char *)s1);
+	lens2 = ft_strlen((char *)s2);
+	if (!(newstr = malloc(sizeof(char) * (lens1 + lens2 + 1))))
+		return (NULL);
+	while (++i < lens1)
+		newstr[i] = s1[i];
+	while (i < lens1 + lens2)
+		newstr[i++] = s2[j++];
+	newstr[i] = '\0';
+	return (newstr);
 }

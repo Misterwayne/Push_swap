@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 18:51:33 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/22 19:48:08 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/23 17:56:52 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_putchar(char c, pflags *lflags)
 	lflags->total_len += 1;
 }
 
-void	ft_putstr(char *str, pflags *lflags)
+void	ft_putstrl(char *str, pflags *lflags)
 {
 	int i;
 
@@ -46,28 +46,19 @@ void	ft_putstr(char *str, pflags *lflags)
 	}
 }
 
-int		ft_putnbr(long n, pflags *lflags)
+char	*ft_strdup(const char *str)
 {
-	long	nbr;
+	char	*nstr;
 	int		i;
 
-	nbr = n;
 	i = 0;
-	if (nbr < 0)
-	{
-		nbr *= -1;
-		ft_putchar('-', lflags);
+	while (str[i] != 0)
 		i++;
-	}
-	if (nbr > 9)
-	{
-		ft_putnbr(nbr / 10, lflags);
-		ft_putnbr(nbr % 10, lflags);
-	}
-	else
-	{
-		ft_putchar(nbr + 48, lflags);
-		i++;
-	}
-	return (i);
+	if (!(nstr = malloc((sizeof(char) * (i + 1)))))
+		return (NULL);
+	i = -1;
+	while (str[++i])
+		nstr[i] = str[i];
+	nstr[i] = '\0';
+	return (nstr);
 }
