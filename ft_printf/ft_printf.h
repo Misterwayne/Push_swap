@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:02:05 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/23 17:57:11 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/24 16:21:54 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct pflags
     int     width;
     int     preci;
     int     total_len;
+    int     detail;
     char    form;
 }              pflags;
 

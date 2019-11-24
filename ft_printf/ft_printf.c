@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 13:05:22 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/23 17:59:06 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/24 16:25:39 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,27 @@ int		check_pre_width(const char *str, pflags *lflags, va_list argv)
 		lflags->width = (int)va_arg(argv, int);
 	else
 		lflags->width = ft_atoi((char *)str);
-	if (str[0] == '0')
+	if (str[0] == '0' && str[1] != '0')
+	{
 		p = 1;
+		lflags->detail += 1;
+	}
 	while ((*str >= '0' && *str <= '9' && p == 0) || *str == '-' || *str == '*')
 		str++;
 	if (*str == '.' || p == 1)
 	{
-		str++;
+		while ((*str == '0' || *str == '.'))
+			str++;
 		if (*str == '*')
 			lflags->preci = (int)va_arg(argv, int);
+		else if ((*str == '0' || (*str + 1 < '0' || *str + 1 > '9')))
+			lflags->preci = -2;
 		else
 			lflags->preci = ft_atoi((char *)str);
 		while ((*str >= '0' && *str <= '9') || *str == '-' || *str == '*')
 			str++;
+		if (lflags->preci == 0 && p == 1)
+			lflags->preci = -1;
 	}
 	check_params(str, argv, lflags);
 	return (len1 - ft_strlen((char *)str));
@@ -52,7 +60,7 @@ int		check_pre_width(const char *str, pflags *lflags, va_list argv)
 int		ft_printf(const char *str, ...)
 {
 	va_list argv_list;
-	pflags  lflags = {0, -1, 0, '0'};
+	pflags  lflags = {0, -1, 0, 0, '0'};
 
 	va_start(argv_list, str);
 	while (*str)
@@ -73,7 +81,7 @@ int		ft_printf(const char *str, ...)
 
 int main(void)
 {
-	int dec = 78900;
+	int dec = -71;
 	// char chara = 'x';
 	// // char *str = "okidoki";
 	// unsigned int ui = -44555566;
@@ -97,9 +105,9 @@ int main(void)
 	// printf("%d----------------------\n",v);
 	// v = printf("| %%s = %*.*s |\n", 8, 4,"OKKO");
 	// printf("%d----------------------\n\n",v);
-	v = ft_printf("%50d\n",dec);
+	v = ft_printf("%010.8i\n",dec);
 	printf("%d----------------------\n",v);
-	v = printf("%50d\n",dec);
+	v = printf("%010.8i\n",dec);
 	printf("%d----------------------\n\n",v);
 	// v = ft_printf("| %%u = %*.*u |\n", -15, 0,ui);
 	// printf("%d----------------------\n",v);

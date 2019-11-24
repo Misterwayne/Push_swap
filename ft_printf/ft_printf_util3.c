@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 16:26:51 by truepath          #+#    #+#             */
-/*   Updated: 2019/11/23 17:43:56 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/24 16:22:24 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,15 @@ void	ft_putstr_int(char *str, pflags *lflags)
 	{
 		ft_putchar('-', lflags);
 		str++;
-		neg = 1;
+		if (lflags->detail == 1)
+			neg = 1;
 	}
-	if (lflags->preci <= 0)
-		lflags->preci = ft_strlen(str);
-	if (lflags->preci > ft_strlen(str))
+	while (lflags->preci > ft_strlen(str) + neg)
 	{
-		while (lflags->preci != ft_strlen(str) + neg)
-		{
-			ft_putchar('0', lflags);
-			lflags->preci--;
-		}
+		ft_putchar('0', lflags);
+		lflags->preci--;
 	}
-	while (str[i])
+	while (str[i] && lflags->preci != 0)
 		ft_putchar(str[i++], lflags);
 }
 
@@ -85,7 +81,7 @@ char	*do_int_width(char *str, pflags *lflags, void (*ft_put)(char*, pflags*))
 	i = 0;
 	check_param(lflags, str, &temp, &temp2);
 	check_form(&i, lflags, str);
-	if (lflags->preci == 0 && ft_strlen(str) > 0 && i == 2 && lflags->width > 0)
+	if (lflags->preci <= 0 && ft_strlen(str) > 0 && i == 2 && lflags->width > 0)
 		print_space(temp, lflags);
 	if (i == 2 && lflags->width > 0 && lflags->preci > 0)
 		print_space(temp - lflags->preci, lflags);
@@ -94,9 +90,9 @@ char	*do_int_width(char *str, pflags *lflags, void (*ft_put)(char*, pflags*))
 	ft_put(str, lflags);
 	if (lflags->width < 0 && lflags->preci > 0 && i == 2)
 		print_space(temp - lflags->preci, lflags);
-	if (lflags->preci == 0 && ft_strlen(str) > 0 && i == 2 && lflags->width < 0)
+	if (lflags->preci <= 0 && ft_strlen(str) > 0 && i == 2 && lflags->width < 0)
 		print_space(temp, lflags);
-	if (lflags->width < 0 && lflags->preci >= 0 && i != 2)
+	if (lflags->width < 0 && i != 2)
 		print_space(temp - temp2 + i, lflags);
 	return (NULL);
 }

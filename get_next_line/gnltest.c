@@ -46,10 +46,10 @@ int main(void)
     commande = malloc(sizeof(char) * ft_strlen("gcc -fsanitize=address get_next_line.c -D BUFFER_SIZE=8 && ./a.out") + 1);
     commande[ft_strlen("gcc -fsanitize=address get_next_line.c -D BUFFER_SIZE=8 && ./a.out")] = '\0';
     commande = ft_strncpy(commande,"gcc -fsanitize=address get_next_line.c -D BUFFER_SIZE=8 && ./a.out");
-    while (i < 50000)
+    while (i < 50)
     {
-        sprintf(commande, "gcc -fsanitize=address get_next_line.c -D BUFFER_SIZE=%d && ./a.out",i);
+        sprintf(commande, "gcc -fsanitize=address get_next_line.c get_next_line_utils.c -D BUFFER_SIZE=%d && ./a.out",i);
         system(commande);
-		i+=10;
+		i+=1;
     }
 }

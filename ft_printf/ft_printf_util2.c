@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:38:10 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/23 17:58:25 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/24 16:19:00 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,21 @@
 
 void	do_int(char *str, va_list argv, pflags *lflags)
 {
-	char *res;
-	int c;
+	char	*res;
+	int		c;
 
 	c = (int)va_arg(argv, int);
 	res = NULL;
 
 	lflags->form = *str;
 	if (c == 0)
+	{
 		res = ft_strdup("0");
+		if (lflags->preci == -2)
+			lflags->preci = 0;
+	}
 	else
-		res = ft_putnbr_base((int)va_arg(argv, int), "0123456789");
+		res = ft_putnbr_base(c, "0123456789");
 	do_int_width(res, lflags, &ft_putstr_int);
 	free(res);
 }
@@ -36,7 +40,10 @@ int		check_params(const char *str, va_list argv, pflags *lflags)
 
 	c = 0;
 	if (*str == 'd' || *str == 'i')
+	{
 		do_int((char *)str, argv, lflags);
+		return (1);
+	}
 	else if (*str == 'c')
 	{
 		ft_putchar((char)va_arg(argv, int), lflags);
