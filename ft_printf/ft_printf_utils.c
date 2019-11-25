@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 13:58:01 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/23 15:02:38 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/25 18:15:25 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ int		ft_atoi(char *nbr)
 	while (nbr[i] == '\t' || nbr[i] == '\n' || nbr[i] == ' '
 			|| nbr[i] == '\f' || nbr[i] == '\r' || nbr[i] == '\v')
 		nbr++;
-	if (nbr[i] == '+' || nbr[i] == '-')
+	if (nbr[i] == '-')
 	{
 		nega += (nbr[i] - 44) + 1;
-		i++;
+		while (nbr[i] == '-')
+			i++;
 	}
 	while (nbr[i] && nbr[i] <= '9' && nbr[i] >= '0')
 		i++;

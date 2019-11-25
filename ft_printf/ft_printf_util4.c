@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 18:51:33 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/23 17:56:52 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/25 18:15:29 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_putstrl(char *str, pflags *lflags)
 	i = 0;
 	if (!str)
 		return ;
-	if (lflags->preci <= 0)
+	if (lflags->preci == 0)
 		return ;
 	while (str[i] && i < lflags->preci)
 	{
