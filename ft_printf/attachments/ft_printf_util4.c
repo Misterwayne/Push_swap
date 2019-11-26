@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 18:51:33 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/26 17:47:26 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/25 18:15:29 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	ft_putstrl(char *str, pflags *lflags)
 	i = 0;
 	if (!str)
 		return ;
-	if (lflags->preci == -1)
-		lflags->preci = ft_strlen(str);
+	if (lflags->preci == 0)
+		return ;
 	while (str[i] && i < lflags->preci)
 	{
 		ft_putchar(str[i], lflags);
@@ -52,8 +52,6 @@ char	*ft_strdup(const char *str)
 	int		i;
 
 	i = 0;
-	if (!str)
-		return (NULL);
 	while (str[i] != 0)
 		i++;
 	if (!(nstr = malloc((sizeof(char) * (i + 1)))))

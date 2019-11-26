@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_util2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:38:10 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/26 17:48:24 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/26 02:27:25 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ void	do_int(char *str, va_list argv, pflags *lflags)
 int		check_params(const char *str, va_list argv, pflags *lflags)
 {
 	unsigned long	c;
-	char *			res;
 
 	c = 0;
-	res = NULL;
 	if (*str == 'd' || *str == 'i' || *str == 'D')
 	{
 		do_int((char *)str, argv, lflags);
@@ -48,26 +46,13 @@ int		check_params(const char *str, va_list argv, pflags *lflags)
 	}
 	else if (*str == 'c')
 	{
-		c = (char)va_arg(argv, int);
-		res = malloc(sizeof(char) * 2);
-		if (c == 0)
-			lflags->total_len += 1;
-		res[0] = c;
-		res[1] = '\0';
-		do_int_width(res, lflags, &ft_putstr_int);
+		ft_putchar((char)va_arg(argv, int), lflags);
 		return (1);
 	}
 	else if (*str == 's')
 	{
 		lflags->form = *str;
-		res = va_arg(argv, char *);
-		if (res)
-			do_int_width(res, lflags, &ft_putstrl);
-		else
-		{
-			res = "(null)";
-			do_int_width(res, lflags ,ft_putstrl);
-		}
+		do_int_width(va_arg(argv, char *), lflags, &ft_putstrl);
 		return (1);
 	}
 	check_params2((char *)str, argv, lflags);
@@ -89,13 +74,14 @@ int		check_params2(const char *str, va_list argv, pflags *lflags)
 		{
 			res = ft_strdup("0");
 			do_int_width(res ,lflags, &ft_putstr_int);
+			free(res);
 		}
 		else
 			do_int_width(ft_putnbr_base(c, "0123456789"), lflags, &ft_putstr_int);
 	}
 	else if (*str == '%')
 	{
-		lflags->form = *str;
+		lflags->form = '%';
 		res = ft_strdup("%");
 		do_int_width(res, lflags, &ft_putstr_int);
 		return (1);
@@ -103,16 +89,8 @@ int		check_params2(const char *str, va_list argv, pflags *lflags)
 	else if (*str == 'p')
 	{
 		c = (unsigned long)va_arg(argv, unsigned long);
-		if (c == 0 && lflags->dot == 0)
-		{
-			res = ft_strdup("0x0");
-			do_int_width(res ,lflags, &ft_putstr_int);
-		}
-		else
-		{
-			res = ft_strjoin("0x", ft_putnbr_base(c, "0123456789abcdef"));
-			do_int_width(res, lflags, &ft_putstr_int);
-		}
+		res = ft_strjoin("0x", ft_putnbr_base(c, "0123456789abcdef"));
+		do_int_width(res, lflags, &ft_putstr_int);
 		free(res);
 	}
 	check_params3(str, argv, lflags);
@@ -130,22 +108,17 @@ int		check_params3(const char *str, va_list argv, pflags *lflags)
 	{
 		lflags->form = *str;
 		c = (unsigned int)va_arg(argv, int);
-		if (c == 0 && lflags->dot == 0)
-			res = ft_strdup("0");
-		else
-			res = ft_putnbr_base(c, "0123456789abcdef");
+		res = ft_putnbr_base(c, "0123456789abcdef");
 		do_int_width(res, lflags, &ft_putstr_int);
+		free(res);
 	}
 	else if (*str == 'X')
 	{
 		lflags->form = *str;
 		c = (unsigned int)va_arg(argv, int);
-		if (c == 0 && lflags->dot == 0)
-			res = ft_strdup("0");
-		else
-			res = ft_putnbr_base(c, "0123456789ABCDEF");
+		res = ft_putnbr_base(c, "0123456789ABCDEF");
 		do_int_width(res, lflags, &ft_putstr_int);
+		free(res);
 	}
-	free(res);
 	return (0);
 }

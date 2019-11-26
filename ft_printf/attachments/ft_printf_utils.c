@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 13:58:01 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/26 14:22:05 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/25 23:57:25 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ char	*ft_putnbr_base(long nbr, char *base)
 		while (--i >= 0)
 			res[j++] = base[nbr_final[i]];
 	}
-	res[j] = '\0';
 	return (res);
 }
 
