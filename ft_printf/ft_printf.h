@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:02:05 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/24 16:21:54 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/26 00:48:56 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct pflags
     int     preci;
     int     total_len;
     int     detail;
+    int     plus;
+    int     dot;
     char    form;
 }              pflags;
 

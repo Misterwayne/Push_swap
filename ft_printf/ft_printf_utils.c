@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 13:58:01 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/25 18:15:25 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/25 23:57:25 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ int		ft_atoi(char *nbr)
 	while (nbr[i] == '\t' || nbr[i] == '\n' || nbr[i] == ' '
 			|| nbr[i] == '\f' || nbr[i] == '\r' || nbr[i] == '\v')
 		nbr++;
-	if (nbr[i] == '-')
+	if (nbr[i] == '-' || nbr[i] == '+')
 	{
-		nega += (nbr[i] - 44) + 1;
-		while (nbr[i] == '-')
+		if (nbr[i] == '-')
+			nega += (nbr[i] - 44) + 1;
+		while (nbr[i] == '-' || nbr[i] == '+')
 			i++;
 	}
 	while (nbr[i] && nbr[i] <= '9' && nbr[i] >= '0')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_util2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:38:10 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/25 18:15:36 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/26 00:50:13 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		check_params(const char *str, va_list argv, pflags *lflags)
 	unsigned long	c;
 
 	c = 0;
-	if (*str == 'd' || *str == 'i')
+	if (*str == 'd' || *str == 'i' || *str == 'D')
 	{
 		do_int((char *)str, argv, lflags);
 		return (1);
@@ -66,11 +66,17 @@ int		check_params2(const char *str, va_list argv, pflags *lflags)
 
 	c = 0;
 	res = NULL;
-	if (*str == 'u')
+	if (*str == 'u' || *str == 'U')
 	{
 		lflags->form = *str;
 		c = (unsigned int)(4294967295 + 1 + va_arg(argv, unsigned int));
-		do_int_width(ft_putnbr_base(c, "0123456789"), lflags, &ft_putstr_int);
+		if (c == 0 && lflags->dot == 0)
+		{
+			res = ft_strdup("0");
+			do_int_width(res ,lflags, &ft_putstr_int);
+		}
+		else
+			do_int_width(ft_putnbr_base(c, "0123456789"), lflags, &ft_putstr_int);
 	}
 	else if (*str == '%')
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 13:05:22 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/25 20:46:38 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/26 00:50:40 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ fix le return de la ft_printf. DONE
 //  int		check_pre_width(const char *str, pflags *lflags, va_list argv)
 //  {
 // 	 int i;
-// 	 int dot;
+// 	 int lflags->dot;
 // 	 int nega;
 
 // 	i = 0;
@@ -47,22 +47,35 @@ int		check_pre_width(const char *str, pflags *lflags, va_list argv)
 	int nega;
 	int len1;
 	int i;
-	int dot;
 
 	i = 0;
 	p = 0;
-	dot = 0;
+	lflags->dot = 0;
 	nega = 1;
 	len1 = ft_strlen((char *)str);
 	while (str[i] < 58)
 	{
 		if (str[i++] == '.')
-			dot = 1;
+			lflags->dot = 1;
 	}
-	if (*str == '-')
+	if (str[0] == '0' && str[1] != '0' && lflags->dot == 0)
 	{
-		nega = -1;
-		while (*str == '-')
+		p = 1;
+		lflags->detail += 1;
+	}
+	while (*str == '0')
+			str++;
+	if (*str == '-' || *str == '+' || *str == ' ')
+	{
+		if (*str == '-')
+			nega = -1;
+		if (*str == '+')
+			lflags->plus = 1;
+		if (*str == ' ')
+		{
+			ft_putchar(' ', lflags);
+		}
+		while (*str == '-' || *str == '+' || *str == ' ')
 			str++;
 	}
 	if (*str == '*')
@@ -71,11 +84,6 @@ int		check_pre_width(const char *str, pflags *lflags, va_list argv)
 		lflags->width = ft_atoi((char *)str) * nega;
 	if (nega < 0 && lflags->width > 0)
 		lflags->width *= nega;
-	if (str[0] == '0' && str[1] != '0' && dot == 0)
-	{
-		p = 1;
-		lflags->detail += 1;
-	}
 	while ((*str >= '0' && *str <= '9' && p == 0) || *str == '-' || *str == '*')
 		str++;
 	if (*str == '.' || p == 1)
@@ -90,7 +98,7 @@ int		check_pre_width(const char *str, pflags *lflags, va_list argv)
 			lflags->preci = ft_atoi((char *)str);
 		while ((*str >= '0' && *str <= '9') || *str == '-' || *str == '*')
 			str++;
-		if (lflags->preci == 0 && p == 1)
+		if (lflags->preci == 0)
 			lflags->preci = -1;
 	}
 	check_params(str, argv, lflags);
@@ -100,8 +108,7 @@ int		check_pre_width(const char *str, pflags *lflags, va_list argv)
 int		ft_printf(const char *str, ...)
 {
 	va_list argv_list;
-	pflags  lflags = {0, -1, 0, 0, '0'};
-
+	pflags  lflags = {0, -1, 0, 0, 0, 0, '0'};
 	va_start(argv_list, str);
 	while (*str)
 	{
@@ -114,6 +121,7 @@ int		ft_printf(const char *str, ...)
 		}
 		lflags.preci = -1;
 		lflags.width = 0;
+		lflags.plus = 0;
 		str++;
 	}
 	return (lflags.total_len);

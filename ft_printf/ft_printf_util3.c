@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_util3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 16:26:51 by truepath          #+#    #+#             */
-/*   Updated: 2019/11/25 18:15:16 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/26 00:35:30 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,16 @@ void	ft_putstr_int(char *str, pflags *lflags)
 	neg = 0;
 	if (!str)
 		return ;
-	if (*str == '-')
+	if (*str == '-' || lflags->plus == 1)
 	{
-		ft_putchar('-', lflags);
-		str++;
+
+		if (lflags->plus == 1 && *str != '-')
+			ft_putchar('+', lflags);
+		else
+		{
+			ft_putchar('-', lflags);
+			str++;
+		}
 		if (lflags->detail == 1)
 			neg = 1;
 	}
@@ -57,6 +63,8 @@ void	check_param(pflags *lflags, char *str, int *temp, int *temp2)
 
 void	print_space(int width, pflags *lflags)
 {
+	if (lflags->plus == 1)
+		width--;
 	while (0 < width--)
 		ft_putchar(' ', lflags);
 }
