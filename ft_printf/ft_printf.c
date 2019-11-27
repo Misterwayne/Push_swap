@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 13:05:22 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/26 18:37:10 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/27 18:33:05 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		check_pre_width(const char *str, pflags *lflags, va_list argv)
 			p = 1;
 			lflags->detail += 1;
 		}
-			str++;
+		str++;
 	}
 	if (*str == '-' || *str == '+' || *str == ' ')
 	{
@@ -112,7 +112,7 @@ int		check_pre_width(const char *str, pflags *lflags, va_list argv)
 int		ft_printf(const char *str, ...)
 {
 	va_list argv_list;
-	pflags  lflags = {0, -1, 0, 0, 0, 0, '0'};
+	pflags  lflags = {0, -1, 0, 0, 0, 0, 0, '0'};
 	va_start(argv_list, str);
 	while (*str)
 	{
@@ -126,63 +126,69 @@ int		ft_printf(const char *str, ...)
 		lflags.preci = -1;
 		lflags.width = 0;
 		lflags.plus = 0;
+		lflags.form = 0;
 		str++;
 	}
 	return (lflags.total_len);
 }
 
-int main(void)
-{
-	//int dec = 71;
-	// char chara = 'x';
-	// // char *str = "okidoki";
-	// unsigned int ui = -44555566;
-	// unsigned int x = -44555566;
-	// int j = x;
-	int v;
+// int main(void)
+// {
+// 	//int dec = 71;
+// 	// char chara = 'x';
+// 	// // char *str = "okidoki";
+// 	// unsigned int ui = -44555566;
+// 	// unsigned int x = -44555566;
+// 	// int j = x;
+// 	int v;
 
-	// v = ft_printf("| %%s = %*.*s |\n", 8, 0,"OKKO");
-	// printf("%d----------------------\n",v);
-	// v = printf("| %%s = %*.*s |\n", 8, 0,"OKKO");
-	// printf("%d----------------------\n\n",v);
-	// v = ft_printf("| %%s = %*.*s |\n", 8, 1,"OKKO");
-	// printf("%d----------------------\n",v);
-	// v = printf("| %%s = %*.*s |\n", 8, 1,"OKKO");
-	// printf("%d----------------------\n\n",v);
-	// v = ft_printf("| %%s = %*.*s |\n", 8, 2,"OKKO");
-	// printf("%d----------------------\n",v);
-	// v = printf("| %%s = %*.*s |\n", 8, 2,"OKKO");
-	// printf("%d----------------------\n\n",v);
-	// v = ft_printf("| %%s = %*.*s |\n", 8, 4,"OKKO");
-	// printf("%d----------------------\n",v);
-	// v = printf("| %%s = %*.*s |\n", 8, 4,"OKKO");
-	// printf("%d----------------------\n\n",v);
-	v = ft_printf("u%4.2ss %-1.s\n %---5.3s", "coco", NULL, "yooo");
-	printf("%d----------------------\n",v);
-	v = printf("u%4.2ss %-1.s\n %---5.3s ", "coco", NULL, "yooo");
-	printf("%d----------------------\n\n",v);
-	// v = ft_printf("| %%u = %*.*u |\n", -15, 0,ui);
-	// printf("%d----------------------\n",v);
-	// v = printf("| %%u = %*.*u |\n", -15, 0, ui);
-	// printf("%d----------------------\n",v);
-	// v = ft_printf("| %%d = %*.*d |\n", 5, 7,dec);
-	// printf("%d----------------------\n",v);
-	// v = printf("| %%d = %*.*d |\n", 5, 7, dec);
-	// printf("%d----------------------\n\n",v);
-	// v = ft_printf("| %%x = %*.*X |\n", -15, 12,x);
-	// printf("%d----------------------\n",v);
-	// v = printf("| %%x = %*.*X |\n", -15, 12, x);
-	// printf("%d----------------------\n",v);
-	// v = ft_printf("| %%x = %*.*X |\n", 15, 0,x);
-	// printf("%d----------------------\n",v);
-	// v = printf("| %%x = %*.*X |\n", 15, 0, x);
-	// printf("%d----------------------\n\n",v);
-	// v = ft_printf("| %%u = %*.*u |\n", 15, 6,ui);
-	// printf("%d----------------------\n",v);
-	// v = printf("| %%u = %*.*u |\n", 15, 6, ui);
-	// printf("%d----------------------\n",v);
-	// v = ft_printf("| %%p = %*p |\n", 20 ,&j);
-	// printf("%d----------------------\n",v);
-	// v = printf("| %%p = %*p |\n", 20, &j);
-	// printf("%d----------------------\n",v);
-	}
+// 	// v = ft_printf("| %%s = %*.*s |\n", 8, 0,"OKKO");
+// 	// printf("%d----------------------\n",v);
+// 	// v = printf("| %%s = %*.*s |\n", 8, 0,"OKKO");
+// 	// printf("%d----------------------\n\n",v);
+// 	// v = ft_printf("| %%s = %*.*s |\n", 8, 1,"OKKO");
+// 	// printf("%d----------------------\n",v);
+// 	// v = printf("| %%s = %*.*s |\n", 8, 1,"OKKO");
+// 	// printf("%d----------------------\n\n",v);
+// 	// v = ft_printf("| %%s = %*.*s |\n", 8, 2,"OKKO");
+// 	// printf("%d----------------------\n",v);
+// 	// v = printf("| %%s = %*.*s |\n", 8, 2,"OKKO");
+// 	// printf("%d----------------------\n\n",v);
+// 	// v = ft_printf("| %%s = %*.*s |\n", 8, 4,"OKKO");
+// 	// printf("%d----------------------\n",v);
+// 	// v = printf("| %%s = %*.*s |\n", 8, 4,"OKKO");
+// 	// printf("%d----------------------\n\n",v);
+// 	v = ft_printf("u%4.2ss %-1.s\n %---5.3s\n", "coco", NULL, "yooo");
+// 	printf("%d----------------------\n",v);
+// 	v = printf("u%4.2ss %-1.s\n %---5.3s\n", "coco", NULL, "yooo");
+// 	printf("%d----------------------\n\n",v);
+// 	// printf("----------------------\n\n");
+// 	// v = ft_printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
+// 	// printf("%d----------------------\n\n",v);
+// 	// v = printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
+// 	// printf("%d----------------------\n\n",v);
+// 	// v = ft_printf("| %%u = %*.*u |\n", -15, 0,ui);
+// 	// printf("%d----------------------\n",v);
+// 	// v = printf("| %%u = %*.*u |\n", -15, 0, ui);
+// 	// printf("%d----------------------\n",v);
+// 	// v = ft_printf("| %%d = %*.*d |\n", 5, 7,dec);
+// 	// printf("%d----------------------\n",v);
+// 	// v = printf("| %%d = %*.*d |\n", 5, 7, dec);
+// 	// printf("%d----------------------\n\n",v);
+// 	// v = ft_printf("| %%x = %*.*X |\n", -15, 12,x);
+// 	// printf("%d----------------------\n",v);
+// 	// v = printf("| %%x = %*.*X |\n", -15, 12, x);
+// 	// printf("%d----------------------\n",v);
+// 	// v = ft_printf("| %%x = %*.*X |\n", 15, 0,x);
+// 	// printf("%d----------------------\n",v);
+// 	// v = printf("| %%x = %*.*X |\n", 15, 0, x);
+// 	// printf("%d----------------------\n\n",v);
+// 	// v = ft_printf("| %%u = %*.*u |\n", 15, 6,ui);
+// 	// printf("%d----------------------\n",v);
+// 	// v = printf("| %%u = %*.*u |\n", 15, 6, ui);
+// 	// printf("%d----------------------\n",v);
+// 	// v = ft_printf("| %%p = %*p |\n", 20 ,&j);
+// 	// printf("%d----------------------\n",v);
+// 	// v = printf("| %%p = %*p |\n", 20, &j);
+// 	// printf("%d----------------------\n",v);
+// 	}

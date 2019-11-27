@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:38:10 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/26 17:48:24 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/27 18:09:48 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,16 @@ int		check_params(const char *str, va_list argv, pflags *lflags)
 		lflags->form = *str;
 		res = va_arg(argv, char *);
 		if (res)
+		{
 			do_int_width(res, lflags, &ft_putstrl);
+		}
 		else
 		{
-			res = "(null)";
-			do_int_width(res, lflags ,ft_putstrl);
+			if (lflags->preci > 0 || lflags->dot == 0)
+				res = ft_strdup("(null)");
+			else
+				res = ft_strdup("");
+			do_int_width(res, lflags, ft_putstrl);
 		}
 		return (1);
 	}
