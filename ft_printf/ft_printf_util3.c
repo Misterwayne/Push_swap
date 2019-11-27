@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 16:26:51 by truepath          #+#    #+#             */
-/*   Updated: 2019/11/27 18:36:34 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/27 19:07:31 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,8 @@ void	check_param(pflags *lflags, char *str, int *temp, int *temp2)
 
 void	print_space(int width, pflags *lflags)
 {
-	if (lflags->plus == 1 || lflags->form == '%')
+	if (lflags->plus == 1)
 		width--;
-	// if (lflags->preci > 0 && lflags->form == 's' && lflags->width < 0 && lflags->dot == 1)
-	// 	width++; 
 	while (0 < width--)
 		ft_putchar(' ', lflags);
 }
@@ -96,9 +94,6 @@ void	do_str_width(char *str, pflags *lflags)
 		temp *= -1;
 	if (temp2 > len)
 		temp2 = len;
-	// printf("temp = %d\n",temp);
-	// printf("temp2 = %d\n",temp2);
-	// printf("len = %d\n",len);
 	if (temp > ft_strlen(str))
 	{
 		if (lflags->preci > 0)

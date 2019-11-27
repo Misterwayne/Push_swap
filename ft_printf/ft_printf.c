@@ -6,42 +6,13 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 13:05:22 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/27 18:33:05 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/27 19:25:39 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-changer putnbrbase pour les negatif. DONE
-gerer la precition et le width au cas par cas. DONE.
-Faire le Makefile.
-separer les fonction. Done
-Organiser les fichier.
-fix le return de la ft_printf. DONE
-*/
 #include "ft_printf.h"
 
-//  int		check_pre_width(const char *str, pflags *lflags, va_list argv)
-//  {
-// 	 int i;
-// 	 int lflags->dot;
-// 	 int nega;
-
-// 	i = 0;
-// 	dot = 0;
-// 	if (*str == '-')
-// 	{
-// 		nega = -1;
-// 		while (*str == '-')
-// 			str++;
-// 	}
-// 	while (str[i] < 58)
-// 	{
-// 		if (str[i] == '.')
-// 			dot = 1;
-// 	}
-//  }
-
-int		check_pre_width(const char *str, pflags *lflags, va_list argv)
+int		scan_dot(pflags *lflags, char *str)
 {
 	int p;
 	int nega;
@@ -67,6 +38,49 @@ int		check_pre_width(const char *str, pflags *lflags, va_list argv)
 		}
 		str++;
 	}
+	return (p);
+}
+
+void	check_sign(pflags *lflags, char *str)
+{
+	int p;
+	int nega;
+	int len1;
+	int i;
+
+	i = 0;
+	p = 0;
+	lflags->dot = 0;
+	nega = 1;
+	len1 = ft_strlen((char *)str);
+	if (*str == '-' || *str == '+' || *str == ' ')
+	{
+		if (*str == '-')
+			nega = -1;
+		if (*str == '+')
+			lflags->plus = 1;
+		if (*str == ' ')
+		{
+			ft_putchar(' ', lflags);
+		}
+		while (*str == '-' || *str == '+' || *str == ' ')
+			str++;
+	}
+}
+
+int		check_pre_width(const char *str, pflags *lflags, va_list argv)
+{
+	int p;
+	int nega;
+	int len1;
+	int i;
+
+	i = 0;
+	lflags->dot = 0;
+	nega = 1;
+	len1 = ft_strlen((char *)str);
+	p = scan_dot(lflags, (char *)str);
+	// check_sign(lflags, (char *)str);
 	if (*str == '-' || *str == '+' || *str == ' ')
 	{
 		if (*str == '-')
@@ -103,16 +117,24 @@ int		check_pre_width(const char *str, pflags *lflags, va_list argv)
 		if (lflags->preci == 0)
 			lflags->preci = -1;
 	}
-	// printf("preci = %d\n",lflags->preci);
-	// printf("width = %d\n",lflags->width);
 	check_params(str, argv, lflags);
 	return (len1 - ft_strlen((char *)str));
+}
+
+void	reset_struct(pflags *lflags)
+{
+	lflags->preci = -1;
+	lflags->width = 0;
+	lflags->plus = 0;
+	lflags->form = 0;
+	lflags->dot = 0;
 }
 
 int		ft_printf(const char *str, ...)
 {
 	va_list argv_list;
-	pflags  lflags = {0, -1, 0, 0, 0, 0, 0, '0'};
+	pflags  lflags = {0, -1, 0, 0, 0, 0, 0, 0,'0'};
+
 	va_start(argv_list, str);
 	while (*str)
 	{
@@ -123,11 +145,10 @@ int		ft_printf(const char *str, ...)
 			str++;
 			str += check_pre_width(str, &lflags, argv_list);
 		}
-		lflags.preci = -1;
-		lflags.width = 0;
-		lflags.plus = 0;
-		lflags.form = 0;
+		reset_struct(&lflags);
 		str++;
+		if (lflags.end == 1)
+			break ;
 	}
 	return (lflags.total_len);
 }

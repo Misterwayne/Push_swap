@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:38:10 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/27 18:09:48 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/27 19:10:43 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,13 @@ int		check_params(const char *str, va_list argv, pflags *lflags)
 	else if (*str == 'c')
 	{
 		c = (char)va_arg(argv, int);
-		res = malloc(sizeof(char) * 2);
+		if (!(res = malloc(sizeof(char) * 2)))
+			return (0);
 		if (c == 0)
+		{
 			lflags->total_len += 1;
+			// lflags->end = 1;
+		}
 		res[0] = c;
 		res[1] = '\0';
 		do_int_width(res, lflags, &ft_putstr_int);

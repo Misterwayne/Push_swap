@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 13:58:01 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/26 14:22:05 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/27 18:58:23 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ char	*ft_putnbr_base(long nbr, char *base)
 
 	i = 0;
 	j = 0;
-	res = malloc(sizeof(char) * 100);
+	if (!(res = malloc(sizeof(char) * 100)))
+		return (NULL);
 	size_base = ft_strlen(base);
 	if (check_base(base))
 	{
