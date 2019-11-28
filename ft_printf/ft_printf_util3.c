@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 16:26:51 by truepath          #+#    #+#             */
-/*   Updated: 2019/11/27 19:07:31 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/28 14:04:35 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,14 +112,25 @@ char	*do_int_width(char *str, pflags *lflags, void (*ft_put)(char*, pflags*))
 	i = 0;
 	check_param(lflags, str, &temp, &temp2);
 	check_form(&i, lflags, str);
-	if (lflags->preci <= 0 && i == 2 && lflags->width > 0)
+	if (lflags->form == 'c')
+	{
+		if (lflags->width > 0)
+			print_space(temp - 1, lflags);
+		ft_putchar(*str, lflags);
+	}
+	else if (lflags->preci <= 0 && i == 2 && lflags->width > 0)
 		print_space(temp - temp2, lflags);
 	else if (i == 2 && lflags->width > 0 && lflags->preci > 0)
 		print_space(temp - lflags->preci, lflags);
 	else if (lflags->width > ft_strlen(str) && i != 2)
 		print_space(temp - temp2 + i, lflags);
-	ft_put(str, lflags);
-	if ((lflags->form == '%' || lflags->form == 's') && lflags->width < 0)
+	if (lflags->form != 'c')
+		ft_put(str, lflags);
+	if (lflags->form == 'c' && lflags->width <= 0)
+	{
+		print_space(temp - 1, lflags);
+	}
+	else if ((lflags->form == '%' || lflags->form == 's') && lflags->width < 0)
 		do_str_width(str, lflags);
 	else if (lflags->width < 0 && i != 2)
 	{

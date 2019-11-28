@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 13:05:22 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/27 19:25:39 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/28 18:59:39 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 int		scan_dot(pflags *lflags, char *str)
 {
 	int p;
-	int nega;
 	int len1;
 	int i;
 
 	i = 0;
 	p = 0;
 	lflags->dot = 0;
-	nega = 1;
 	len1 = ft_strlen((char *)str);
 	while (str[i] < 58)
 	{
@@ -41,31 +39,59 @@ int		scan_dot(pflags *lflags, char *str)
 	return (p);
 }
 
-void	check_sign(pflags *lflags, char *str)
+int		check_sign(pflags *lflags, char *str, int *nega)
 {
-	int p;
-	int nega;
-	int len1;
 	int i;
 
 	i = 0;
-	p = 0;
-	lflags->dot = 0;
-	nega = 1;
-	len1 = ft_strlen((char *)str);
-	if (*str == '-' || *str == '+' || *str == ' ')
+	if (str[i] == '-' || str[i] == '+' || str[i] == ' ')
 	{
-		if (*str == '-')
-			nega = -1;
-		if (*str == '+')
+		if (str[i] == '-')
+			*nega = -1;
+		if (str[i] == '+')
 			lflags->plus = 1;
-		if (*str == ' ')
-		{
+		if (str[i] == ' ')
 			ft_putchar(' ', lflags);
-		}
-		while (*str == '-' || *str == '+' || *str == ' ')
-			str++;
+		while (str[i] == '-' || str[i] == '+' || str[i] == ' ')
+			i++;
 	}
+	return (i);
+}
+
+int		skipskip(char *str)
+{
+	int i;
+
+	i = 0;
+	while ((str[i] == '0' || str[i] == '.'))
+		i++;
+	return (i);
+}
+
+int		skipskip2(char *str)
+{
+	int i;
+
+	i = 0;
+	while ((str[i] >= '0' && str[i] <= '9') || str[i] == '-' || str[i] == '*')
+		i++;
+	return (i);
+}
+
+void	get_preci(char *str, pflags *lflags, va_list argv, int p)
+{
+	int i;
+
+	i = 0;
+	if (str[i] == '*')
+		lflags->preci = (int)va_arg(argv, int);
+	else if ((str[i] == '0' || (str[i] + 1 < '0'
+		|| str[i] + 1 > '9')) && p == 0)
+		lflags->preci = -2;
+	else
+		lflags->preci = ft_atoi((char *)str);
+	if (lflags->preci == 0)
+		lflags->preci = -1;
 }
 
 int		check_pre_width(const char *str, pflags *lflags, va_list argv)
@@ -73,27 +99,12 @@ int		check_pre_width(const char *str, pflags *lflags, va_list argv)
 	int p;
 	int nega;
 	int len1;
-	int i;
 
-	i = 0;
 	lflags->dot = 0;
 	nega = 1;
 	len1 = ft_strlen((char *)str);
 	p = scan_dot(lflags, (char *)str);
-	// check_sign(lflags, (char *)str);
-	if (*str == '-' || *str == '+' || *str == ' ')
-	{
-		if (*str == '-')
-			nega = -1;
-		if (*str == '+')
-			lflags->plus = 1;
-		if (*str == ' ')
-		{
-			ft_putchar(' ', lflags);
-		}
-		while (*str == '-' || *str == '+' || *str == ' ')
-			str++;
-	}
+	str += check_sign(lflags, (char *)str, &nega);
 	if (*str == '*')
 		lflags->width = (int)va_arg(argv, int);
 	else if (p == 0)
@@ -104,18 +115,9 @@ int		check_pre_width(const char *str, pflags *lflags, va_list argv)
 		str++;
 	if (*str == '.' || p == 1)
 	{
-		while ((*str == '0' || *str == '.'))
-			str++;
-		if (*str == '*')
-			lflags->preci = (int)va_arg(argv, int);
-		else if ((*str == '0' || (*str + 1 < '0' || *str + 1 > '9')) && p == 0)
-			lflags->preci = -2;
-		else
-			lflags->preci = ft_atoi((char *)str);
-		while ((*str >= '0' && *str <= '9') || *str == '-' || *str == '*')
-			str++;
-		if (lflags->preci == 0)
-			lflags->preci = -1;
+		str += skipskip((char *)str);
+		get_preci((char *)str, lflags, argv, p);
+		str += skipskip2((char *)str);
 	}
 	check_params(str, argv, lflags);
 	return (len1 - ft_strlen((char *)str));
@@ -130,11 +132,25 @@ void	reset_struct(pflags *lflags)
 	lflags->dot = 0;
 }
 
+void	init_struct(pflags *lflags)
+{
+	lflags->preci = -1;
+	lflags->width = 0;
+	lflags->plus = 0;
+	lflags->form = 0;
+	lflags->dot = 0;
+	lflags->total_len = 0;
+	lflags->detail = 0;
+	lflags->len = 0;
+	lflags->end = 0;
+}
+
 int		ft_printf(const char *str, ...)
 {
-	va_list argv_list;
-	pflags  lflags = {0, -1, 0, 0, 0, 0, 0, 0,'0'};
+	va_list	argv_list;
+	pflags	lflags;
 
+	init_struct(&lflags);
 	va_start(argv_list, str);
 	while (*str)
 	{
@@ -152,64 +168,3 @@ int		ft_printf(const char *str, ...)
 	}
 	return (lflags.total_len);
 }
-
-// int main(void)
-// {
-// 	//int dec = 71;
-// 	// char chara = 'x';
-// 	// // char *str = "okidoki";
-// 	// unsigned int ui = -44555566;
-// 	// unsigned int x = -44555566;
-// 	// int j = x;
-// 	int v;
-
-// 	// v = ft_printf("| %%s = %*.*s |\n", 8, 0,"OKKO");
-// 	// printf("%d----------------------\n",v);
-// 	// v = printf("| %%s = %*.*s |\n", 8, 0,"OKKO");
-// 	// printf("%d----------------------\n\n",v);
-// 	// v = ft_printf("| %%s = %*.*s |\n", 8, 1,"OKKO");
-// 	// printf("%d----------------------\n",v);
-// 	// v = printf("| %%s = %*.*s |\n", 8, 1,"OKKO");
-// 	// printf("%d----------------------\n\n",v);
-// 	// v = ft_printf("| %%s = %*.*s |\n", 8, 2,"OKKO");
-// 	// printf("%d----------------------\n",v);
-// 	// v = printf("| %%s = %*.*s |\n", 8, 2,"OKKO");
-// 	// printf("%d----------------------\n\n",v);
-// 	// v = ft_printf("| %%s = %*.*s |\n", 8, 4,"OKKO");
-// 	// printf("%d----------------------\n",v);
-// 	// v = printf("| %%s = %*.*s |\n", 8, 4,"OKKO");
-// 	// printf("%d----------------------\n\n",v);
-// 	v = ft_printf("u%4.2ss %-1.s\n %---5.3s\n", "coco", NULL, "yooo");
-// 	printf("%d----------------------\n",v);
-// 	v = printf("u%4.2ss %-1.s\n %---5.3s\n", "coco", NULL, "yooo");
-// 	printf("%d----------------------\n\n",v);
-// 	// printf("----------------------\n\n");
-// 	// v = ft_printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
-// 	// printf("%d----------------------\n\n",v);
-// 	// v = printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu");
-// 	// printf("%d----------------------\n\n",v);
-// 	// v = ft_printf("| %%u = %*.*u |\n", -15, 0,ui);
-// 	// printf("%d----------------------\n",v);
-// 	// v = printf("| %%u = %*.*u |\n", -15, 0, ui);
-// 	// printf("%d----------------------\n",v);
-// 	// v = ft_printf("| %%d = %*.*d |\n", 5, 7,dec);
-// 	// printf("%d----------------------\n",v);
-// 	// v = printf("| %%d = %*.*d |\n", 5, 7, dec);
-// 	// printf("%d----------------------\n\n",v);
-// 	// v = ft_printf("| %%x = %*.*X |\n", -15, 12,x);
-// 	// printf("%d----------------------\n",v);
-// 	// v = printf("| %%x = %*.*X |\n", -15, 12, x);
-// 	// printf("%d----------------------\n",v);
-// 	// v = ft_printf("| %%x = %*.*X |\n", 15, 0,x);
-// 	// printf("%d----------------------\n",v);
-// 	// v = printf("| %%x = %*.*X |\n", 15, 0, x);
-// 	// printf("%d----------------------\n\n",v);
-// 	// v = ft_printf("| %%u = %*.*u |\n", 15, 6,ui);
-// 	// printf("%d----------------------\n",v);
-// 	// v = printf("| %%u = %*.*u |\n", 15, 6, ui);
-// 	// printf("%d----------------------\n",v);
-// 	// v = ft_printf("| %%p = %*p |\n", 20 ,&j);
-// 	// printf("%d----------------------\n",v);
-// 	// v = printf("| %%p = %*p |\n", 20, &j);
-// 	// printf("%d----------------------\n",v);
-// 	}

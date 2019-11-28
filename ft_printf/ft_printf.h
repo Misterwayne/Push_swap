@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:02:05 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/27 15:38:20 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/28 18:59:15 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct pflags
     int     plus;
     int     dot;
     int     len;
+    int     end;
     char    form;
 }              pflags;
 
@@ -36,6 +37,8 @@ int			    ft_putnbr(long n, pflags *lflags);
 int	            check_params(const char *str, va_list argv, pflags *lflags);
 int	            check_params2(const char *str, va_list argv, pflags *lflags);
 int	            check_params3(const char *str, va_list argv, pflags *lflags);
+int	            check_params4(const char *str, va_list argv, pflags *lflags);
+int	            check_params5(const char *str, va_list argv, pflags *lflags);
 int		        ft_printf(const char *str, ...);
 int		        check_base(char *base);
 char	       *ft_putnbr_base(long nbr, char *base);
