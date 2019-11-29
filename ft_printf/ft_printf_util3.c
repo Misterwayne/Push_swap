@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 16:26:51 by truepath          #+#    #+#             */
-/*   Updated: 2019/11/28 14:04:35 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/29 14:25:36 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include <stdlib.h>
 #include "ft_printf.h"
 #include <stdio.h>
+
+void	put_zeros(pflags *lflags, int len, int neg)
+{
+	while (lflags->preci > len + neg)
+	{
+		ft_putchar('0', lflags);
+		lflags->preci--;
+	}
+}
 
 void	ft_putstr_int(char *str, pflags *lflags)
 {
@@ -38,11 +47,7 @@ void	ft_putstr_int(char *str, pflags *lflags)
 	}
 	if (lflags->dot == 1 && lflags->form == '%')
 		lflags->preci = -1;
-	while (lflags->preci > ft_strlen(str) + neg)
-	{
-		ft_putchar('0', lflags);
-		lflags->preci--;
-	}
+	put_zeros(lflags, ft_strlen(str), neg);
 	while (str[i] && lflags->preci != 0)
 		ft_putchar(str[i++], lflags);
 }
@@ -79,65 +84,4 @@ void	check_form(int *i, pflags *lflags, char *str)
 	else if (lflags->form == 'x' || lflags->form == 'X')
 		*i = 0;
 	return ;
-}
-
-void	do_str_width(char *str, pflags *lflags)
-{
-	int temp;
-	int temp2;
-	int len;
-
-	temp = lflags->width;
-	temp2 = lflags->preci;
-	len = ft_strlen(str);
-	if (temp < 0)
-		temp *= -1;
-	if (temp2 > len)
-		temp2 = len;
-	if (temp > ft_strlen(str))
-	{
-		if (lflags->preci > 0)
-			print_space(temp - temp2, lflags);
-		else if (lflags->preci <= 0)
-			print_space(temp - len, lflags);
-	}
-}
-
-char	*do_int_width(char *str, pflags *lflags, void (*ft_put)(char*, pflags*))
-{
-	int		i;
-	int		temp;
-	int		temp2;
-
-	i = 0;
-	check_param(lflags, str, &temp, &temp2);
-	check_form(&i, lflags, str);
-	if (lflags->form == 'c')
-	{
-		if (lflags->width > 0)
-			print_space(temp - 1, lflags);
-		ft_putchar(*str, lflags);
-	}
-	else if (lflags->preci <= 0 && i == 2 && lflags->width > 0)
-		print_space(temp - temp2, lflags);
-	else if (i == 2 && lflags->width > 0 && lflags->preci > 0)
-		print_space(temp - lflags->preci, lflags);
-	else if (lflags->width > ft_strlen(str) && i != 2)
-		print_space(temp - temp2 + i, lflags);
-	if (lflags->form != 'c')
-		ft_put(str, lflags);
-	if (lflags->form == 'c' && lflags->width <= 0)
-	{
-		print_space(temp - 1, lflags);
-	}
-	else if ((lflags->form == '%' || lflags->form == 's') && lflags->width < 0)
-		do_str_width(str, lflags);
-	else if (lflags->width < 0 && i != 2)
-	{
-		if ((temp - temp2 + i) == 0 && lflags->preci == 0)
-			print_space(temp, lflags);
-		else
-			print_space(temp - temp2 + i, lflags);
-	}
-	return (NULL);
 }

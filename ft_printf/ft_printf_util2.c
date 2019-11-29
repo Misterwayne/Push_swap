@@ -6,33 +6,12 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:38:10 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/28 18:45:39 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/29 14:24:28 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ft_printf.h"
-
-void	do_int(char *str, va_list argv, pflags *lflags)
-{
-	char	*res;
-	int		c;
-
-	c = (int)va_arg(argv, int);
-	res = NULL;
-
-	lflags->form = *str;
-	if (c == 0)
-	{
-		res = ft_strdup("0");
-		if (lflags->preci == -2)
-			lflags->preci = 0;
-	}
-	else
-		res = ft_putnbr_base(c, "0123456789");
-	do_int_width(res, lflags, &ft_putstr_int);
-	free(res);
-}
 
 int		check_params(const char *str, va_list argv, pflags *lflags)
 {
@@ -54,7 +33,7 @@ int		check_params(const char *str, va_list argv, pflags *lflags)
 			return (0);
 		res[0] = c;
 		res[1] = '\0';
-		do_int_width(res, lflags, &ft_putstr_int);
+		do_width(res, lflags, &ft_putstr_int);
 		return (1);
 	}
 	check_params2((char *)str, argv, lflags);
@@ -72,7 +51,7 @@ int		check_params2(const char *str, va_list argv, pflags *lflags)
 		res = va_arg(argv, char *);
 		if (res)
 		{
-			do_int_width(res, lflags, &ft_putstrl);
+			do_width(res, lflags, &ft_putstrl);
 		}
 		else
 		{
@@ -80,7 +59,7 @@ int		check_params2(const char *str, va_list argv, pflags *lflags)
 				res = ft_strdup("(null)");
 			else
 				res = ft_strdup("");
-			do_int_width(res, lflags, ft_putstrl);
+			do_width(res, lflags, ft_putstrl);
 		}
 		return (1);
 	}
@@ -101,17 +80,17 @@ int		check_params3(const char *str, va_list argv, pflags *lflags)
 		if (c == 0 && lflags->dot == 0)
 		{
 			res = ft_strdup("0");
-			do_int_width(res, lflags, &ft_putstr_int);
+			do_width(res, lflags, &ft_putstr_int);
 		}
 		else
-			do_int_width(ft_putnbr_base(c, "0123456789")
+			do_width(ft_putnbr_base(c, "0123456789")
 			, lflags, &ft_putstr_int);
 	}
 	else if (*str == '%')
 	{
-		lflags->form = *str;
+		lflags->form = '%';
 		res = ft_strdup("%");
-		do_int_width(res, lflags, &ft_putstr_int);
+		do_width(res, lflags, &ft_putstr_int);
 	}
 	check_params4(str, argv, lflags);
 	return (1);
@@ -130,12 +109,12 @@ int		check_params4(const char *str, va_list argv, pflags *lflags)
 		if (c == 0 && lflags->dot == 0)
 		{
 			res = ft_strdup("0x0");
-			do_int_width(res, lflags, &ft_putstr_int);
+			do_width(res, lflags, &ft_putstr_int);
 		}
 		else
 		{
 			res = ft_strjoin("0x", ft_putnbr_base(c, "0123456789abcdef"));
-			do_int_width(res, lflags, &ft_putstr_int);
+			do_width(res, lflags, &ft_putstr_int);
 		}
 		free(res);
 	}
@@ -160,8 +139,8 @@ int		check_params5(const char *str, va_list argv, pflags *lflags)
 			res = ft_putnbr_base(c, "0123456789abcdef");
 		else if (*str == 'X')
 			res = ft_putnbr_base(c, "0123456789ABCDEF");
-		do_int_width(res, lflags, &ft_putstr_int);
+		do_width(res, lflags, &ft_putstr_int);
+		free(res);
 	}
-	free(res);
 	return (0);
 }

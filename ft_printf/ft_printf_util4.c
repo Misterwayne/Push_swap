@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 18:51:33 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/28 13:47:07 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/29 14:26:38 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,24 @@ char	*ft_strdup(const char *str)
 		nstr[i] = str[i];
 	nstr[i] = '\0';
 	return (nstr);
+}
+
+void	do_int(char *str, va_list argv, pflags *lflags)
+{
+	char	*res;
+	int		c;
+
+	c = (int)va_arg(argv, int);
+	res = NULL;
+	lflags->form = *str;
+	if (c == 0)
+	{
+		res = ft_strdup("0");
+		if (lflags->preci == -2)
+			lflags->preci = 0;
+	}
+	else
+		res = ft_putnbr_base(c, "0123456789");
+	do_width(res, lflags, &ft_putstr_int);
+	free(res);
 }

@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 13:58:01 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/28 18:47:31 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/29 16:00:19 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int		ft_atoi(char *nbr)
 	i = 0;
 	nega = -1;
 	m = 1;
-	while (nbr[i] == '\t' || nbr[i] == '\n' || nbr[i] == ' ')
-		nbr++;
 	if (nbr[i] == '-' || nbr[i] == '+')
 	{
 		if (nbr[i] == '-')
@@ -70,23 +68,36 @@ int		check_base(char *base)
 	return (1);
 }
 
+char	*fill_res(char *base, long *nbr, int neg, int i)
+{
+	char	*res;
+	int		j;
+
+	j = 0;
+	if (!(res = malloc(sizeof(char) * 100)))
+		return (NULL);
+	if (neg == 1)
+		res[j++] = '-';
+	while (--i >= 0)
+		res[j++] = base[nbr[i]];
+	res[j] = '\0';
+	return (res);
+}
+
 char	*ft_putnbr_base(long nbr, char *base)
 {
 	long	size_base;
 	long	nbr_final[100];
-	char	*res;
 	long	i;
-	int		j;
+	int		nega;
 
 	i = 0;
-	j = 0;
-	if (!(res = malloc(sizeof(char) * 100)))
-		return (NULL);
+	nega = 0;
 	size_base = ft_strlen(base);
 	if (check_base(base))
 	{
 		if (nbr < 0)
-			res[j++] = '-';
+			nega = 1;
 		if (nbr < 0)
 			nbr *= -1;
 		while (nbr)
@@ -94,11 +105,9 @@ char	*ft_putnbr_base(long nbr, char *base)
 			nbr_final[i++] = nbr % size_base;
 			nbr = nbr / size_base;
 		}
-		while (--i >= 0)
-			res[j++] = base[nbr_final[i]];
+		return (fill_res(base, nbr_final, nega, i));
 	}
-	res[j] = '\0';
-	return (res);
+	return (0);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
