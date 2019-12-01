@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_util6.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 12:01:06 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/29 15:59:32 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/29 19:19:44 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		scan_dot(pflags *lflags, char *str)
 	i = 0;
 	p = 0;
 	lflags->dot = 0;
+	lflags->zero = 0;
 	len1 = ft_strlen((char *)str);
 	while (str[i] < 58)
 	{
@@ -29,6 +30,7 @@ int		scan_dot(pflags *lflags, char *str)
 	}
 	while (*str == '0')
 	{
+		lflags->zero = 1;
 		if (str[0] == '0' && str[1] != '0' && lflags->dot == 0)
 		{
 			p = 1;

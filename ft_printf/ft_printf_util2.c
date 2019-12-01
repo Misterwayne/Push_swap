@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_util2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:38:10 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/29 14:24:28 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/30 16:47:38 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		check_params(const char *str, va_list argv, pflags *lflags)
 		res[0] = c;
 		res[1] = '\0';
 		do_width(res, lflags, &ft_putstr_int);
+		free(res);
 		return (1);
 	}
 	check_params2((char *)str, argv, lflags);
@@ -60,6 +61,7 @@ int		check_params2(const char *str, va_list argv, pflags *lflags)
 			else
 				res = ft_strdup("");
 			do_width(res, lflags, ft_putstrl);
+			free(res);
 		}
 		return (1);
 	}
@@ -80,17 +82,18 @@ int		check_params3(const char *str, va_list argv, pflags *lflags)
 		if (c == 0 && lflags->dot == 0)
 		{
 			res = ft_strdup("0");
-			do_width(res, lflags, &ft_putstr_int);
 		}
 		else
-			do_width(ft_putnbr_base(c, "0123456789")
-			, lflags, &ft_putstr_int);
+			res = ft_putnbr_base(c, "0123456789");
+		do_width(res, lflags, &ft_putstr_int);
+		free(res);
 	}
 	else if (*str == '%')
 	{
-		lflags->form = '%';
+		lflags->form = 'c';
 		res = ft_strdup("%");
 		do_width(res, lflags, &ft_putstr_int);
+		free(res);
 	}
 	check_params4(str, argv, lflags);
 	return (1);
@@ -100,22 +103,23 @@ int		check_params4(const char *str, va_list argv, pflags *lflags)
 {
 	unsigned long	c;
 	char			*res;
+	char			*temp;
 
 	c = 0;
+	temp = NULL;
 	res = NULL;
 	if (*str == 'p')
 	{
 		c = (unsigned long)va_arg(argv, unsigned long);
 		if (c == 0 && lflags->dot == 0)
-		{
 			res = ft_strdup("0x0");
-			do_width(res, lflags, &ft_putstr_int);
-		}
 		else
 		{
-			res = ft_strjoin("0x", ft_putnbr_base(c, "0123456789abcdef"));
-			do_width(res, lflags, &ft_putstr_int);
+			temp = ft_putnbr_base(c, "0123456789abcdef");
+			res = ft_strjoin("0x", temp);
+			free(temp);
 		}
+		do_width(res, lflags, &ft_putstr_int);
 		free(res);
 	}
 	check_params5(str, argv, lflags);

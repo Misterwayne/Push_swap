@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 13:05:22 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/29 16:07:43 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/30 16:48:09 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,11 @@ int		ft_printf(const char *str, ...)
 	return (lflags.total_len);
 }
 
-// int main()
-// {
-// 	ft_printf("%010s\n","ok");
-// 	printf("%010s\n","ok");
-// }
+int main()
+{
+	ft_printf("%010p\n","s");
+	ft_printf("%010c\n",49);
+	ft_printf("%010%\n",49);
+	ft_printf("%010x\n",49);
+	while(1);
+}

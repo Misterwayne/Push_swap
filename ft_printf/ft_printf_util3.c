@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_util3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 16:26:51 by truepath          #+#    #+#             */
-/*   Updated: 2019/11/29 14:25:36 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/29 19:16:28 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,10 @@ void	check_form(int *i, pflags *lflags, char *str)
 {
 	if (str && (str[0] == '-' && lflags->preci > 0))
 		*i = -1;
-	else if (lflags->form == 's' || lflags->form == '%')
+	else if (lflags->form == 's')
 		*i = 2;
 	else if (lflags->form == 'x' || lflags->form == 'X')
 		*i = 0;
 	return ;
 }
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:02:05 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/29 14:23:19 by mwane            ###   ########.fr       */
+/*   Updated: 2019/11/29 19:19:33 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct pflags
     int     dot;
     int     len;
     int     end;
+    int     zero;
     char    form;
 }              pflags;
 
