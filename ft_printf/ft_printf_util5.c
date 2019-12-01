@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_util5.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 11:54:21 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/29 19:41:42 by truepath         ###   ########.fr       */
+/*   Updated: 2019/12/01 13:50:06 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	do_char_width(char *str, pflags *lflags, int temp)
+void	do_char_width(char *str, t_flags *lflags, int temp)
 {
 	int	i;
 
@@ -33,7 +33,7 @@ void	do_char_width(char *str, pflags *lflags, int temp)
 	return ;
 }
 
-void	do_str_width(char *str, pflags *lflags)
+void	do_str_width(char *str, t_flags *lflags)
 {
 	int temp;
 	int temp2;
@@ -55,7 +55,7 @@ void	do_str_width(char *str, pflags *lflags)
 	}
 }
 
-void	do_str_width2(pflags *lflags, int temp, int temp2, int i)
+void	do_str_width2(t_flags *lflags, int temp, int temp2, int i)
 {
 	if (lflags->preci <= 0 && i == 2 && lflags->width > 0)
 		print_space(temp - temp2, lflags);
@@ -63,7 +63,7 @@ void	do_str_width2(pflags *lflags, int temp, int temp2, int i)
 		print_space(temp - lflags->preci, lflags);
 }
 
-void	do_int_width(pflags *lflags, int temp, int temp2, int i)
+void	do_int_width(t_flags *lflags, int temp, int temp2, int i)
 {
 	if ((temp - temp2 + i) == 0 && lflags->preci == 0)
 		print_space(temp, lflags);
@@ -71,7 +71,7 @@ void	do_int_width(pflags *lflags, int temp, int temp2, int i)
 		print_space(temp - temp2 + i, lflags);
 }
 
-char	*do_width(char *str, pflags *lflags, void (*ft_put)(char*, pflags*))
+char	*do_width(char *str, t_flags *lflags, void (*ft_put)(char*, t_flags*))
 {
 	int		i;
 	int		temp;

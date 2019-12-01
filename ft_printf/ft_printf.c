@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 13:05:22 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/30 16:48:09 by truepath         ###   ########.fr       */
+/*   Updated: 2019/12/01 13:51:07 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	get_preci(char *str, pflags *lflags, va_list argv, int p)
+void	get_preci(char *str, t_flags *lflags, va_list argv, int p)
 {
 	int i;
 
@@ -28,7 +28,7 @@ void	get_preci(char *str, pflags *lflags, va_list argv, int p)
 		lflags->preci = -1;
 }
 
-int		check_pre_width(const char *str, pflags *lflags, va_list argv)
+int		check_pre_width(const char *str, t_flags *lflags, va_list argv)
 {
 	int p;
 	int nega;
@@ -57,16 +57,17 @@ int		check_pre_width(const char *str, pflags *lflags, va_list argv)
 	return (len1 - ft_strlen((char *)str));
 }
 
-void	reset_struct(pflags *lflags)
+void	reset_struct(t_flags *lflags)
 {
 	lflags->preci = -1;
 	lflags->width = 0;
 	lflags->plus = 0;
 	lflags->form = 0;
 	lflags->dot = 0;
+	lflags->detail = 0;
 }
 
-void	init_struct(pflags *lflags)
+void	init_struct(t_flags *lflags)
 {
 	lflags->preci = -1;
 	lflags->width = 0;
@@ -82,7 +83,7 @@ void	init_struct(pflags *lflags)
 int		ft_printf(const char *str, ...)
 {
 	va_list	argv_list;
-	pflags	lflags;
+	t_flags	lflags;
 
 	init_struct(&lflags);
 	va_start(argv_list, str);
@@ -101,13 +102,4 @@ int		ft_printf(const char *str, ...)
 			break ;
 	}
 	return (lflags.total_len);
-}
-
-int main()
-{
-	ft_printf("%010p\n","s");
-	ft_printf("%010c\n",49);
-	ft_printf("%010%\n",49);
-	ft_printf("%010x\n",49);
-	while(1);
 }

@@ -6,13 +6,19 @@
 #    By: mwane <mwane@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/21 17:46:15 by mwane             #+#    #+#              #
-#    Updated: 2019/11/23 16:38:07 by mwane            ###   ########.fr        #
+#    Updated: 2019/12/01 13:53:20 by mwane            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRC = ft_printf.c ft_printf_utils.c ft_printf_util2.c ft_printf_util3.c ft_printf_util4.c
+SRC = 	ft_printf.c\
+ 		ft_printf_utils.c\
+		ft_printf_util2.c\
+		ft_printf_util3.c\
+		ft_printf_util4.c\
+		ft_printf_util5.c\
+		ft_printf_util6.c
 
 OBJS = $(SRC:%.c=%.o)
 
@@ -34,6 +40,9 @@ $(NAME)	: $(OBJS)
 
 %.o : %.c
 		 $(CC) $(CFLAGS) -I$(HEAD) -o $@ -c $<
+
+bonus:
+	  @make $(NAME)
 
 clean:
 	@rm -rf $(OBJS)

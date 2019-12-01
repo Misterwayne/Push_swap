@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_util2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:38:10 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/30 16:47:38 by truepath         ###   ########.fr       */
+/*   Updated: 2019/12/01 13:50:55 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "ft_printf.h"
 
-int		check_params(const char *str, va_list argv, pflags *lflags)
+int		check_params(const char *str, va_list argv, t_flags *lflags)
 {
 	unsigned long	c;
 	char			*res;
@@ -41,7 +40,7 @@ int		check_params(const char *str, va_list argv, pflags *lflags)
 	return (1);
 }
 
-int		check_params2(const char *str, va_list argv, pflags *lflags)
+int		check_params2(const char *str, va_list argv, t_flags *lflags)
 {
 	char	*res;
 
@@ -69,7 +68,7 @@ int		check_params2(const char *str, va_list argv, pflags *lflags)
 	return (1);
 }
 
-int		check_params3(const char *str, va_list argv, pflags *lflags)
+int		check_params3(const char *str, va_list argv, t_flags *lflags)
 {
 	unsigned long	c;
 	char			*res;
@@ -80,9 +79,7 @@ int		check_params3(const char *str, va_list argv, pflags *lflags)
 	{
 		c = (unsigned int)(4294967295 + 1 + va_arg(argv, unsigned int));
 		if (c == 0 && lflags->dot == 0)
-		{
 			res = ft_strdup("0");
-		}
 		else
 			res = ft_putnbr_base(c, "0123456789");
 		do_width(res, lflags, &ft_putstr_int);
@@ -99,7 +96,7 @@ int		check_params3(const char *str, va_list argv, pflags *lflags)
 	return (1);
 }
 
-int		check_params4(const char *str, va_list argv, pflags *lflags)
+int		check_params4(const char *str, va_list argv, t_flags *lflags)
 {
 	unsigned long	c;
 	char			*res;
@@ -126,7 +123,7 @@ int		check_params4(const char *str, va_list argv, pflags *lflags)
 	return (1);
 }
 
-int		check_params5(const char *str, va_list argv, pflags *lflags)
+int		check_params5(const char *str, va_list argv, t_flags *lflags)
 {
 	unsigned long	c;
 	char			*res;

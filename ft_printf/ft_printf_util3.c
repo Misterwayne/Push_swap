@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_util3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 16:26:51 by truepath          #+#    #+#             */
-/*   Updated: 2019/11/29 19:16:28 by truepath         ###   ########.fr       */
+/*   Updated: 2019/12/01 13:50:29 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "ft_printf.h"
-#include <stdio.h>
 
-void	put_zeros(pflags *lflags, int len, int neg)
+void	put_zeros(t_flags *lflags, int len, int neg)
 {
 	while (lflags->preci > len + neg)
 	{
@@ -24,7 +21,7 @@ void	put_zeros(pflags *lflags, int len, int neg)
 	}
 }
 
-void	ft_putstr_int(char *str, pflags *lflags)
+void	ft_putstr_int(char *str, t_flags *lflags)
 {
 	int i;
 	int neg;
@@ -52,7 +49,7 @@ void	ft_putstr_int(char *str, pflags *lflags)
 		ft_putchar(str[i++], lflags);
 }
 
-void	check_param(pflags *lflags, char *str, int *temp, int *temp2)
+void	check_param(t_flags *lflags, char *str, int *temp, int *temp2)
 {
 	int		len;
 
@@ -67,7 +64,7 @@ void	check_param(pflags *lflags, char *str, int *temp, int *temp2)
 		*temp2 = len;
 }
 
-void	print_space(int width, pflags *lflags)
+void	print_space(int width, t_flags *lflags)
 {
 	if (lflags->plus == 1)
 		width--;
@@ -75,7 +72,7 @@ void	print_space(int width, pflags *lflags)
 		ft_putchar(' ', lflags);
 }
 
-void	check_form(int *i, pflags *lflags, char *str)
+void	check_form(int *i, t_flags *lflags, char *str)
 {
 	if (str && (str[0] == '-' && lflags->preci > 0))
 		*i = -1;
@@ -85,4 +82,3 @@ void	check_form(int *i, pflags *lflags, char *str)
 		*i = 0;
 	return ;
 }
-

@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 18:51:33 by mwane             #+#    #+#             */
-/*   Updated: 2019/11/29 14:26:38 by mwane            ###   ########.fr       */
+/*   Updated: 2019/12/01 13:49:35 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-void	ft_putchar(char c, pflags *lflags)
+void	ft_putchar(char c, t_flags *lflags)
 {
 	write(1, &c, 1);
 	lflags->total_len += 1;
 }
 
-void	ft_putstrl(char *str, pflags *lflags)
+void	ft_putstrl(char *str, t_flags *lflags)
 {
 	int i;
 
 	i = 0;
 	if (!str)
-		ft_putstrl("(null)", lflags);
+		return ;
 	if (lflags->preci == -1)
 		lflags->preci = ft_strlen(str);
 	while (str[i] && i < lflags->preci)
@@ -65,7 +65,7 @@ char	*ft_strdup(const char *str)
 	return (nstr);
 }
 
-void	do_int(char *str, va_list argv, pflags *lflags)
+void	do_int(char *str, va_list argv, t_flags *lflags)
 {
 	char	*res;
 	int		c;
