@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:37:33 by mwane             #+#    #+#             */
-/*   Updated: 2019/12/05 15:46:55 by mwane            ###   ########.fr       */
+/*   Updated: 2019/12/07 12:19:29 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@
 # include "libft2/libft.h"
 #include "gnl/get_next_line.h"
 
-typedef struct s_param
+typedef struct 	s_param
 {
-	int 	x;
-	int 	y;
-	char*   NO;
-	char*   SO;
-	char*   WE;
-	char*   EA;
-	char*   S;
-	long    F;
-	int		r;
-	int 	g;
-	int		b;
-	int     C;
-	char**	map;
-}              t_param;
+	int 		x;
+	int 		y;
+	char*   	NO;
+	char*   	SO;
+	char*   	WE;
+	char*   	EA;
+	char*   	S;
+	long    	F;
+	int			r;
+	int 		g;
+	int			b;
+	int     	C;
+	char**		map;
+}              	t_param;
 
-typedef struct s_data
+typedef struct	s_data
 {
 	int			cam_height;
 	int			cam_angle;
