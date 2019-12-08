@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:01:18 by mwane             #+#    #+#             */
-/*   Updated: 2019/12/05 16:47:15 by mwane            ###   ########.fr       */
+/*   Updated: 2019/12/06 12:50:33 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ void	get_path(t_param *params, int fd)
 	get_real_line(fd, &line);
 	while (line[i] != '.')
 		i++;
-	params->EA = ft_strdup(line + i);
+	params->WE = ft_strdup(line + i);
 	free(line);
 	get_real_line(fd, &line);
 	i = 0;
 	while (line[i] != '.')
 		i++;
-	params->WE = ft_strdup(line + i);
+	params->EA = ft_strdup(line + i);
 	free(line);
 	get_real_line(fd, &line);
 	i = 0;

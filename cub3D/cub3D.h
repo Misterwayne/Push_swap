@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:37:33 by mwane             #+#    #+#             */
-/*   Updated: 2019/12/07 12:19:29 by mwane            ###   ########.fr       */
+/*   Updated: 2019/12/08 18:04:48 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@
 # include "libft2/libft.h"
 #include "gnl/get_next_line.h"
 
+
 typedef struct 	s_param
 {
+	void *win_ptr;
+	void *mlx_ptr;
 	int 		x;
 	int 		y;
 	char*   	NO;
