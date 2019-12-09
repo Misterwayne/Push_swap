@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 14:18:13 by mwane             #+#    #+#             */
-/*   Updated: 2019/12/08 18:23:45 by mwane            ###   ########.fr       */
+/*   Updated: 2019/12/09 17:36:53 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		key_hook(int key, t_param *params)
 	return (0);
 } 
 
-int main(void)
+int main(int arc, char** argv)
 {
 	t_param params = {0,0,0,0,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0,NULL};
 	int     i;
@@ -56,9 +56,9 @@ int main(void)
 	i = 0;
 	z = 0;
 	o = 0;
-	fill_params("map.cub", &params);
-	if(check_params(&params))
-		return (0);
+	fill_params(argv[1], &params);
+	// if(check_params(&params))
+	// 	return (0);
 	printf("line2 = %s\n",params.WE);
 	printf_struct(&params);
 	params.mlx_ptr = mlx_init();

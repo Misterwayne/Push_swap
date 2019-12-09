@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:37:33 by mwane             #+#    #+#             */
-/*   Updated: 2019/12/08 18:04:48 by mwane            ###   ########.fr       */
+/*   Updated: 2019/12/09 17:45:06 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int		get_str_len(long nbr);
 char			*ft_itoa(int n);
 void			get_path(t_param *params, int fd);
 int 			rgb1(int r, int g, int b);
-void			get_colors(int fd, t_param *params);
+void			get_colors(char* line, t_param *params);
 int	    		get_real_line(int fd, char **line);
 void			get_map(int fd, t_param *params);
 void    		printf_struct(t_param *params);
