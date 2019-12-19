@@ -6,7 +6,7 @@
 #    By: mwane <mwane@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/12 11:24:40 by mwane             #+#    #+#              #
-#    Updated: 2019/12/15 16:44:25 by mwane            ###   ########.fr        #
+#    Updated: 2019/12/19 14:14:17 by mwane            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,11 +61,14 @@ RUN tar -zxvf phpMyAdmin-4.9.0.1-all-languages.tar.gz --strip-components=1 -C /v
 COPY src/config.inc.php var/www/html/phpmyadmin/
 #COPY phpMyAdmin-4.9.0.1-all-languages/  var/www/phpmyadmin/
 
+#SSL
+
 COPY /src/info.php /var/www/html/
 COPY src/self-signed.conf /etc/nginx/snippets/
 COPY src/ssl-params.conf /etc/nginx/snippets/
 COPY src/nginx-selfsigned.crt /etc/ssl/certs/
 COPY src/nginx-selfsigned.key /etc/ssl/private/
 COPY src/dhparam.pem /etc/nginx/
-#EXPOSE 80 80  
+EXPOSE 80 80
+EXPOSE 433 433
 CMD bash hello.sh 
