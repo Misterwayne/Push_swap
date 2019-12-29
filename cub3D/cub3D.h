@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:37:33 by mwane             #+#    #+#             */
-/*   Updated: 2019/12/09 17:45:06 by mwane            ###   ########.fr       */
+/*   Updated: 2019/12/29 19:02:41 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,19 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include "libft2/libft.h"
-#include "gnl/get_next_line.h"
-
+# include "gnl/get_next_line.h"
 
 typedef struct 	s_param
 {
 	void *win_ptr;
 	void *mlx_ptr;
+	void *img_ptr;
+	void *img_ptr2;
+	int 		sprite;
+	float 		rad;
 	int 		x;
 	int 		y;
+	float 		angle;
 	char*   	NO;
 	char*   	SO;
 	char*   	WE;
@@ -35,6 +39,7 @@ typedef struct 	s_param
 	int			b;
 	int     	C;
 	char**		map;
+	char**		dio;
 }              	t_param;
 
 typedef struct	s_data
@@ -44,7 +49,7 @@ typedef struct	s_data
 	float		fov;
 	float		cam_posX;
 	float		cam_posY;
-	int			sreen_size;
+	int			screen_size;
 }				t_data;
 
 void			fill_params(char* str, t_param *params);
@@ -57,5 +62,7 @@ int	    		get_real_line(int fd, char **line);
 void			get_map(int fd, t_param *params);
 void    		printf_struct(t_param *params);
 int       		check_params(t_param *params);
+void			check_ini_pos(char **map, t_data *data);
+int				check_map(char **map);
 
 #endif
