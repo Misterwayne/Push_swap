@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:37:33 by mwane             #+#    #+#             */
-/*   Updated: 2019/12/29 19:02:41 by mwane            ###   ########.fr       */
+/*   Updated: 2019/12/30 19:33:49 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,18 @@
 # include <stdio.h>
 # include "libft2/libft.h"
 # include "gnl/get_next_line.h"
+
+typedef struct	s_data
+{
+	int			cam_height;
+	int			cam_angle;
+	float		fov;
+	float		cam_posX;
+	float		cam_posY;
+	int			screen_size;
+	int 		map_posX;
+	int			map_posY;
+}				t_data;
 
 typedef struct 	s_param
 {
@@ -40,17 +52,9 @@ typedef struct 	s_param
 	int     	C;
 	char**		map;
 	char**		dio;
+	char**		jojo;
+	t_data		*data;
 }              	t_param;
-
-typedef struct	s_data
-{
-	int			cam_height;
-	int			cam_angle;
-	float		fov;
-	float		cam_posX;
-	float		cam_posY;
-	int			screen_size;
-}				t_data;
 
 void			fill_params(char* str, t_param *params);
 static int		get_str_len(long nbr);

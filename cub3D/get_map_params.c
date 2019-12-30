@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:01:18 by mwane             #+#    #+#             */
-/*   Updated: 2019/12/09 17:56:11 by mwane            ###   ########.fr       */
+/*   Updated: 2019/12/30 17:37:05 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,12 @@ void	get_path(t_param *params, int fd)
 		else if (line[0] == 'R')
 			get_res(line, params);
 		else if (line[0] == '1')
+		{
+			params->map = malloc(sizeof(char) * 100);
+			params->map[0] = ft_strdup(line);
+			free(line);
 			get_map(fd, params);
+		}
 	}
 	return ;
 }
@@ -121,14 +126,13 @@ void	get_map(int fd, t_param *params)
 	char* line;
 	int i;
 
-	i = 0;
-	params->map = malloc(sizeof(char) * 100);
+	i = 1;
 	while (get_real_line(fd, &line) > 0)
 	{
 		params->map[i++] = ft_strdup(line);
 		free(line);
 	}
-	params->map[i++] = ft_strdup(line);
+	params->map[i] = ft_strdup(line);
 	params->map[i] = NULL;
 	free(line);
 }
