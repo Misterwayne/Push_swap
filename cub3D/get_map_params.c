@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:01:18 by mwane             #+#    #+#             */
-/*   Updated: 2019/12/30 17:37:05 by mwane            ###   ########.fr       */
+/*   Updated: 2019/12/31 13:32:53 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,8 @@ void	get_map(int fd, t_param *params)
 		params->map[i++] = ft_strdup(line);
 		free(line);
 	}
-	params->map[i] = ft_strdup(line);
+	params->map[i++] = ft_strdup(line);
+	params->map[0] = ft_strdup(params->map[0]);
 	params->map[i] = NULL;
 	free(line);
 }

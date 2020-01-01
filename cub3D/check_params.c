@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 12:19:48 by mwane             #+#    #+#             */
-/*   Updated: 2019/12/29 13:09:11 by mwane            ###   ########.fr       */
+/*   Updated: 2019/12/31 13:16:31 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void     check_ini_pos(char **map, t_data *data)
 		{
 			if (map[i][y] == 'N')
 			{
-				data->cam_posX = i;
-				data->cam_posY = y;
+				data->map_posY = i;
+				data->map_posX = y;
 			}
 			y++;
 		}
