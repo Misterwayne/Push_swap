@@ -6,14 +6,20 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:37:33 by mwane             #+#    #+#             */
-/*   Updated: 2019/12/30 19:33:49 by mwane            ###   ########.fr       */
+/*   Updated: 2020/01/02 17:13:58 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _CUB3D_H
 # define _CUB3D_H
-# include <fcntl.h>
+# include <mlx.h>
+# include <math.h>
 # include <stdio.h>
+# include <time.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <time.h>
+# include <fcntl.h>
 # include "libft2/libft.h"
 # include "gnl/get_next_line.h"
 
@@ -68,5 +74,6 @@ void    		printf_struct(t_param *params);
 int       		check_params(t_param *params);
 void			check_ini_pos(char **map, t_data *data);
 int				check_map(char **map);
+int				raycast(t_param *params);
 
 #endif

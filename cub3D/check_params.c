@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 12:19:48 by mwane             #+#    #+#             */
-/*   Updated: 2019/12/31 13:16:31 by mwane            ###   ########.fr       */
+/*   Updated: 2020/01/04 17:27:13 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,26 @@
 
 void     check_ini_pos(char **map, t_data *data)
 {
-	int i;
+	int x;
 	int y;
 
-	i = 0;
+	x = 0;
 	y = 0;
-	while (map[i] != NULL)
+	while (map[y] != NULL)
 	{
-		while (map[i][y] != '\0')
+		while (map[y][x] != '\0')
 		{
-			if (map[i][y] == 'N')
+			if (map[y][x] == 'N')
 			{
-				data->map_posY = i;
-				data->map_posX = y;
+				data->map_posY = y;
+				data->map_posX = x;
 			}
-			y++;
+			x++;
 		}
-		i++;
-		y = 0;
+		y++;
+		x = 0;
 	}
+	printf("x = %d, y = %d\n",data->map_posX,data->map_posY);
 }
 
 int		check_map(char **map)

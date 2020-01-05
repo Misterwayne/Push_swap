@@ -1,0 +1,239 @@
+// jojo stuff
+
+// params.dio = malloc(sizeof(char*)* 16);
+	// params.dio[0] = ft_strdup("images/xpm_file/dio/dio1.XPM");
+	// params.dio[1] = ft_strdup("images/xpm_file/dio/dio2.XPM");
+	// params.dio[2] = ft_strdup("images/xpm_file/dio/dio3.XPM");
+	// params.dio[3] = ft_strdup("images/xpm_file/dio/dio4.XPM");
+	// params.dio[4] = ft_strdup("images/xpm_file/dio/dio5.XPM");
+	// params.dio[5] = ft_strdup("images/xpm_file/dio/dio6.XPM");
+	// params.dio[6] = ft_strdup("images/xpm_file/dio/dio7.XPM");
+	// params.dio[7] = ft_strdup("images/xpm_file/dio/dio8.XPM");
+	// params.dio[8] = ft_strdup("images/xpm_file/dio/dio9.XPM");
+	// params.dio[9] = ft_strdup("images/xpm_file/dio/dio10.XPM");
+	// params.dio[10] = ft_strdup("images/xpm_file/dio/dio11.XPM");
+	// params.dio[11] = ft_strdup("images/xpm_file/dio/dio12.XPM");
+	// params.dio[12] = ft_strdup("images/xpm_file/dio/dio13.XPM");
+	// params.dio[13] = ft_strdup("images/xpm_file/dio/dio14.XPM");
+	// params.dio[14] = ft_strdup("images/xpm_file/dio/dio15.XPM");
+	// params.dio[15] = ft_strdup("images/xpm_file/dio/dio16.XPM");
+	// params.jojo = malloc(sizeof(char*)* 15);
+	// params.jojo[0] = ft_strdup("images/xpm_file/jojo/jojo2.XPM");
+	// params.jojo[1] = ft_strdup("images/xpm_file/jojo/jojo3.XPM");
+	// params.jojo[2] = ft_strdup("images/xpm_file/jojo/jojo4.XPM");
+	// params.jojo[3] = ft_strdup("images/xpm_file/jojo/jojo5.XPM");
+	// params.jojo[4] = ft_strdup("images/xpm_file/jojo/jojo6.XPM");
+	// params.jojo[5] = ft_strdup("images/xpm_file/jojo/jojo7.XPM");
+	// params.jojo[6] = ft_strdup("images/xpm_file/jojo/jojo8.XPM");
+	// params.jojo[7] = ft_strdup("images/xpm_file/jojo/jojo9.XPM");
+	// params.jojo[8] = ft_strdup("images/xpm_file/jojo/jojo10.XPM");
+	// params.jojo[9] = ft_strdup("images/xpm_file/jojo/jojo11.XPM");
+	// params.jojo[10] = ft_strdup("images/xpm_file/jojo/jojo12.XPM");
+	// params.jojo[11] = ft_strdup("images/xpm_file/jojo/jojo13.XPM");
+	// params.jojo[12] = ft_strdup("images/xpm_file/jojo/jojo14.XPM");
+	// params.jojo[13] = ft_strdup("images/xpm_file/jojo/jojo15.XPM");
+	// params.jojo[14] = ft_strdup("images/xpm_file/jojo/jojo16.XPM");
+	// printf("%s\n",params.jojo[14]);
+	// if(check_params(&params))
+	// // 	return (0);
+	// printf("line2 = %s\n",params.WE);
+
+    //DATA 
+	
+	// i = 0;
+	// mlx_clear_window(params.mlx_ptr, params.win_ptr);
+	// char* x = ft_itoa(params.x);
+	// char* y = ft_itoa(params.y);
+	// char* F = ft_itoa(params.F);
+	// int colorF = params.F;
+	// int colorC = params.C;
+	// char* C = ft_itoa(params.C);
+	// mlx_string_put(params.mlx_ptr, params.win_ptr, params.x/2, params.y/2, 255,x);
+	// mlx_string_put(params.mlx_ptr, params.win_ptr, (params.x/2), (params.y/2) + 20, colorF,y);
+	// mlx_string_put(params.mlx_ptr, params.win_ptr, (params.x/2), (params.y/2) + 40, colorF,params.SO);
+	// mlx_string_put(params.mlx_ptr, params.win_ptr, (params.x/2), (params.y/2) + 60, colorF,params.NO);
+	// mlx_string_put(params.mlx_ptr, params.win_ptr, (params.x/2), (params.y/2) + 80, colorF,params.WE);
+	// mlx_string_put(params.mlx_ptr, params.win_ptr, (params.x/2), (params.y/2) + 100, colorF,params.EA);
+	// mlx_string_put(params.mlx_ptr, params.win_ptr, (params.x/2), (params.y/2) + 120, colorC,params.S);
+	// mlx_string_put(params.mlx_ptr, params.win_ptr, (params.x/2), (params.y/2) + 140, colorC,F);
+	// mlx_string_put(params.mlx_ptr, params.win_ptr, (params.x/2), (params.y/2) + 160, colorC,C);
+
+    // // double anx;
+	// // double any;
+	// // anx = (double)cx + (double)500*cos((double)z);
+	// // any = (double)cy + (double)500*sin((double)z);
+	// // mlx_clear_window(params.mlx_ptr, params.win_ptr);
+	// mlx_put_image_to_window(params.mlx_ptr, params.win_ptr, params.img_ptr, cx, cy);
+	// int a,b;
+	// z++;
+	// params.img_ptr = mlx_xpm_file_to_image(params.mlx_ptr,params.dio[0], &a, &b);
+	// mlx_put_image_to_window(params.mlx_ptr, params.win_ptr, params.img_ptr, cx, cy);
+	// int xpos = 0;
+	// int ypos = 0;
+	// int *map_img;
+	// int bpp;
+	// int size_line;
+	// int endian;
+	// params.img_ptr = mlx_new_image(params.mlx_ptr, 800, 600);
+	// map_img = (int *)mlx_get_data_addr(params.img_ptr, &bpp, &size_line, &endian);
+	// printf("bpp = %d, size_line = %d ,endian = %d\n",bpp,size_line,endian);
+	// while (params.map[ypos] != NULL)
+	// {
+	// 	while (params.map[ypos][xpos])
+	// 	{
+	// 		if (params.map[ypos][xpos] == '1')
+	// 		{
+	// 			map_img[xpos*10 + 4 * 800 * ypos] = 0xFFFFFF;
+	// 		}
+	// 		else if (params.map[ypos][xpos] == '0')
+	// 			map_img[xpos*10 + 4 * 800 * ypos] = 0;
+	// 		else if (ypos == params.data->cam_posY && xpos == params.data->cam_posX)
+	// 			map_img[xpos*10 + 4 * 800 * ypos] = 0xFF;
+	// 		else
+	// 			map_img[xpos*10 + 4 * 800 * ypos] = 0xFF;
+	// 		xpos++;
+	// 	}
+	// 	xpos = 0;
+	// 	ypos += 1;
+	// }
+	// mlx_put_image_to_window(params.mlx_ptr, params.win_ptr, params.img_ptr, 0, 0);
+
+    	// // map
+	// int xpos = 0;
+	// int ypos = 0;
+	// int *map_img;
+	// int temp = 0;
+	// int bpp;
+	// int size_line;
+	// int endian;
+	// params->img_ptr = mlx_new_image(params->mlx_ptr, 1800, 1080);
+	// map_img = (int *)mlx_get_data_addr(params->img_ptr, &bpp, &size_line, &endian);
+	// // printf("bpp = %d, size_line = %d ,endian = %d\n",bpp,size_line,endian);
+	// while (params->map[ypos] != NULL)
+	// {
+	// 	while (params->map[ypos][xpos])
+	// 	{
+	// 		if (params->map[ypos][xpos] == '1')
+	// 		{
+	// 			if (params->map[ypos][xpos + 1] == '1')
+	// 			{
+	// 				temp = 0;
+	// 				while ((xpos*64 + 4 * 1800 * ypos*16) + temp < (xpos + 1) *64 + 4 * 1800 * ypos*16)
+	// 				{
+	// 					map_img[(xpos*64 + 4 * 1800 * ypos*16)+temp] = 0xFFFFFF;
+	// 					temp++;
+	// 				}
+	// 			}
+	// 			else
+	// 				map_img[(xpos*64 + 4 * 1800 * ypos*16)] = 0xFFFFFF;
+	// 			if (ypos < 13 && params->map[ypos + 1][xpos] == '1')
+	// 			{
+	// 				temp = 0;
+	// 				printf("%d\n",(xpos*64 + 4 * 1800 * (ypos * 4)));
+	// 				// while ((xpos*64 + 4 * 1800 * (ypos*(4+temp)) < (xpos*64 + 4 * 1800 * (ypos+1)*16)) && temp <= 4)
+	// 				while (temp <= 16)
+	// 				{
+	// 					map_img[(xpos*64 + 4 * 1800 * ((ypos*16+temp)))] = 0xFFFFFF;
+	// 					temp+=1;
+	// 					printf("%d\n",(xpos*64 + 4 * 1800 * (ypos+1)*16));
+	// 					printf("%d\n",(xpos*64 + 4 * 1800 * ypos*(4+temp)));
+	// 					printf("xpos = %d  ypos = %d temp = %d\n",xpos, ypos, temp);
+	// 				}
+	// 			}
+	// 			else;
+	// 				map_img[(xpos*64 + 4 * 1800 * ypos*16)] = 0xFFFFFF;
+	// 			// map_img[xpos + 4 * 1800 * ypos/8] = 0xFFFFFF;
+	// 		}
+	// 		else if (ypos == params->data->map_posY && xpos == params->data->map_posX)
+	// 		{
+				
+	// 				map_img[xpos*64 + 4 * 1800 * ypos*16] = 0xCE4E4E;
+	// 			printf("xpos = %d  ypos = %d sprite = %d\n",params->data->map_posX, params->data->map_posY, params->sprite);
+	// 		}
+	// 		else if (params->map[ypos][xpos] == '0')
+	// 		{
+	// 			// temp = xpos;
+	// 			// while (temp++ < xpos*64)
+	// 				map_img[xpos*64 + 4 * 1800 * ypos*16]= 0xFFFF;
+	// 		}
+	// 		else
+	// 		{
+	// 			// temp = xpos;
+	// 			// while (temp++ < xpos*16)
+	// 				map_img[xpos*64 + 4 * 1800 * ypos*16] = 0xFF;
+	// 		}
+	// 		xpos++;
+	// 		// printf("xpos = %d\n",params->data->map_posX);
+	// 	}
+	// 	xpos = 0;
+	// 	ypos += 1;
+	// }
+
+    	// // JOJO Stuff
+	
+// 	if (params->data->cam_posX >= params->x)
+// 	{
+// 		params->data->cam_posX = 0;
+// 		params->data->cam_posY += 100;
+
+// 	}
+// 	if (params->data->cam_posY >= params->y)
+// 		params->data->cam_posY = 0;
+// 	delay(1000/20);
+// 	if (params->sprite > 14)
+// 		params->sprite = 0;
+// 	params->img_ptr2 = mlx_xpm_file_to_image(params->mlx_ptr, params->dio[params->sprite], &a, &b);
+// 	// params->img_ptr = mlx_xpm_file_to_image(params->mlx_ptr, params->jojo[params->sprite], &a, &b);
+// 	mlx_clear_window(params->mlx_ptr, params->win_ptr);
+// 	// mlx_put_image_to_window(params->mlx_ptr, params->win_ptr, params->img_ptr, params->data->cam_posX, params->data->cam_posY);
+// 	// mlx_put_image_to_window(params->mlx_ptr, params->win_ptr, params->img_ptr2, params->data->cam_posX + 100, params->data->cam_posY + 100);
+// 	// params->data->cam_posX += 10;
+// 	params->sprite++;
+
+	// delay(1000/20);
+	// if (params->angle >= 360)
+	// 	params->angle = 0;
+	// int cx = params->x/2;
+	// int cy = params->y/2;
+	// int a;
+	// int b;
+	// // // the circle stuff
+
+	// double anx;
+	// double any;
+	// anx = (double)cx + (double)params->rad * cos((double)params->angle);
+	// any = (double)cy + (double)params->rad * sin((double)params->angle);
+	// if (params->sprite > 14)
+	// 	params->sprite = 0;
+	// printf("sprite %d = ",params->sprite);
+	// // if (params->angle > 350) 
+	// 	mlx_clear_window(params->mlx_ptr, params->win_ptr);
+	// params->img_ptr = mlx_xpm_file_to_image(params->mlx_ptr, params->jojo[params->sprite], &a, &b);
+	// mlx_put_image_to_window(params->mlx_ptr, params->win_ptr, params->img_ptr, anx, any);
+	// // mlx_pixel_put(params->mlx_ptr,params->win_ptr, any, anx, params->F);
+	// params->angle += 0.01;
+	// params->F++;
+	// params->rad -= 0.01;
+	// params->sprite++;
+
+    //visu
+
+     // double dirX = 0;
+    // double dirY = 100; //initial direction vector
+    // double planeX = 100;
+    // double planeY = 0; //the 2d raycaster version of camera plane
+    // double x = posy;
+    // double w = 1800;
+    // mlx_string_put(params->mlx_ptr, params->win_ptr, posx, posy, params->F, "start");
+    // while(x>(posy-dirY))
+    // {
+    //     mlx_pixel_put(params->mlx_ptr, params->win_ptr, posx, x, 255);
+    //     x -= 0.1;
+    //     printf("x = %f, posy = %f\n",x,posy+1);
+    // }
+    // x = posx - planeX;
+    // while (x < posx + planeX)
+    // {
+    //     mlx_pixel_put(params->mlx_ptr, params->win_ptr, x, posy- dirY, 255);
+    //     x += 1;
+    // }
