@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:37:33 by mwane             #+#    #+#             */
-/*   Updated: 2020/01/02 17:13:58 by mwane            ###   ########.fr       */
+/*   Updated: 2020/01/24 18:34:11 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,46 @@
 # include "libft2/libft.h"
 # include "gnl/get_next_line.h"
 
+typedef	struct	s_ray
+{
+	double 	dirX;
+    double 	dirY;
+    double 	planeX;
+    double 	planeY;
+
+	double posx;
+	double posy;
+
+    int 	x;
+    double 	cameraX;
+    int 	w;
+    int 	h;
+
+    int mapX;
+    int mapY;
+
+    double rayDirX;
+    double rayDirY;
+
+    double sidedistX;
+    double sidedistY;
+
+    double deltaDistX;
+    double deltaDistY;
+
+    double perpWallDist;
+
+    int stepX;
+    int stepY;
+
+    int hit;
+    int side;
+
+    int lineheight;
+    int drawstart;
+    int drawend;
+}				t_ray;
+
 typedef struct	s_data
 {
 	int			cam_height;
@@ -31,9 +71,25 @@ typedef struct	s_data
 	float		cam_posX;
 	float		cam_posY;
 	int			screen_size;
-	int 		map_posX;
-	int			map_posY;
+	float 		map_posX;
+	float		map_posY;
 }				t_data;
+
+typedef struct	s_texture
+{
+	char *	img;
+	void*	img_ptr;
+	double	wallx;
+	double	wally;
+	int		sizeY;
+	int 	sizeX;
+	int		d;
+	int 	text_x;
+	int 	text_y;
+	int		size_line;
+	int		bpp;
+	int 	endian;
+}				t_texture;
 
 typedef struct 	s_param
 {
@@ -60,7 +116,10 @@ typedef struct 	s_param
 	char**		dio;
 	char**		jojo;
 	t_data		*data;
+	t_ray		*ray;
+	t_texture	*texture;
 }              	t_param;
+
 
 void			fill_params(char* str, t_param *params);
 static int		get_str_len(long nbr);
@@ -75,5 +134,7 @@ int       		check_params(t_param *params);
 void			check_ini_pos(char **map, t_data *data);
 int				check_map(char **map);
 int				raycast(t_param *params);
+int     		cam_rotation(int dir, t_param *params);
+int				mini_map(t_param *params);
 
 #endif
