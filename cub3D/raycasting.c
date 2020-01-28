@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:11:00 by mwane             #+#    #+#             */
-/*   Updated: 2020/01/28 15:16:36 by mwane            ###   ########.fr       */
+/*   Updated: 2020/01/28 15:48:58 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,20 +121,29 @@ int     raycast(t_param *params)
 			if (params->ray->sidedistX < params->ray->sidedistY)
 			{
 				params->ray->sidedistX += params->ray->deltaDistX;
-				params->ray->mapX += params->ray->stepX;
-				params->ray->side = 0;
-				params->texture->img_ptr = params->texture->south_img_ptr;
-				params->texture->sizeX = params->texture->sizeX1;
-				params->texture->sizeY = params->texture->sizeY1;
+					params->ray->mapX += params->ray->stepX;
+					params->ray->side = 0;
+				if (params->ray->deltaDistX < params->ray->deltaDistY)
+				{
+					params->texture->img_ptr = params->texture->west_img_ptr;
+					params->texture->sizeX = params->texture->sizeX3;
+					params->texture->sizeY = params->texture->sizeY3;
+				}
+				else
+				{
+					params->texture->img_ptr = params->texture->east_img_ptr;
+					params->texture->sizeX = params->texture->sizeX2;
+					params->texture->sizeY = params->texture->sizeY2;
+				}
 			}
 			else
 			{
 				params->ray->sidedistY += params->ray->deltaDistY;
 				params->ray->mapY += params->ray->stepY;
 				params->ray->side = 1;
-				params->texture->img_ptr = params->texture->east_img_ptr;
-				params->texture->sizeX = params->texture->sizeX2;
-				params->texture->sizeY = params->texture->sizeY2;
+				params->texture->img_ptr = params->texture->south_img_ptr;
+				params->texture->sizeX = params->texture->sizeX1;
+				params->texture->sizeY = params->texture->sizeY1;
 			}
 			if (params->map[params->ray->mapX][params->ray->mapY] == '1')
 				params->ray->hit = 1;
@@ -166,23 +175,33 @@ int     raycast(t_param *params)
 		
 		int text_y = 0;
 		int d;
-		int line_y = params->ray->drawstart;
+		int line_y = 0;
 		double wally;
 		int text_x = (int)(params->texture->wallx * (double)params->texture->sizeX);
 		params->texture->img = (char *)mlx_get_data_addr(params->texture->img_ptr, &params->texture->bpp, &params->texture->size_line, &params->texture->endian);
-		// printf("draw start = %d\ndraw end = %d\n",params->ray->drawstart,params->ray->drawend);
-		while (line_y <= params->ray->drawend)
+		while (line_y < params->ray->drawstart)
 		{
-			// printf("ik\n");
-			wally = (line_y - params->ray->drawstart) / params->ray->lineheight;
-			text_y = (int)(wally * (double)params->texture->sizeY);
-			d = line_y * (params->texture->size_line) - (h) * (params->texture->size_line) / 2 + (params->ray->drawend - params->ray->drawstart) * (params->texture->size_line) / 2;
-			text_y = ((d * (params->texture->sizeY)) / (params->ray->drawend - params->ray->drawstart)) / (params->texture->size_line);
-			map_img[(line_y * (size_line) + (x) * (bpp/8))]= params->texture->img [(text_y * params->texture->size_line + (text_x) * (params->texture->bpp/8))];
-			map_img[(line_y * (size_line) + (x) * (bpp/8)) + 1]= params->texture->img[(text_y * params->texture->size_line + (text_x) * (params->texture->bpp/8)) + 1];
-			map_img[(line_y * (size_line) + (x) * (bpp/8)) + 2]= params->texture->img[(text_y * params->texture->size_line + (text_x) * (params->texture->bpp/8)) + 2];
+			map_img[(line_y * (size_line) + (x) * (bpp/8))] = params->C;
 			line_y++;
 		}
+			while (line_y <= params->ray->drawend)
+			{
+				wally = (line_y - params->ray->drawstart) / params->ray->lineheight;
+				text_y = (int)(wally * (double)params->texture->sizeY);
+				d = line_y * (params->texture->size_line) - (h) * (params->texture->size_line) / 2 + (params->ray->drawend - params->ray->drawstart) * (params->texture->size_line) / 2;
+				text_y = ((d * (params->texture->sizeY)) / (params->ray->drawend - params->ray->drawstart)) / (params->texture->size_line);
+				map_img[(line_y * (size_line) + (x) * (bpp/8))]= params->texture->img [(text_y * params->texture->size_line + (text_x) * (params->texture->bpp/8))];
+				map_img[(line_y * (size_line) + (x) * (bpp/8)) + 1]= params->texture->img[(text_y * params->texture->size_line + (text_x) * (params->texture->bpp/8)) + 1];
+				map_img[(line_y * (size_line) + (x) * (bpp/8)) + 2]= params->texture->img[(text_y * params->texture->size_line + (text_x) * (params->texture->bpp/8)) + 2];
+				line_y++;
+			}
+		while (line_y < h)
+		{
+			map_img[(line_y * (size_line) + (x) * (bpp/8))] = params->F;
+			line_y++;
+		}
+			// map_img[(line_y * (size_line) + (x) * (bpp/8))] = params->F;
+			// line_y++;
 		x++;
 	}
 	return (0);

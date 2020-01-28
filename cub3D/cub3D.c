@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 14:18:13 by mwane             #+#    #+#             */
-/*   Updated: 2020/01/28 15:14:33 by mwane            ###   ########.fr       */
+/*   Updated: 2020/01/28 15:26:48 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int main(int arc, char** argv)
 	// t_ray 	ray = {-1,0,0,0.66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	// t_data	data = {0,0,0,0,0,0,0};
 	t_texture map = {0,0,0,0,0,0,0,0};
-	t_texture texture = {NULL,NULL,NULL,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+	t_texture texture = {NULL,NULL,NULL,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	t_ray 	ray;
 	t_data	data;
 	t_param params /*= {0,0,0,0,0,0,0,0,0,NULL,NULL,NULL,NULL,NULL,0,0,0,0,0,NULL,NULL,NULL,&data,&ray,&texture}*/;
@@ -104,6 +104,7 @@ int main(int arc, char** argv)
 	params.win_ptr = mlx_new_window(params.mlx_ptr, params.x, params.y, "test");
 	params.texture->south_img_ptr = mlx_xpm_file_to_image(params.mlx_ptr,"brick.XPM", &params.texture->sizeX1, &params.texture->sizeY1);
 	params.texture->east_img_ptr = mlx_xpm_file_to_image(params.mlx_ptr,"dio6.XPM", &params.texture->sizeX2, &params.texture->sizeY2);
+	params.texture->west_img_ptr = mlx_xpm_file_to_image(params.mlx_ptr,"wood.XPM", &params.texture->sizeX3, &params.texture->sizeY3);
 	// write(1, "ok\n", 3);
 	// init_texture(&params);
 	// write(1, "ok\n", 3);

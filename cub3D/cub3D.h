@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:37:33 by mwane             #+#    #+#             */
-/*   Updated: 2020/01/28 15:14:07 by mwane            ###   ########.fr       */
+/*   Updated: 2020/01/28 15:25:37 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ typedef struct	s_texture
 	int 	sizeX1;
 	int		sizeY2;
 	int 	sizeX2;
+	int		sizeY3;
+	int 	sizeX3;
 	int		d;
 	int 	text_x;
 	int 	text_y;
