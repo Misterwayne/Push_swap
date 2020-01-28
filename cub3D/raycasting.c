@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:11:00 by mwane             #+#    #+#             */
-/*   Updated: 2020/01/25 18:39:16 by mwane            ###   ########.fr       */
+/*   Updated: 2020/01/28 15:16:36 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,12 @@ int     raycast(t_param *params)
 	int endian;
 	params->img_ptr = mlx_new_image(params->mlx_ptr, params->x, params->y);
 	map_img = (char *)mlx_get_data_addr(params->img_ptr, &bpp, &size_line, &endian);
-	params->texture->img_ptr = mlx_xpm_file_to_image(params->mlx_ptr,"brick.XPM", &params->texture->sizeX, &params->texture->sizeY);
-	params->texture->img = (char *)mlx_get_data_addr(params->texture->img_ptr, &params->texture->bpp, &params->texture->size_line, &params->texture->endian);
-
 	int x = 0;
 	double cameraX = 0;
 	int w = params->x;
 	int h = params->y;
+	// params->texture->img_ptr = params->texture->south_img_ptr;
+    // mlx_xpm_file_to_image(params->mlx_ptr,"brick.XPM", &params->texture->sizeX, &params->texture->sizeY);
 	
 	while (x < w)
 	{
@@ -124,36 +123,35 @@ int     raycast(t_param *params)
 				params->ray->sidedistX += params->ray->deltaDistX;
 				params->ray->mapX += params->ray->stepX;
 				params->ray->side = 0;
+				params->texture->img_ptr = params->texture->south_img_ptr;
+				params->texture->sizeX = params->texture->sizeX1;
+				params->texture->sizeY = params->texture->sizeY1;
 			}
 			else
 			{
 				params->ray->sidedistY += params->ray->deltaDistY;
 				params->ray->mapY += params->ray->stepY;
 				params->ray->side = 1;
+				params->texture->img_ptr = params->texture->east_img_ptr;
+				params->texture->sizeX = params->texture->sizeX2;
+				params->texture->sizeY = params->texture->sizeY2;
 			}
 			if (params->map[params->ray->mapX][params->ray->mapY] == '1')
-			{
-				//  printf("mapx = %d, mapy = %d\n",params->ray->mapX, params->ray->mapY);
 				params->ray->hit = 1;
-			}
 		}
-		
 		if (params->ray->side == 0)
 			params->ray->perpWallDist = (double)(((double)params->ray->mapX - params->ray->posx + (1 - (double)params->ray->stepX) / 2) / params->ray->rayDirX);
 		else
 			params->ray->perpWallDist = (double)(((double)params->ray->mapY - params->ray->posy + (1 - (double)params->ray->stepY) / 2) / params->ray->rayDirY);
-		// printf ("l:%f, ", params->ray->perpWallDist);
-		// printf ("params->ray->mapY:%d params->ray->mapX:%d posy:%f posx:%f X:%f Y:%f params->ray->stepY:%f", params->ray->mapY, params->ray->mapX, posy, posx, params->ray->rayDirX, params->ray->rayDirY, (double)params->ray->stepY);
-
 		params->ray->lineheight = (int)(h / params->ray->perpWallDist);
 		params->ray->drawstart = -params->ray->lineheight / 2 + (h / 2);
-		// printf("lineheight = %d\n", params->ray->lineheight);
-		// printf("h = %d\n", h);
-		// if (params->ray->drawstart < 0)
-		//     params->ray->drawstart = 0;
+		if (params->ray->drawstart < 0)
+		    params->ray->drawstart = 0;
 		params->ray->drawend = params->ray->lineheight / 2 + h / 2;
-		// if (params->ray->drawend >= h)
-		//     params->ray->drawend = h - 1;
+		if (params->ray->drawend >= h)
+		    params->ray->drawend = h - 1;
+		// if (params->ray->drawend < 0)
+		// 	params->ray->drawend = -params->ray->drawend;
 		//Sprite
 		// double invDet = 1.0 / (params->ray->planeX * params->ray->dirY - params->ray->dirX * params->ray->planeY);
 		// double transformX = invDet * (params->ray->dirY * sizeX - params->ray->dirX * sizeY);
@@ -171,11 +169,11 @@ int     raycast(t_param *params)
 		int line_y = params->ray->drawstart;
 		double wally;
 		int text_x = (int)(params->texture->wallx * (double)params->texture->sizeX);
-		// printf("params->ray->drawstart = %d, params->ray->drawend = %d, cameraX = %f\n",params->ray->drawstart,params->ray->drawend,cameraX);
-		// printf("x = %d\ndraw stat = %d\n",x,params->ray->drawstart);
-		// printf("params->ray->perpWallDist = %f\n", params->ray->perpWallDist);
+		params->texture->img = (char *)mlx_get_data_addr(params->texture->img_ptr, &params->texture->bpp, &params->texture->size_line, &params->texture->endian);
+		// printf("draw start = %d\ndraw end = %d\n",params->ray->drawstart,params->ray->drawend);
 		while (line_y <= params->ray->drawend)
 		{
+			// printf("ik\n");
 			wally = (line_y - params->ray->drawstart) / params->ray->lineheight;
 			text_y = (int)(wally * (double)params->texture->sizeY);
 			d = line_y * (params->texture->size_line) - (h) * (params->texture->size_line) / 2 + (params->ray->drawend - params->ray->drawstart) * (params->texture->size_line) / 2;

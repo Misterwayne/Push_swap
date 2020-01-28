@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:37:33 by mwane             #+#    #+#             */
-/*   Updated: 2020/01/24 18:34:11 by mwane            ###   ########.fr       */
+/*   Updated: 2020/01/28 15:14:07 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,23 @@ typedef struct	s_data
 
 typedef struct	s_texture
 {
-	char *	img;
+	char*	img;
+	char*	north_img;
+	char*	south_img;
+	char*	east_img;
+	char*	west_img;
 	void*	img_ptr;
+	void*	west_img_ptr;
+	void*	east_img_ptr;
+	void*	south_img_ptr;
 	double	wallx;
 	double	wally;
 	int		sizeY;
 	int 	sizeX;
+	int		sizeY1;
+	int 	sizeX1;
+	int		sizeY2;
+	int 	sizeX2;
 	int		d;
 	int 	text_x;
 	int 	text_y;
@@ -136,5 +147,9 @@ int				check_map(char **map);
 int				raycast(t_param *params);
 int     		cam_rotation(int dir, t_param *params);
 int				mini_map(t_param *params);
+int     		init_texture(t_param *params);
+int     		init_sruct(t_param *params);
+void    		init_ray(t_ray *ray);
+void    		init_data(t_data *data);
 
 #endif
