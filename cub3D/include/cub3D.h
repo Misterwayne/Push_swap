@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:37:33 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/01 19:05:17 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/06 19:05:42 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ typedef struct 	s_param
 	t_data		*data;
 	t_ray		*ray;
 	t_texture	*texture;
+	t_texture	*map_info;
 	Bitmap		*bmp;
 }              	t_param;
 
@@ -199,5 +200,18 @@ int     		init_sruct(t_param *params);
 void    		init_ray(t_ray *ray);
 void    		init_data(t_data *data);
 int 			destroy_window(t_param *params);
+void    		calcul_ray(t_param *params, double cameraX);
+void    		get_depth(t_param *params);
+int		   		draw_wall(int text_x, int x, int line_y, t_param *params);
+void    		init_ray_data(t_param *params);
+void    		ray2(t_param *params);
+void    		move_forward(t_param *params);
+void    		move_back(t_param *params);
+void			move_left(t_param *params);
+void			move_right(t_param *params);
+void    		init_text(t_texture *tex);
+void			get_path_info(char *line, t_param *params);
+char			*cpy_path(char *line);
+int				rgb1(int r, int g, int b);
 
 #endif

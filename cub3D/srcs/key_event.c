@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 09:14:03 by mwane             #+#    #+#             */
-/*   Updated: 2020/01/30 15:03:45 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/06 19:09:26 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 
 int     cam_rotation(int dir, t_param *params)
 {
-    double olddirX;
+   	double olddirX;
 	double oldplaneX;
 	double olddirY;
 	double oldplaneY;
-    double ms;
+   	double ms;
 
-    ms = 0.1;
-    if (dir == 123)
-        ms *= -1;
-    olddirX = params->ray->dirX;
+   	ms = 0.1;
+   	if (dir == 123)
+   	    ms *= -1;
+   	olddirX = params->ray->dirX;
 	params->ray->dirX = 
 	params->ray->dirX * cos(-ms) - params->ray->dirY * sin(-ms);
 	params->ray->dirY =
@@ -35,12 +35,11 @@ int     cam_rotation(int dir, t_param *params)
 	params->ray->planeX * cos(-ms) - params->ray->planeY * sin(-ms);
 	params->ray->planeY =
 	oldplaneX * sin(-ms) + params->ray->planeY * cos(-ms);
-    return (0);
+   	return (0);
 }
 
 int		mini_map(t_param *params)
 {
-		// map
 	int xpos = 0;
 	int ypos = 0;
 	int *map_img;
@@ -52,7 +51,6 @@ int		mini_map(t_param *params)
 	int pposy = params->data->map_posY;
 	params->img_ptr2 = mlx_new_image(params->mlx_ptr, params->x/10, params->y/10);
 	map_img = (int *)mlx_get_data_addr(params->img_ptr2, &bpp, &size_line, &endian);
-	// printf("bpp = %d, size_line = %d ,endian = %d\n",bpp,size_line,endian);
 	while (params->map[ypos] != NULL)
 	{
 		pposy = params->data->map_posY;

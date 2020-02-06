@@ -16,9 +16,9 @@ NO ./brick.XPM
 SO ./dio6.XPM
 
 
-WE ./path_to_the_west_texture
+WE ./wood.XPM
 
-EA ./path_to_the_east_texture
+EA ./triforce.XPM
 
 
 S ./path_to_the_sprite_texture

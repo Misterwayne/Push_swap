@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:37:33 by mwane             #+#    #+#             */
-/*   Updated: 2020/01/28 15:25:37 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/06 15:20:49 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,8 @@ typedef struct 	s_param
 	void *img_ptr;
 	void *img_ptr2;
 	int 		sprite;
-	float 		rad;
 	int 		x;
 	int 		y;
-	float 		angle;
 	char*   	NO;
 	char*   	SO;
 	char*   	WE;
@@ -126,11 +124,10 @@ typedef struct 	s_param
 	int			b;
 	int     	C;
 	char**		map;
-	char**		dio;
-	char**		jojo;
 	t_data		*data;
 	t_ray		*ray;
 	t_texture	*texture;
+	t_texture	*map_info;
 }              	t_param;
 
 

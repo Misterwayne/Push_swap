@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 11:28:18 by mwane             #+#    #+#             */
-/*   Updated: 2020/01/30 15:03:55 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/06 19:08:52 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int    get_real_line(int fd, char **line)
 		free(*line);
 		v = get_next_line(fd, line);
 	}
-	return v;
+	return (v);
 }
 
 void    printf_struct(t_param *params)
