@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:46:12 by mwane             #+#    #+#             */
-/*   Updated: 2020/01/31 15:30:41 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/06 14:32:36 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,13 @@ void    init_ray(t_ray *ray)
 
 int     init_sruct(t_param *params)
 {
-    // t_ray 	ray;
-	// t_data	data;
-	// t_texture map = {0,0,0,0,0,0,0,0};
-	// t_texture texture = {NULL,NULL,NULL,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    
-
-    // init_data(&data);
-    // init_ray(&ray);
     params->win_ptr         = 0;
     params->mlx_ptr         = 0;
     params->img_ptr         = 0;
     params->img_ptr2        = 0;
     params->sprite          = 0;
-    params->rad             = 0;
     params->x               = 0;
     params->y               = 0;
-    params->angle           = 0;
     params->NO              = NULL;
     params->SO              = NULL;
     params->WE              = NULL;
@@ -97,7 +87,5 @@ int     init_sruct(t_param *params)
     params->b               = 0;
     params->C               = 0;
     params->map             = NULL;
-    params->jojo            = NULL;
-    params->dio             = NULL;
     return (0);
 }

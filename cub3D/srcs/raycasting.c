@@ -6,64 +6,11 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:11:00 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/01 19:05:27 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/06 14:35:41 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-#define mapWidth 29
-#define mapHeight 14
-
-// void    init_data(t_param *params)
-// {
-// 	char *map_img;
-// 	int bpp;
-// 	int size_line;
-// 	int endian;
-// 	void *img_ptr3 = NULL;
-// 	int sizeX;
-// 	int sizeY;
-// 	params->img_ptr = mlx_new_image(params->mlx_ptr, params->x, params->y);
-// 	map_img = (char *)mlx_get_data_addr(params->img_ptr, &bpp, &size_line, &endian);
-// 	img_ptr3 = mlx_xpm_file_to_image(params->mlx_ptr,"brick.XPM", &sizeX, &sizeY);
-// 	int bpp2 = 0;
-// 	int size_line2 = 0;
-// 	int endian2 = 0;
-// 	char *texture;
-// 	texture = (char *)mlx_get_data_addr(img_ptr3, &bpp2, &size_line2, &endian2);
-// }
-
-// void	draw_stripe(int x, t_param *params)
-// {
-// 	write(1, "siw\n", 4);
-// 	char *map_img;
-// 	int bpp;
-// 	int size_line;
-// 	int endian;
-// 	int text_y = 0;
-// 	int line_y = params->ray->drawstart;
-// 	double wally;
-// 	int h = params->y;
-// 	int text_x = (int)(params->texture->wallx * (double)params->texture->sizeX);
-// 	int d;
-// 	double wallx;
-// 		if (params->ray->side == 0)
-// 			wallx = params->ray->posy + params->ray->perpWallDist * params->ray->rayDirY;
-// 		else
-// 			wallx = params->ray->x + params->ray->perpWallDist * params->ray->rayDirX;
-// 		wallx -= floor(wallx);
-// 	while (line_y <= params->ray->drawend)
-// 	{
-// 		wally = (line_y - params->ray->drawstart) / params->ray->lineheight;
-// 		text_y = (int)(wally * (double)params->texture->sizeY);
-// 		d = line_y * (params->texture->size_line) - (h) * (params->texture->size_line) / 2 + (params->ray->drawend - params->ray->drawstart) * (params->texture->size_line) / 2;
-// 		text_y = ((d * (params->texture->sizeY)) / (params->ray->drawend - params->ray->drawstart)) / (params->texture->size_line);
-// 		map_img[(line_y * (size_line) + (x) * (bpp/8))]= params->texture->img[(text_y * params->texture->size_line + (text_x) * (params->texture->bpp/8))];
-// 		map_img[(line_y * (size_line) + (x) * (bpp/8)) + 1]= params->texture->img[(text_y * params->texture->size_line + (text_x) * (params->texture->bpp/8)) + 1];
-// 		map_img[(line_y * (size_line) + (x) * (bpp/8)) + 2]= params->texture->img[(text_y * params->texture->size_line + (text_x) * (params->texture->bpp/8)) + 2];
-// 		line_y++;
-// 	}
-// }
 
 int     raycast(t_param *params)
 {
@@ -201,10 +148,10 @@ int     raycast(t_param *params)
 		}
 		x++;
 	}
-	if (params->sprite == 1)
+	/*if (params->sprite == 1)
 	{
 		save_bitmap(params, map_img);
 		destroy_window(params);
-	}
+	}*/
 	return (0);
 }

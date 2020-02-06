@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 12:19:48 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/01 14:07:03 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/06 14:31:31 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void     check_ini_pos(char **map, t_param *params)
 		x++;
 		y = 0;
 	}
-	// printf("x = %d, y = %d\n",data->map_posX,data->map_posY);
 }
 
 int		check_map(char **map)
@@ -90,10 +89,7 @@ int		check_map(char **map)
 		if (map[i][y] == ' ')
 			y++;
 		if (map[i][y] != '1')
-		{
-			// printf("%d = y\n",y);
 			return (1);
-		}
 		y++;
 	}
 	y--;
