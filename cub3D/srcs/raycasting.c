@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:11:00 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/06 17:00:54 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/10 19:04:45 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,17 @@ int		raycast(t_param *params)
 				load_texture_we_ea(params);
 			if (params->map[params->ray->mapX][params->ray->mapY] == '1')
 				params->ray->hit = 1;
+			if (params->map[params->ray->mapX][params->ray->mapY] == '2')
+			{
+				params->sprite->x = params->ray->mapX;
+				params->sprite->y = params->ray->mapY;
+				params->ray->hit = 1;
+			}
 		}
 		get_depth(params);
 		draw_pix(params, x);
+		sprite(params, x);
+		draw_sprite(params, 0, x);
 		x++;
 	}
 	return (0);

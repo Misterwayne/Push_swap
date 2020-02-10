@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:37:33 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/06 19:05:42 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/10 18:47:16 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@
 # include <fcntl.h>
 # include "../libft2/libft.h"
 # include "../gnl/get_next_line.h"
-
-typedef struct rgb_data
-{
-	float rgb[3];
-} Rgb;
 
 typedef struct bitmap_file_header
 {
@@ -51,7 +46,6 @@ typedef struct bitmap
 
 typedef struct bitmap_image_header
 {
-	/* data */
 	unsigned int	size_header;
 	unsigned int	width;
 	unsigned int	height;
@@ -64,6 +58,36 @@ typedef struct bitmap_image_header
 	unsigned int	clr_used;
 	unsigned int	clr_important;
 } Bih;
+
+typedef	struct	s_sprite
+{
+	double 	x;
+	double 	y;
+	void	*img_ptr;
+	char	*img;
+	int		size_line;
+	int		bpp;
+	int		endian;
+	int		texture;
+	int		sprite_order[4];
+	double	sprite_distance;
+	double	spriteY;
+	double	spriteX;
+	double	indet;
+	double	transX;
+	double	transY;
+	int		spriteScreenX;
+	int		spriteHeight;
+	int		spriteWidth;
+	int		draw_startY;
+	int		draw_endY;
+	int		draw_startX;
+	int		draw_endX;
+	int		stripe;
+	int		size_x;
+	int		size_y;
+}				t_sprites;
+
 
 
 typedef	struct	s_ray
@@ -152,8 +176,7 @@ typedef struct 	s_param
 	void *mlx_ptr;
 	void *img_ptr;
 	void *img_ptr2;
-	int 		sprite;
-	float 		rad;
+	int 		option;
 	int 		x;
 	int 		y;
 	float 		angle;
@@ -175,6 +198,7 @@ typedef struct 	s_param
 	t_texture	*texture;
 	t_texture	*map_info;
 	Bitmap		*bmp;
+	t_sprites	*sprite;
 }              	t_param;
 
 
@@ -196,7 +220,7 @@ int				raycast(t_param *params);
 int     		cam_rotation(int dir, t_param *params);
 int				mini_map(t_param *params);
 int     		init_texture(t_param *params);
-int     		init_sruct(t_param *params);
+int     		init_sruct(t_param *params, t_sprites *sprite, t_data *data, t_ray *ray);
 void    		init_ray(t_ray *ray);
 void    		init_data(t_data *data);
 int 			destroy_window(t_param *params);
@@ -213,5 +237,7 @@ void    		init_text(t_texture *tex);
 void			get_path_info(char *line, t_param *params);
 char			*cpy_path(char *line);
 int				rgb1(int r, int g, int b);
-
+void			is_save_real(char *option, t_param *params);
+int     		sprite(t_param *params, int x);
+void    		draw_sprite(t_param *params, int i, int x);
 #endif

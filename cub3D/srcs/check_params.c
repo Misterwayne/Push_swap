@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 12:19:48 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/06 14:31:31 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/06 19:16:33 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	get_pos(char **map, t_param *params, int x, int y)
 	}
 }
 
-void     check_ini_pos(char **map, t_param *params)
+void	check_ini_pos(char **map, t_param *params)
 {
 	int x;
 	int y;

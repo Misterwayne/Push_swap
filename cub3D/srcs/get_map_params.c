@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:01:18 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/06 19:05:18 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/10 14:06:04 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	get_colors(char *line, t_param *params)
 	while (line[i] != ',')
 		i++;
 	params->b = ft_atoi(line + i + 1);
+	free(line);
 }
 
 void	get_res(char *line, t_param *params)
@@ -45,7 +46,6 @@ void	get_res(char *line, t_param *params)
 void	fill_params(char *str, t_param *params)
 {
 	int		fd;
-	char	*line;
 	int		i;
 
 	i = 0;

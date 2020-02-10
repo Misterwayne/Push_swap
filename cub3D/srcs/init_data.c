@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:46:12 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/06 18:39:24 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/10 18:42:12 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int     init_texture(t_param *params)
 {
+    params->sprite->img_ptr = mlx_xpm_file_to_image(params->mlx_ptr, params->S,
+    &params->sprite->size_x, &params->sprite->size_y);
     params->texture->south_img_ptr = 
     mlx_xpm_file_to_image(params->mlx_ptr,params->SO, &params->texture->sizeX1, &params->texture->sizeY1);
     params->texture->north_img_ptr = 
@@ -27,7 +29,7 @@ int     init_texture(t_param *params)
 
 void    init_text(t_texture *tex)
 {
-        tex = 0;
+    tex = 0;
 }
 
 void    init_data(t_data *data)
@@ -44,11 +46,13 @@ void    init_data(t_data *data)
 
 void    init_ray(t_ray *ray)
 {
-        ray = 0;
+    ray = 0;
 }
 
-int     init_sruct(t_param *params)
+int     init_sruct(t_param *params, t_sprites *sprite, t_data *data, t_ray *ray)
 {
+    sprite = 0;
+    ray = 0;
     params = 0;
     return (0);
 }

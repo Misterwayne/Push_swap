@@ -6,11 +6,25 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 15:39:27 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/06 14:23:22 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/10 13:40:28 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+void	is_save_real(char *option, t_param *params)
+{
+	if (option)
+	{
+		if (ft_strncmp("-save",option,5) == 0)
+			params->option = 1;
+		else
+			params->option = 0;
+	}
+	else
+		params->option = 0;
+	return ;
+}
 
 int		bitmap_info_header(t_param *mlx_img, int fd)
 {
