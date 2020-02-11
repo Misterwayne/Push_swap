@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:28:28 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/10 19:02:55 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/11 16:54:59 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,11 @@ void    init_sprite(t_param *params)
 {
     int i;
 
-    i = 0;
-    while (i < 4)
-    {
-        // params->sprite->sprite_orders = i;
-        params->sprite->sprite_distance =
-        ((params->ray->posx - params->ray->mapX) * 
-        (params->ray->posx - params->ray->mapX) +
-        (params->ray->posy - params->ray->mapY) *
-        (params->ray->posy - params->ray->mapY));
-        i++;
-    }
+    params->sprite->sprite_distance =
+    ((params->ray->posx - params->sprite->x) * 
+    (params->ray->posx - params->sprite->x) +
+    (params->ray->posy - params->sprite->y) *
+    (params->ray->posy - params->sprite->y));
 }
 
 void    draw_sprite(t_param *params, int i, int x)
@@ -39,9 +33,10 @@ void    draw_sprite(t_param *params, int i, int x)
     int d;
     
     stripe = params->sprite->draw_startX;
+    printf("%d = drawstart, %d = drawend\n",params->sprite->draw_startY,params->sprite->draw_endY);
     while (stripe < params->sprite->draw_endX)
     {
-        // printf("draw");
+        // printf("%d = drawstart, %d = drawend\n",params->sprite->draw_startY,params->sprite->draw_endY);
         text_x = (int)(256 * (stripe - (-params->sprite->spriteWidth 
         / 2 + params->sprite->spriteScreenX)) *
         params->sprite->size_x / params->sprite->spriteWidth)
@@ -50,16 +45,27 @@ void    draw_sprite(t_param *params, int i, int x)
         stripe < params->x)
         {
             y = params->sprite->draw_startY;
-            while (y < params->sprite->draw_startY)
+            // printf("%d = drawstart, %d = drawend\n",params->sprite->draw_startY,params->sprite->draw_endY);
+            while (y < params->sprite->draw_endY)
             {
-                // printf("pix");
+                // printf("%d = drawstart, %d = drawend, %d = y\n",params->sprite->draw_startY,params->sprite->draw_endY,y);
                 d = (y) * 256 - params->y * 128 +
                 params->sprite->spriteHeight * 128;
                 text_y = ((d * params->sprite->size_y) / params->sprite->spriteHeight)
                 / 256;
-                params->map_info->img[(stripe * (params->map_info->size_line) + (x) *
+                if (params->sprite->img[(text_y * params->sprite->size_line +
+                (text_x) * (params->sprite->bpp / 8))] != 0x0)
+                {
+                params->map_info->img[(y * (params->map_info->size_line) + (stripe) *
 		        (params->map_info->bpp / 8))] = params->sprite->img[(text_y *
                 params->sprite->size_line + (text_x) * (params->sprite->bpp / 8))];
+                 params->map_info->img[(y * (params->map_info->size_line) + (stripe) *
+		        (params->map_info->bpp / 8))+1] = params->sprite->img[(text_y *
+                params->sprite->size_line + (text_x) * (params->sprite->bpp / 8))+1];
+                 params->map_info->img[(y * (params->map_info->size_line) + (stripe) *
+		        (params->map_info->bpp / 8))+2] = params->sprite->img[(text_y *
+                params->sprite->size_line + (text_x) * (params->sprite->bpp / 8))+2];
+                }
                 y++;
             }
         }
@@ -69,11 +75,15 @@ void    draw_sprite(t_param *params, int i, int x)
 
 void    cal_sprite_height(t_param *params, int i)
 {
-    params->sprite->spriteHeight = fabs(params->y/params->sprite->transY);
-    params->sprite->draw_startY = params->sprite->spriteHeight / 2 + params->y / 2;
+    params->sprite->spriteHeight = fabs((params->y/(params->sprite->transY)));
+    printf("INIT %d = height\n",params->sprite->spriteHeight);
+    printf("(1) INIT %d = drawstart, %f = sizeX, %f = sizeY\n",params->sprite->draw_startY,params->sprite->size_x,params->sprite->size_x);
+    params->sprite->draw_startY = (int)(-params->sprite->spriteHeight / 2 + params->y / 2);
+    printf("(2) INIT %d = drawstart, %f = sizeX, %f = sizeY\n",params->sprite->draw_startY,params->sprite->size_x,params->sprite->size_x);
     if (params->sprite->draw_startY < 0)
         params->sprite->draw_startY = 0;
-    params->sprite->draw_endY = -params->sprite->spriteHeight / 2 + params->y / 2;
+    params->sprite->draw_endY = (int)(params->sprite->spriteHeight / 2 + params->y / 2);
+    // printf("INIT %d = drawend\n",params->sprite->draw_endY);
     if (params->sprite->draw_endY >= params->y)
         params->sprite->draw_endY = params->y - 1;
     params->sprite->spriteWidth = fabs(params->y/params->sprite->transY);
@@ -89,26 +99,25 @@ void    cal_sprite_height(t_param *params, int i)
 
 void    cal_sprite_dist(t_param *params, int x)
 {
-    int i;
+    params->sprite->spriteY = params->sprite->y - params->ray->posy;
+    params->sprite->spriteX = params->sprite->x - params->ray->posx;
+    printf("INIT %f = x, %f = y\n",params->sprite->x,params->sprite->x);
+    printf("INIT %f = spritex, %f = spritey\n",params->sprite->spriteX,params->sprite->spriteY);
 
-    i = 0;
-    // while (i < 4)
-    // {
-        params->sprite->spriteX = params->sprite->x - params->ray->posx;
-        params->sprite->spriteY = params->sprite->y - params->ray->posy;
-        params->sprite->indet = 1.0 / (params->ray->planeX * params->ray->dirY
-        - params->ray->dirX * params->ray->planeY);
-        params->sprite->transX = params->sprite->indet *
-        (params->ray->dirY * params->sprite->spriteX -
-        params->ray->dirX * params->sprite->spriteY);
-        params->sprite->transY = params->sprite->indet *
-        (-params->ray->planeY * params->sprite->spriteX -
-        params->ray->planeX * params->sprite->spriteX);
-        params->sprite->spriteScreenX = (int)(params->x/2) *
-        (1 + params->sprite->transX / params->sprite->transY);
-        cal_sprite_height(params , i);
-        // i++;
-    // }
+    params->sprite->indet = 1.0 / ((params->ray->planeX * params->ray->dirY)
+    - (params->ray->dirX * params->ray->planeY));
+
+    params->sprite->transX = params->sprite->indet *
+    ((params->ray->dirY * params->sprite->spriteX) -
+    (params->ray->dirX * params->sprite->spriteY));
+    printf("(P1) INIT %f = transy, %f = indet, %f = trsnX\n",params->sprite->transY,params->sprite->indet,params->sprite->transX);
+    params->sprite->transY = params->sprite->indet *
+    (-params->ray->planeY * params->sprite->spriteX +
+    params->ray->planeX * params->sprite->spriteY);
+    printf("(P2) INIT %f = transy, %f = indet, %f = trsnX\n",params->sprite->transY,params->sprite->indet,params->sprite->transX);
+    params->sprite->spriteScreenX = (int)(params->x/2) *
+    (1 + params->sprite->transX / params->sprite->transY);
+    cal_sprite_height(params , 0);
 }
 
 int     sprite(t_param *params, int x)

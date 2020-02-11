@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:11:00 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/10 19:04:45 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/11 17:02:02 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,29 +98,40 @@ int		raycast(t_param *params)
 
 	x = 0;
 	init_ray_data(params);
+	// write(1, "c\n", 2);
 	while (x < params->x)
 	{
+			// write(1, "d\n", 2);
 		ray(params, 0, x);
+			// write(1, "e\n", 2);
 		while (params->ray->hit == 0)
 		{
+				// write(1, "f\n", 2);
 			if (params->ray->sidedistX < params->ray->sidedistY)
 				load_texture_no_so(params);
 			else
 				load_texture_we_ea(params);
+			// write(1, "g\n", 2);
 			if (params->map[params->ray->mapX][params->ray->mapY] == '1')
 				params->ray->hit = 1;
-			if (params->map[params->ray->mapX][params->ray->mapY] == '2')
+			else if (params->map[params->ray->mapX][params->ray->mapY] == '2')
 			{
 				params->sprite->x = params->ray->mapX;
 				params->sprite->y = params->ray->mapY;
-				params->ray->hit = 1;
 			}
+			// write(1, "h\n", 2);
 		}
 		get_depth(params);
 		draw_pix(params, x);
-		sprite(params, x);
-		draw_sprite(params, 0, x);
 		x++;
 	}
+	params->sprite->draw_startX = 0;
+	params->sprite->draw_startY = 0;
+	params->sprite->spriteHeight = 0;
+	//sprite(params, 0);
+	// exit(0);
+	// write(1, "a\n", 2);
+	//draw_sprite(params, 0, 0);
+	// write(1, "b\n", 2);
 	return (0);
 }
