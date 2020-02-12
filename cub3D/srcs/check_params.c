@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 12:19:48 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/06 19:16:33 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/12 18:49:58 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,35 @@ void	get_pos(char **map, t_param *params, int x, int y)
 	}
 }
 
+int		check_sprt_pos(char **map, t_param *params)
+{
+	int x;
+	int y;
+	int	i;
+
+	i = 0;
+	x = 0;
+	y = 0;
+	if(!(params->sprite->sprt_list = malloc(sizeof(char*) * params->numsprite + 1)))
+		return (NULL);
+	params->sprite->sprt_list[params->numsprite] = NULL;
+	while (map[x] != NULL)
+	{
+		while (map[x][y] != '\0')
+		{
+			if (map[x][y] == '2')
+			{
+				printf("lol\n");
+				get_sprite(params,y,x,i++);
+			}
+			y++;
+		}
+		x++;
+		y = 0;
+	}
+	i = 0;
+}
+
 void	check_ini_pos(char **map, t_param *params)
 {
 	int x;
@@ -64,10 +93,9 @@ void	check_ini_pos(char **map, t_param *params)
 	{
 		while (map[x][y] != '\0')
 		{
-			if (map[x][y] == 'N')
+			if (map[x][y] == '2')
 			{
-				params->data->map_posY = y;
-				params->data->map_posX = x;
+				params->numsprite += 1;
 			}
 			get_pos(map,params,x,y);
 			y++;
@@ -75,6 +103,7 @@ void	check_ini_pos(char **map, t_param *params)
 		x++;
 		y = 0;
 	}
+	check_sprt_pos(map, params);
 }
 
 int		check_map(char **map)

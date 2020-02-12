@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:01:18 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/10 14:06:04 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/12 13:36:12 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	get_path(t_param *params, int fd)
 			get_map(fd, params);
 		}
 	}
+	close(fd);
 }
 
 void	get_map(int fd, t_param *params)

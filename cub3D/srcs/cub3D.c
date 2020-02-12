@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 14:18:13 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/11 17:01:37 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/12 16:54:45 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		main(int arc, char **argv)
 	params.win_ptr = mlx_new_window(params.mlx_ptr,
 	params.x, params.y, "cub3D");
 	init_texture(&params);
-	printf_struct(&params);
+	// printf_struct(&params);
 	mlx_loop_hook(params.mlx_ptr, &loop_hook, &params);
 	mlx_loop(params.mlx_ptr);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 16:37:33 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/10 18:47:16 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/12 15:43:54 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,31 +61,32 @@ typedef struct bitmap_image_header
 
 typedef	struct	s_sprite
 {
-	double 	x;
-	double 	y;
-	void	*img_ptr;
-	char	*img;
-	int		size_line;
-	int		bpp;
-	int		endian;
-	int		texture;
-	int		sprite_order[4];
-	double	sprite_distance;
-	double	spriteY;
-	double	spriteX;
-	double	indet;
-	double	transX;
-	double	transY;
-	int		spriteScreenX;
-	int		spriteHeight;
-	int		spriteWidth;
-	int		draw_startY;
-	int		draw_endY;
-	int		draw_startX;
-	int		draw_endX;
-	int		stripe;
-	int		size_x;
-	int		size_y;
+	double 		x;
+	double 		y;
+	void		*img_ptr;
+	char		*img;
+	int			size_line;
+	int			bpp;
+	int			endian;
+	int			texture;
+	int			sprite_order[4];
+	double		sprite_distance;
+	double		spriteY;
+	double		spriteX;
+	double		indet;
+	double		transX;
+	double		transY;
+	int			spriteScreenX;
+	int			spriteHeight;
+	int			spriteWidth;
+	int			draw_startY;
+	int			draw_endY;
+	int			draw_startX;
+	int			draw_endX;
+	int			stripe;
+	int			size_x;
+	int			size_y;
+	char		**sprt_list;
 }				t_sprites;
 
 
@@ -172,10 +173,11 @@ typedef struct	s_texture
 
 typedef struct 	s_param
 {
-	void *win_ptr;
-	void *mlx_ptr;
-	void *img_ptr;
-	void *img_ptr2;
+	int			numsprite;
+	void 		*win_ptr;
+	void 		*mlx_ptr;
+	void 		*img_ptr;
+	void 		*img_ptr2;
 	int 		option;
 	int 		x;
 	int 		y;
@@ -240,4 +242,6 @@ int				rgb1(int r, int g, int b);
 void			is_save_real(char *option, t_param *params);
 int     		sprite(t_param *params, int x);
 void    		draw_sprite(t_param *params, int i, int x);
+void     		get_sprite(t_param *params,int x, int y, int i);
+
 #endif

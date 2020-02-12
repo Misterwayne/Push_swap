@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:46:12 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/10 18:42:12 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/12 16:14:15 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int     init_sruct(t_param *params, t_sprites *sprite, t_data *data, t_ray *ray)
 {
     sprite = 0;
     ray = 0;
-    params = 0;
+    // params = 0;
+    params->numsprite = 0;
     return (0);
 }

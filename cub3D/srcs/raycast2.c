@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 15:48:45 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/06 16:48:18 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/12 13:40:00 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	get_depth2(t_param *params)
 {
 	params->ray->lineheight = (int)(params->y / params->ray->perpWallDist);
 	params->ray->drawstart = -params->ray->lineheight / 2 + (params->y / 2);
-	if (params->ray->drawstart < 0)
-		params->ray->drawstart = 0;
 	params->ray->drawend = params->ray->lineheight / 2 + params->y / 2;
 	if (params->ray->drawend >= params->y)
 		params->ray->drawend = params->y - 1;
