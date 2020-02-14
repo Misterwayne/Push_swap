@@ -6,24 +6,26 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:28:28 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/12 18:58:13 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/14 16:01:34 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
 
-void    init_sprite(t_param *params, int i)
+int    init_sprite(t_param *params, int i)
 {
-
-    params->sprite->sprite_distance =
+    if (!(params->sprite->sprite_distance = malloc(sizeof(double) * params->numsprite)))
+        return (0);
+    params->sprite->sprite_distance[i] =
     ((params->ray->posx - params->sprite->sprt_list[i][0]) * 
     (params->ray->posx - params->sprite->sprt_list[i][0]) +
     (params->ray->posy - params->sprite->sprt_list[i][1]) *
     (params->ray->posy - params->sprite->sprt_list[i][1]));
+    return (params->sprite->sprite_distance[i]);
 }
 
-void    draw_sprite(t_param *params, int i, int x)
+void    draw_sprite(t_param *params, int x, double *zbuffer)
 {
     int text_y;
     int text_x;
@@ -32,42 +34,15 @@ void    draw_sprite(t_param *params, int i, int x)
     int d;
     
     stripe = params->sprite->draw_startX;
-    // printf("%d = drawstart, %d = drawend\n",params->sprite->draw_startY,params->sprite->draw_endY);
     while (stripe < params->sprite->draw_endX)
     {
-        // printf("%d = drawstart, %d = drawend\n",params->sprite->draw_startY,params->sprite->draw_endY);
         text_x = (int)(256 * (stripe - (-params->sprite->spriteWidth 
         / 2 + params->sprite->spriteScreenX)) *
         params->sprite->size_x / params->sprite->spriteWidth)
         / 256;
         if (params->sprite->transY > 0 && stripe > 0 &&
-        stripe < params->x)
-        {
-            y = params->sprite->draw_startY;
-            // printf("%d = drawstart, %d = drawend\n",params->sprite->draw_startY,params->sprite->draw_endY);
-            while (y < params->sprite->draw_endY)
-            {
-                // printf("%d = drawstart, %d = drawend, %d = y\n",params->sprite->draw_startY,params->sprite->draw_endY,y);
-                d = (y) * 256 - params->y * 128 +
-                params->sprite->spriteHeight * 128;
-                text_y = ((d * params->sprite->size_y) / params->sprite->spriteHeight)
-                / 256;
-                if (params->sprite->img[(text_y * params->sprite->size_line +
-                (text_x) * (params->sprite->bpp / 8))] != 0x0)
-                {
-                params->map_info->img[(y * (params->map_info->size_line) + (stripe) *
-		        (params->map_info->bpp / 8))] = params->sprite->img[(text_y *
-                params->sprite->size_line + (text_x) * (params->sprite->bpp / 8))];
-                 params->map_info->img[(y * (params->map_info->size_line) + (stripe) *
-		        (params->map_info->bpp / 8))+1] = params->sprite->img[(text_y *
-                params->sprite->size_line + (text_x) * (params->sprite->bpp / 8))+1];
-                 params->map_info->img[(y * (params->map_info->size_line) + (stripe) *
-		        (params->map_info->bpp / 8))+2] = params->sprite->img[(text_y *
-                params->sprite->size_line + (text_x) * (params->sprite->bpp / 8))+2];
-                }
-                y++;
-            }
-        }
+        stripe < params->x && params->sprite->transY < zbuffer[stripe])
+            print_sprite(y ,stripe, text_x, params);
         stripe++;
     }
 }
@@ -105,14 +80,15 @@ void    cal_sprite_dist(t_param *params, int x)
     cal_sprite_height(params , 0);
 }
 
-int     sprite(t_param *params, int x)
+int     sprite(t_param *params, int x, double *zbuffer)
 {
-    params->sprite->img = mlx_get_data_addr(params->sprite->img_ptr,
-    &params->sprite->bpp, &params->sprite->size_line, &params->sprite->endian);
-    params->sprite->x = params->sprite->sprt_list[x][0] - 0.5;
-    params->sprite->y = params->sprite->sprt_list[x][1] - 1;
+    if (!(params->sprite->img = mlx_get_data_addr(params->sprite->img_ptr,
+    &params->sprite->bpp, &params->sprite->size_line, &params->sprite->endian)))
+        error_msg("error texture sprite", params);
+    params->sprite->x = params->sprite->sprt_list[x][0] + 0.5;
+    params->sprite->y = params->sprite->sprt_list[x][1] + 0.5;
     init_sprite(params, x);
     cal_sprite_dist(params, x);
-    draw_sprite(params, 0, 0);
+    draw_sprite(params, 0,zbuffer);
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:11:00 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/12 18:58:10 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/14 15:52:16 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int		raycast(t_param *params)
 {
 	int x;
 	int i;
+	double zbuffer[params->x];
 
 	x = 0;
 	i = 0;
@@ -111,28 +112,12 @@ int		raycast(t_param *params)
 				load_texture_we_ea(params);
 			if (params->map[params->ray->mapX][params->ray->mapY] == '1')
 				params->ray->hit = 1;
-			else if (params->map[params->ray->mapX][params->ray->mapY] == '2')
-			{
-				// if (i < params->numsprite)
-				// {
-				// 	sprite(params, i);
-				// }
-				// i++;
-			}
 		}
 		get_depth(params);
 		draw_pix(params, x);
-		// draw_sprite(params, 0, 0);
+		zbuffer[x] = params->ray->perpWallDist;
 		x++;
 	}
-	// draw_sprite(params, 0, 0);
-	params->sprite->draw_startX = 0;
-	params->sprite->draw_startY = 0;
-	params->sprite->spriteHeight = 0;
-	while (i < params->numsprite)
-	{
-		sprite(params, i);
-		i++;
-	}
+	draw_sprite2(params, zbuffer);
 	return (0);
 }

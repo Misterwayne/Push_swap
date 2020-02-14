@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 19:00:08 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/10 17:43:50 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/14 19:10:29 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ int		rgb1(int r, int g, int b)
 char	*cpy_path(char *line)
 {
 	int		i;
-	char	*params;
+	char	*path;
 
 	i = 0;
 	while (line[i] != '.')
 		i++;
-	params = ft_strdup(line + i);
+	path = ft_strtrim(ft_strdup(line + i), " ");
 	free(line);
-	return (params);
+	return (path);
 }
 
 void	get_path_info(char *line, t_param *params)
