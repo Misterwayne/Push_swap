@@ -6,24 +6,13 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 14:18:13 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/14 20:39:20 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/16 18:28:26 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-- rien apres la ;ap
-- resoluton de l'ecran trop grande
-- coleur enntre 0 255
-- refaire le parfsing encore
-- espace avant la map
-- deux spawnpoint
-- parametre de la map
-- les couleurs
-- d'autres chiffres dans la carte
-- space avant les R - NO ?
-- deux SS
-- E and S
-- no spawnpoint
+- refaire le parsing encore
+-- parametre de la map.
 faire le Makefile
 */
 
@@ -96,16 +85,16 @@ int		main(int arc, char **argv)
 	params.ray = &ray;
 	params.texture = &texture;
 	fill_params(argv[1], &params);
-	printf_struct(&params);
-	is_save_real(argv[2], &params);
 	check_ini_pos(params.map, &params);
+	is_save_real(argv[2], &params);
 	if (check_map(params.map))
-		error_msg("error map",&params);
+		error_msg("error map 1\n",&params);
 	params.mlx_ptr = mlx_init();
 	params.win_ptr = mlx_new_window(params.mlx_ptr,
 	params.x, params.y, "cub3D");
 	init_texture(&params);
 	raycast(&params);
+	printf_struct(&params);
 	mlx_put_image_to_window(params.mlx_ptr, params.win_ptr, params.img_ptr
 	, 0, 0);
 	mlx_loop_hook(params.mlx_ptr, &loop_hook, &params);

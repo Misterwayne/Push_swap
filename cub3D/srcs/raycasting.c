@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:11:00 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/14 15:52:16 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/16 15:31:43 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,9 @@ void	draw_pix(t_param *params, int x)
 	params->texture->img = (char *)mlx_get_data_addr(params->texture->img_ptr,
 	&params->texture->bpp, &params->texture->size_line,
 	&params->texture->endian);
-	while (line_y < params->ray->drawstart)
-	{
-		params->map_info->img[(line_y * (params->map_info->size_line) + (x) *
-		(params->map_info->bpp / 8))] = params->C;
-		line_y++;
-	}
+	line_y = draw_celing(x, line_y, params);
 	line_y = draw_wall(0, x, line_y, params);
-	while (line_y < params->y)
-	{
-		params->map_info->img[(line_y * (params->map_info->size_line) + (x) *
-		(params->map_info->bpp / 8))] = params->F;
-		line_y++;
-	}
+	draw_floor(x, line_y, params);
 }
 
 void	load_texture_we_ea(t_param *params)

@@ -6,34 +6,47 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 12:19:48 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/14 16:03:24 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/16 18:26:24 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	get_pos(char **map, t_param *params, int x, int y)
+int		get_pos(char **map, t_param *params, int x, int y)
 {
 	if (map[x][y] == 'N')
 	{
-		params->data->map_posY = y;
-		params->data->map_posX = x;
-		params->ray->dirX = -1;
-		params->ray->dirY = 0;
-		params->ray->planeX = 0;
-    	params->ray->planeY = 0.66;
-
+		if (params->data->map_posY == 0)
+		{
+			params->data->map_posY = y + 0.5;
+			params->data->map_posX = x + 0.5;
+			params->ray->dirX = -1;
+			params->ray->dirY = 0;
+			params->ray->planeX = 0;
+    		params->ray->planeY = 0.66;
+		}
+		else
+			error_msg("error spawn point N",params);
+		return (1);
 	}
 	else if (map[x][y] == 'W')
 	{
-		params->data->map_posY = y;
-		params->data->map_posX = x;
-		params->ray->dirX = 0;
-		params->ray->dirY = -1;
-		params->ray->planeX = -0.66;
-    	params->ray->planeY = 0;
+		if (params->data->map_posY == 0)
+		{
+			params->data->map_posY = y + 0.5;
+			params->data->map_posX = x + 0.5;
+			params->ray->dirX = 0;
+			params->ray->dirY = -1;
+			params->ray->planeX = -0.66;
+    		params->ray->planeY = 0;
+		}
+		else
+			error_msg("error spawn point W",params);
+		return (1);
 	}
-	get_pos2(map, params, x, y);
+	if (get_pos2(map, params, x, y) == 1)
+		return (1);
+	return (0);
 }
 
 int		check_sprt_pos(char **map, t_param *params)
@@ -76,12 +89,16 @@ void	check_ini_pos(char **map, t_param *params)
 		{
 			if (map[x][y] == '2')
 				params->numsprite += 1;
-			get_pos(map,params,x,y);
+			if (map[x][y] != '1' && map[x][y] != '2'
+			&& map[x][y] != '0' && get_pos(map,params,x,y) == 0)
+				error_msg("error map 3\n",params);
 			y++;
 		}
 		x++;
 		y = 0;
 	}
+	if (params->data->map_posX == 0 && params->data->map_posY == 0)
+		error_msg("no spawn point\n",params);
 	check_sprt_pos(map, params);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 19:00:08 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/14 19:10:29 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/16 18:36:04 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,25 @@ char	*cpy_path(char *line)
 	int		i;
 	char	*path;
 
-	i = 0;
-	while (line[i] != '.')
-		i++;
-	path = ft_strtrim(ft_strdup(line + i), " ");
+	i = 2 ;
+	path = shave_str(line + i,' ');
 	free(line);
 	return (path);
 }
 
-void	get_path_info(char *line, t_param *params)
+int		get_path_info(char *line, t_param *params)
 {
-	if (line[0] == 'N')
+	if (line[0] == 'N' && line[1] == 'O')
 		params->NO = cpy_path(line);
 	else if (line[0] == 'S' && line[1] == 'O')
 		params->SO = cpy_path(line);
-	else if (line[0] == 'W')
+	else if (line[0] == 'W' && line[1] == 'E')
 		params->WE = cpy_path(line);
-	else if (line[0] == 'E')
+	else if (line[0] == 'E' && line[1] == 'A')
 		params->EA = cpy_path(line);
 	else if (line[0] == 'S')
 		params->S = cpy_path(line);
+	else
+		return (1);
+	return (0);
 }
