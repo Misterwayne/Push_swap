@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 12:19:48 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/16 18:26:24 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/17 16:26:08 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,13 @@ void	check_ini_pos(char **map, t_param *params)
 	{
 		while (map[x][y] != '\0')
 		{
+			// while (map[x][y] == ' ')
+			// 	y++;
 			if (map[x][y] == '2')
 				params->numsprite += 1;
 			if (map[x][y] != '1' && map[x][y] != '2'
-			&& map[x][y] != '0' && get_pos(map,params,x,y) == 0)
+			&& map[x][y] != '0' && map[x][y] != ' '
+			&& get_pos(map,params,x,y) == 0)
 				error_msg("error map 3\n",params);
 			y++;
 		}
@@ -111,16 +114,18 @@ int		check_map(char **map)
 	y = 0;
 	while (map[i])
 	{
-		if (map[i][0] != '1')
-			return (1);
-		while (map[i][y])
+		y = 0;
+		while (map[i][y] == ' ')
 			y++;
-		if (map[i][y-1] != '1')
+		if (map[i][y] != '1')
+			return (1);
+		while (map[i][y] && map[i][y] != ' ')
+			y++;
+		if (map[i][y - 1] != '1')
 			return (1);
 		i++;
-		y = 0;
 	}
-	return (check_map2(map));
+	return (0);
 }
 
 int		check_map2(char **map)
@@ -132,14 +137,16 @@ int		check_map2(char **map)
 	y = 0;
 	while (map[i][y])
 	{
-		if (map[0][y] != '1')
-			return (1);
-		while (map[i] != NULL)
+		while (map[i] != NULL && map[i][y] == ' ')
+			i++;
+		if (map[i][y] != '1')
+			printf(" 3 |%c| in x : %d,y : %d\n",map[i][y],i,y);
+		while (map[i] != NULL && map[i][y] == ' ')
 			i++;
 		if (map[i - 1][y] != '1')
-			return (1);
+			printf(" 4 |%c| in x : %d,y : %d\n",map[i - 1][y],i,y);
 		y++;
 		i = 0;
 	}
-	return (0);
+	return (1);
 }

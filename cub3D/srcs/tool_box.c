@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 11:28:18 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/16 18:46:04 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/17 18:05:36 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,32 @@ int    get_real_line(int fd, char **line)
 int		check_str(char *line)
 {
 	int i;
+	int u;
 
 	i = 1;
-	while (line[i])
+	u = 0;
+	if (line[0] == 'R')
 	{
-		if (line[i] == ',' || line[i] == ' ' || (line[i] >= '0' && line[i] <= '9'))
-			i++;
-		else
-			return (1);
+		while (line[i])
+		{
+			if (line[i] == ' ' || (line[i] >= '0' && line[i] <= '9'))
+				i++;
+			else
+				return (1);
+		}
+	}
+	else
+	{
+		while (line[i])
+		{
+			if (line[i] == ',')
+				if (line[i - 1] < '0' || line[i - 1] > '9')
+					return (1);
+			if (line[i] == ',' || line[i] == ' ' || (line[i] >= '0' && line[i] <= '9'))
+				i++;
+			else
+				return (1);
+		}
 	}
 	return (0);
 }
@@ -91,7 +109,7 @@ char	*shave_str(char *str, char c)
 	return (nstr);
 }
 
-int	get_pos2(char **map, t_param *params, int x, int y)
+int		get_pos2(char **map, t_param *params, int x, int y)
 {
 	if (map[x][y] == 'S')
 	{
@@ -125,4 +143,18 @@ int	get_pos2(char **map, t_param *params, int x, int y)
 		return (1);
 	}
 	return (0);
+}
+
+void		checkform(char *line, t_param *params, int *i)
+{
+	int y;
+
+	y = *i;
+	while (line[y] == ' ')
+		y++;
+	while ((line[y] >= '0' && line[y] <= '9'))
+		y++;
+	if (line[y] != ',')
+		error_msg("error color\n",params);
+	*i = y;
 }

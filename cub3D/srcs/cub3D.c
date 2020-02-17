@@ -6,13 +6,19 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 14:18:13 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/16 18:28:26 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/17 18:57:24 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-- refaire le parsing encore
--- parametre de la map.
+- espace dans la map
+- 2 fois le meme parametre
+- leaks(lol)
+- probleme de colition
+- le nom de la map.
+- probleme de trous dqns le map
+- Norme
+- -Wall -Wextra -Werror
 faire le Makefile
 */
 

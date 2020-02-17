@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 19:00:08 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/16 18:36:04 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/17 18:46:45 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ int		get_path_info(char *line, t_param *params)
 		params->S = cpy_path(line);
 	else
 		return (1);
+	params->par_nbr += 1;
 	return (0);
 }
