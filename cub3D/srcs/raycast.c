@@ -6,16 +6,16 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 16:55:52 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/17 16:57:47 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/21 16:43:50 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/cub3d.h"
 
 void	init_ray_data(t_param *params)
 {
-	params->ray->posx = params->data->map_posX;
-	params->ray->posy = params->data->map_posY;
+	params->ray->posx = params->map_x;
+	params->ray->posy = params->map_y;
 	params->img_ptr = mlx_new_image(params->mlx_ptr, params->x, params->y);
 	params->map_info->img = (char *)mlx_get_data_addr(
 	params->img_ptr, &params->map_info->bpp,
@@ -28,9 +28,9 @@ int		draw_celing(int x, int line_y, t_param *params)
 	int g;
 	int b;
 
-	r = params->C % 256;
-	g = params->C / 256 % 256;
-	b = params->C / 256 / 256 % 256;
+	r = params->c % 256;
+	g = params->c / 256 % 256;
+	b = params->c / 256 / 256 % 256;
 	while (line_y < params->ray->drawstart)
 	{
 		params->map_info->img[(line_y * (params->map_info->size_line) + (x) *
@@ -39,8 +39,6 @@ int		draw_celing(int x, int line_y, t_param *params)
 		(params->map_info->bpp / 8)) + 1] = g;
 		params->map_info->img[(line_y * (params->map_info->size_line) + (x) *
 		(params->map_info->bpp / 8)) + 2] = b;
-		// params->map_info->img[(line_y * (params->map_info->size_line) + (x) *
-		// (params->map_info->bpp / 8)) + 3] = params->C;
 		line_y++;
 	}
 	return (line_y);
@@ -52,9 +50,9 @@ int		draw_floor(int x, int line_y, t_param *params)
 	int g;
 	int b;
 
-	r = params->F % 256;
-	g = params->F / 256 % 256;
-	b = params->F / 256 / 256 % 256;
+	r = params->f % 256;
+	g = params->f / 256 % 256;
+	b = params->f / 256 / 256 % 256;
 	while (line_y < params->y)
 	{
 		params->map_info->img[(line_y * (params->map_info->size_line) + (x) *
@@ -70,16 +68,16 @@ int		draw_floor(int x, int line_y, t_param *params)
 
 void	ray2(t_param *params)
 {
-	if (params->ray->rayDirY < 0)
+	if (params->ray->raydiry < 0)
 	{
-		params->ray->stepY = -1;
-		params->ray->sidedistY = (params->ray->posy - params->ray->mapY)
-		* params->ray->deltaDistY;
+		params->ray->stepy = -1;
+		params->ray->sidedisty = (params->ray->posy - params->ray->map_y)
+		* params->ray->deltadisty;
 	}
 	else
 	{
-		params->ray->stepY = 1;
-		params->ray->sidedistY = (params->ray->mapY + 1.0 - params->ray->posy)
-		* params->ray->deltaDistY;
+		params->ray->stepy = 1;
+		params->ray->sidedisty = (params->ray->map_y + 1.0 - params->ray->posy)
+		* params->ray->deltadisty;
 	}
 }

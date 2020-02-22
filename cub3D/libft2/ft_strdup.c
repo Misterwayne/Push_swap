@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:45:06 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/10 16:04:23 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/20 14:36:20 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ char	*ft_strdup(const char *str)
 	while (str[++i])
 		nstr[i] = str[i];
 	nstr[i] = '\0';
+	free(str);
 	return (nstr);
 }

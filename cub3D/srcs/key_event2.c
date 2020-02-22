@@ -6,64 +6,64 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 18:12:26 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/14 19:28:12 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/21 16:45:04 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../include/cub3d.h"
 
-void    move_forward(t_param *params)
+void	move_forward(t_param *params)
 {
-	if (params->map[(int)(params->data->map_posX + params->ray->dirX * 0.2)]
-	[(int)(params->data->map_posY)] != '1'
-	&& params->map[(int)(params->data->map_posX + params->ray->dirX * 0.2)]
-	[(int)(params->data->map_posY)] != '2')
-		params->data->map_posX += params->ray->dirX * 0.2;
-	if (params->map[(int)(params->data->map_posX)]
-	[(int)(params->data->map_posY + params->ray->dirY * 0.2)] != '1'
-	&& params->map[(int)(params->data->map_posX)]
-	[(int)(params->data->map_posY + params->ray->dirY * 0.2)] != '2')	
-			params->data->map_posY += params->ray->dirY * 0.2;
+	if (params->map[(int)((params->map_x) + params->ray->vecx * 0.2)]
+	[(int)(params->map_y - 0)] != '1'
+	&& params->map[(int)((params->map_x) + params->ray->vecx * 0.2)]
+	[(int)(params->map_y - 0)] != '2')
+		params->map_x += params->ray->vecx * 0.2;
+	if (params->map[(int)(params->map_x)]
+	[(int)((params->map_y - 0) + params->ray->vecy * 0.2)] != '1'
+	&& params->map[(int)(params->map_x)]
+	[(int)((params->map_y - 0) + params->ray->vecy * 0.2)] != '2')
+		params->map_y += params->ray->vecy * 0.2;
 }
 
-void    move_back(t_param *params)
+void	move_back(t_param *params)
 {
-	if (params->map[(int)(params->data->map_posX - params->ray->dirX * 0.2)]
-	[(int)(params->data->map_posY)] != '1'
-	&& params->map[(int)(params->data->map_posX - params->ray->dirX * 0.2)]
-	[(int)(params->data->map_posY)] != '2')
-		params->data->map_posX -= params->ray->dirX * 0.2;
-	if (params->map[(int)(params->data->map_posX)]
-	[(int)(params->data->map_posY - params->ray->dirY * 0.2)] != '1'
-	&& params->map[(int)(params->data->map_posX)]
-	[(int)(params->data->map_posY - params->ray->dirY * 0.2)] != '2')	
-			params->data->map_posY -= params->ray->dirY * 0.2;
+	if (params->map[(int)((params->map_x) - params->ray->vecx * 0.2)]
+	[(int)(params->map_y - 0)] != '1'
+	&& params->map[(int)((params->map_x) - params->ray->vecx * 0.2)]
+	[(int)(params->map_y - 0)] != '2')
+		params->map_x -= params->ray->vecx * 0.2;
+	if (params->map[(int)(params->map_x)]
+	[(int)(params->map_y - params->ray->vecy * 0.2)] != '1'
+	&& params->map[(int)(params->map_x)]
+	[(int)((params->map_y - 0) - params->ray->vecy * 0.2)] != '2')
+		params->map_y -= params->ray->vecy * 0.2;
 }
 
 void	move_left(t_param *params)
 {
-	if (params->map[(int)(params->data->map_posX + params->ray->planeX * 0.2)]
-	[(int)(params->data->map_posY)] != '1'
-	&& params->map[(int)(params->data->map_posX + params->ray->planeX * 0.2)]
-	[(int)(params->data->map_posY)] != '2')
-		params->data->map_posX -= params->ray->planeX * 0.2;
-	if (params->map[(int)(params->data->map_posX)]
-	[(int)(params->data->map_posY + params->ray->planeY * 0.2)] != '1'
-	&& params->map[(int)(params->data->map_posX)]
-	[(int)(params->data->map_posY + params->ray->planeY * 0.2)] != '2')	
-			params->data->map_posY -= params->ray->planeY * 0.2;
+	if (params->map[(int)((params->map_x) - params->ray->planex * 0.2)]
+	[(int)(params->map_y - 0)] != '1'
+	&& params->map[(int)((params->map_x) - params->ray->planex * 0.2)]
+	[(int)(params->map_y - 0)] != '2')
+		params->map_x -= params->ray->planex * 0.2;
+	if (params->map[(int)(params->map_x)]
+	[(int)((params->map_y - 0) - params->ray->planey * 0.2)] != '1'
+	&& params->map[(int)(params->map_x)]
+	[(int)((params->map_y - 0) - params->ray->planey * 0.2)] != '2')
+		params->map_y -= params->ray->planey * 0.2;
 }
 
 void	move_right(t_param *params)
 {
-	if (params->map[(int)(params->data->map_posX + params->ray->planeX * 0.2)]
-	[(int)(params->data->map_posY)] != '1'
-	&& params->map[(int)(params->data->map_posX + params->ray->planeX * 0.2)]
-	[(int)(params->data->map_posY)] != '2')
-		params->data->map_posX += params->ray->planeX * 0.2;
-	if (params->map[(int)(params->data->map_posX)]
-	[(int)(params->data->map_posY + params->ray->planeY * 0.2)] != '1'
-	&& params->map[(int)(params->data->map_posX)]
-	[(int)(params->data->map_posY + params->ray->planeY * 0.2)] != '2')	
-		params->data->map_posY += params->ray->planeY * 0.2;
+	if (params->map[(int)((params->map_x) + params->ray->planex * 0.2)]
+	[(int)(params->map_y - 0)] != '1'
+	&& params->map[(int)((params->map_x) + params->ray->planex * 0.2)]
+	[(int)(params->map_y - 0)] != '2')
+		params->map_x += params->ray->planex * 0.2;
+	if (params->map[(int)(params->map_x)]
+	[(int)((params->map_y - 0) + params->ray->planey * 0.2)] != '1'
+	&& params->map[(int)(params->map_x)]
+	[(int)((params->map_y - 0) + params->ray->planey * 0.2)] != '2')
+		params->map_y += params->ray->planey * 0.2;
 }
