@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 14:18:13 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/22 15:30:05 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/23 19:19:14 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		key_hook(int keydown, t_param *params)
 		move_right(params);
 	if (keydown == 13)
 		move_forward(params);
+	raycast(params);
 	mlx_put_image_to_window(params->mlx_ptr, params->win_ptr, params->img_ptr
 	, 0, 0);
 	return (0);
@@ -44,11 +45,13 @@ int		key_hook(int keydown, t_param *params)
 
 int		loop_hook(t_param *params)
 {
-	raycast(params);
 	if (params->option == 1)
 	{
 		save_bitmap(params, params->map_info->img);
+		exit(1);
 	}
+	mlx_put_image_to_window(params->mlx_ptr, params->win_ptr, params->img_ptr
+	, 0, 0);
 	mlx_hook(params->win_ptr, 2, 1L << 0, &key_hook, params);
 	mlx_hook(params->win_ptr, 17, 1L << 22, &destroy_window, params);
 	return (0);
@@ -60,8 +63,9 @@ void	part_2(t_param *params)
 	if (check_map(params->map))
 		error_msg("error map 1\n", params);
 	params->mlx_ptr = mlx_init();
-	params->win_ptr = mlx_new_window(params->mlx_ptr,
-	params->x, params->y, "cub3D");
+	if (params->option == 0)
+		params->win_ptr = mlx_new_window(params->mlx_ptr,
+		params->x, params->y, "cub3D");
 	init_texture(params);
 	raycast(params);
 	if (params->option == 0)

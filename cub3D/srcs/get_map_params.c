@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:01:18 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/22 11:48:58 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/23 19:06:57 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ void	fill_params(char *str, t_param *params)
 		error_msg("error map file\n", params);
 	get_path(params, fd);
 	if (params->c == -1 || params->f == -1)
-		error_msg("missing param 1\n", params);
+		error_msg("error parametre\n", params);
 	if (params->x == -1 || params->y == -1)
-		error_msg("missing param 1\n", params);
+		error_msg("error parametre\n", params);
 	if (params->map == NULL || params->map[2] == NULL)
-		error_msg("missing param 1\n", params);
+		error_msg("error parametre\n", params);
 	return ;
 }
 

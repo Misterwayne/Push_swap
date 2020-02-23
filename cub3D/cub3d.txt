@@ -1,0 +1,203 @@
+Pos X et posY represente la position du jouere
+dirX et dir Y represente la direction.
+plabe X et plane Y le plan de la camera.
+
+dir et plane douave etre perpendiculaire pour que l'affiche so bien droit
+le ratio entre les deux donne la fov (2 * tan(0.66/1.0) == 66 degre)
+
+la boucle du raycasting passe par toute les valeur de x entre 0 et la largeur de la fenetre.
+le rayon commence a la position du joueure
+camera X est la coordonner en x sur le plan de camera.
+
+
+|                                         |
+| double cameraX = 2 * x / double(w) - 1; |
+|                                         |
+
+
+comme sa la droite represente 1 le millieux 0 et la gauche -1
+
+la direction du vecteur est calculer en fesant la somme du vecteur de direction (dirX)
+et le vecteur plan et en les multiplient par camerax
+
+|                                           |
+| double rayDirX = dirX + planeX * cameraX; |
+| double rayDirY = dirY + planeY * cameraX; |
+|           ex : (-1 + 0 * 1);              |
+
+map_y et map_x represente la case de la carte ou se trouve le rayon
+la position du rayon et stocker en float et contien les information sur ou dans la carte et ou dans la case
+
+sideDistX et sideDistY represente la distance
+que le rayon doit parourir pour atteindre le cote x ou y d'une case.
+
+deltaDistX deltaDistY represente la distance que le rayon dois parcourir pour atteindre
+un autre cote x et y respectivement.
+
+en fesant la deriver de DeltaDistX geometrique on optient
+
+racine(1 + (raydiry * raydiry)/(rydirx * raydirx))
+
+qui peut etre simplifier par
+
+deltaDirX = abs(1/raydirx)
+
+l'algorithm DDA saut toujour d'une case a chaque rotation soit en x ou en y
+en negatif ou en postif depend de la variable stepX ou Y qui sont toujour egal a 1 ou - 1
+
+la variable hit sert a savoir quand le mur est toucher et la boucle dois etre arreter
+et la variable side inque si un coter x ou y a ete toucher.
+
+comme preciser plus tot stepX et stepY sont egal a -1 si raydirx ou raydiry est negatif
+si raydirx est negatif sidedistX est la distance jusqu'aux premier mur sur la gauche
+l'inverse si raydirx est positif.
+
+La meme chose pour y mais en haut ou en bas.
+
+||                                                            
+||    if (rayDirX < 0)                                            ||            
+||    {                                                           ||   
+||      stepX = -1;                                               ||               
+||      sideDistX = (posX - map_posX) * deltaDistX;                   ||                                           
+||    }                                                           ||   
+||    else                                                        ||      
+||    {                                                           ||   
+||      stepX = 1;                                                ||              
+||      sideDistX = (map_posX + 1.0 - posX) * deltaDistX;             ||                                                 
+||    }                                                           ||   
+||    if (rayDirY < 0)                                            ||                  
+||    {                                                           ||   
+||      stepY = -1;                                               ||               
+||      sideDistY = (posY - map_posY) * deltaDistY;                   ||                                           
+||    }                                                           ||   
+||    else                                                        ||      
+||    {                                                           ||   
+||      stepY = 1;                                                ||              
+||      sideDistY = (map_posY + 1.0 - posY) * deltaDistY;             ||
+||    }                                                           ||
+
+
+Ici est l'algorithm DDA
+
+C'est un bloucle qui augmente le rayon d'une case a chque fois jusqu'a trouver un mur.
+
+sidedistX et sideDistY so augmenter avec deltaDirX a chaque rotation.
+map_posY et map_posX sont augmenter par stepX et stepY respectivement
+Quand le rayon a toucher un mur la boucle s'arrete et ensuite on sait si le coter x ou y du mut a ete toucher
+dans le varialble side et quel mur a ete toucher  grace a map_posx/y
+//
+
+Texture stuff
+
+\\
+
+Apres le DDA, on doit calculer la taille du rayon qui a toucher le mur qui determiner la hauteur du mur
+On n'utilisepas la distance du mur au joueure mais la distance du mur au plan de camera, pour eviter l'effet fish eye
+on stock cette information dans la variable perpWalldist qui est donc la distance perpendiculaire entre plan de cameraX et le mur quit a ete toucher
+
+
+|  if (side == 0) perpWallDist = (mapX - posX + (1 - stepX) / 2) / rayDirX;  |
+|  else           perpWallDist = (mapY - posY + (1 - stepY) / 2) / rayDirY;  |
+
+Ensuite on calcul le hauteur du mur avec lineheight = Height / perpWallDist
+Ou sur ecran on doit commencer au dessiner avec -lineheight / 2 + h / 2
+et ou s'arreter avec lineheight / 2 + h / 2
+
+=========================================== TEXTURE =================================================
+
+On a besoin de plusieur variable pour gere les Texture
+
+la variable Wallx represente l'endroit exact ou le mur a ete toucher
+on la calcule dabord la position x/y dans le monde puis on soustrait la en int d'elle meme
+
+|   if (side == 0) wallX = posY + perpWallDist * rayDirY;       |
+|   else           wallX = posX + perpWallDist * rayDirX;       |
+|   wallX -= floor((wallX));                                    |
+
+La variable texX est la coordonner x de la texture
+qu 'on calcule a partir de wallX
+
+|   int texX = int(wallX * double(texWidth));                   |
+|   if(side == 0 && rayDirX > 0) texX = texWidth - texX - 1;    |
+|   if(side == 1 && rayDirY < 0) texX = texWidth - texX - 1;    |
+
+Maintenant qu'on a la position en x de la texture, elle va rester constante puisqu'on passe par toute les coordoner X
+de l'ecrant, on va cree un autre boucle pour passer sur tout les point y de la texture et prend les infomation du pixel
+et les placer sur le mur
+
+texY represente la coordoner y de la texture, on la calcule en augmentant par une valeur precalculer pour chaque pixel.
+Cette valeur indique de combien augmenter la coordoner y pour chaque pixel.
+On le cats en int ensuite pour pouvoir seclectioner le pixel.
+
+|         // How much to increase the texture coordinate per screen pixel                                       |
+|      double step = 1.0 * texHeight / lineHeight;                                                              |
+|      // Starting texture coordinate                                                                           |
+|      double texPos = (drawStart - h / 2 + lineHeight / 2) * step;                                             |
+|      for(int y = drawStart; y<drawEnd; y++)                                                                   |
+|      {                                                                                                        |
+|        // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow           |
+|        int texY = (int)texPos & (texHeight - 1);                                                              |
+|        texPos += step;                                                                                        |
+|                                                                                                               |
+|                                                                                                               |
+|                                                                                                               |
+|                                                                                                               |
+|      }                                                                                                        |
+|    }                                                                                                          |
+
+========================================    SPRITE     ==============================================================
+
+La technique utilise pour afficher les sprite est differente du ray casting
+
+C'est la derniere etape du programme et est realiser apres les mur le sol et le plafond.
+On recupere deja la position des sprite de la map
+Ensuite il y 7 etape:
+ 
+ 1: Durant le raycasting, on stock perpWallDist dans une chaine "ZBUFFER" 
+ 2: On calcule la distance entre les sprite et le joueure
+ 3: On trie les sprite du plus loin au plus proche
+ 4: On projete le sprite sur le plan de camera : soustrait la position du joueure a la position du sprite
+    puis on multiplie le resultat avec l'inverse de la matric de camera 2x2
+ 5: On calcule la taille du sprite sur l'ecran (x/y) avec perpWallDist
+ 6: On dessine de bande vertical en bande vertical et on ne dessine pas si la distance est grande que perpWallDist du X actuel.
+ 7: dessine la bande pixel par pixel avec une couleur invisible ou les sprites seront tous rectangulaire
+
+Pour ramener les coordoner au plan de camera, on soustrait la position du joueure a la position du sprite
+comme sa on optient la position du sprite relative au joueure, puis il faut le faire piloter pour qu'il soit en face du joueure
+on fait sa en multiplient la position relative du sprite par la matrice de camera.
+
+||   [planeX   dirX]                                             ||
+||   [planeY   dirY]                                             ||
+||   And the inverse of a 2x2 matrix is very easy to calculate   ||
+||      ____________1___________           [dirY      -dirX]     ||
+||   (planeX*dirY-dirX*planeY)       *     [-planeY  planeX]     || 
+
+    transform sprite with the inverse camera matrix
+      [ planeX   dirX ] -1                                       [ dirY      -dirX ]
+      [               ]       =  1/(planeX*dirY-dirX*planeY) *   [                 ]
+      [ planeY   dirY ]                                          [ -planeY  planeX ]
+
+On optient les coordoner X et Y du sprite sur le plan de camera ou Y est la profondeur.
+Ensuite pour la projection on X par la profondeur puis on traduit sa en coordoner de pixel.
+
+
+    |  int spriteScreenX = int((w / 2) * (1 + transformX / transformY));  |
+
+On calcule la hauteur du sprite sur l'ecran
+
+    |   int spriteHeight = abs(int(h / (transformY)));  |
+
+et grace a sa combien de pixel doivent etre dessiner
+
+    |   int drawStartY = -spriteHeight / 2 + h / 2;     |
+    |   if(drawStartY < 0) drawStartY = 0;              |
+    |   int drawEndY = spriteHeight / 2 + h / 2;        |
+    |   if(drawEndY >= h) drawEndY = h - 1;             |
+
+La meme chose pour la largeur
+
+    |   int spriteWidth = abs( int (h / (transformY)));  |
+    | int drawStartX = -spriteWidth / 2 + spriteScreenX; |
+    | if(drawStartX < 0) drawStartX = 0;                 |
+    | int drawEndX = spriteWidth / 2 + spriteScreenX;    |
+    | if(drawEndX >= w) drawEndX = w - 1;                |

@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 12:19:48 by mwane             #+#    #+#             */
-/*   Updated: 2020/02/22 13:59:02 by mwane            ###   ########.fr       */
+/*   Updated: 2020/02/23 19:37:34 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		check_sprt_pos(char **map, t_param *params)
 	* params->numsprite + 1)))
 		return (0);
 	params->sprite->sprt_list[params->numsprite] = NULL;
-	while (x < 14 && map[x] != NULL)
+	while (map[x] != NULL)
 	{
 		while (map[x] != NULL && map[x][y] != '\0')
 		{
@@ -87,7 +87,7 @@ void	check_ini_pos(char **map, t_param *params)
 
 	x = 0;
 	y = 0;
-	while (map[x] != NULL && x < 14)
+	while (map[x] != NULL)
 	{
 		while (map[x] != NULL && map[x][y] != '\0')
 		{
