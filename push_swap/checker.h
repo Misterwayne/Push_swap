@@ -6,15 +6,16 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:47:10 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/01 17:59:02 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/02 15:18:52 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 
 #include<unistd.h>
-#include <stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 typedef struct          t_stack_a
 {
