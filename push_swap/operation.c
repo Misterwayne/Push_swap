@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 17:24:26 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/01 17:58:42 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/01 20:11:33 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void    swap_a(s_stack_a *stack)
     tmp = stack->a_stack[stack->top];
     stack->a_stack[stack->top] = stack->a_stack[stack->top - 1];
     stack->a_stack[stack->top - 1] = tmp;
-
 }
 
 void    swap_b(s_stack_b *stack)
@@ -37,6 +36,10 @@ void    swap_b(s_stack_b *stack)
 
 void    sa_sb(s_stack_a *stack_a, s_stack_b *stack_b)
 {
+    if (stack_a->top == -1)
+        return ;
+    if (stack_b->top == -1)
+        return ; 
     swap_a(stack_a);
     swap_b(stack_b);
 }
@@ -44,13 +47,13 @@ void    sa_sb(s_stack_a *stack_a, s_stack_b *stack_b)
 void    push_a(s_stack_a *stack_a, s_stack_b *stack_b)
 {
     if (stack_b->top == -1)
-        return;
+        return ;
     push(stack_a, stack_b->b_stack[stack_b->top]);
 }
 
 void    push_b(s_stack_b *stack_b, s_stack_a *stack_a)
 {
     if (stack_a->top == -1)
-        return;
-    push(stack_b, stack_a->a_stack[stack_a->top]);
+        return ;
+    push((s_stack_a*)stack_b, stack_a->a_stack[stack_a->top]);
 }
