@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:47:10 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/02 17:32:00 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/06 15:30:46 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,26 @@ typedef struct          t_stack_b
     int                 *b_stack;
 }                       s_stack_b;
 
-void    swap_a(s_stack_a *stack);
-void    rotate_a(s_stack_a *stack);
-void    swap_a(s_stack_a *stack);
-void    swap_b(s_stack_b *stack);
-void    sa_sb(s_stack_a *stack_a, s_stack_b *stack_b);
-void    push_a(s_stack_a *stack_a, s_stack_b *stack_b);
-void    push_b(s_stack_b *stack_b, s_stack_a *stack_a);
-void    push(s_stack_a *stack, int nbr);
-void       reverse_rotate_a(s_stack_a *stack);
+
+// OPERATION
+void                    rotate_a(s_stack_a *stack);
+void                    rotate_b(s_stack_b *stack);
+void                    swap_a(s_stack_a *stack);
+void                    swap_b(s_stack_b *stack);
+void                    sa_sb(s_stack_a *stack_a, s_stack_b *stack_b);
+void                    push_a(s_stack_a *stack_a, s_stack_b *stack_b);
+void                    push_b(s_stack_b *stack_b, s_stack_a *stack_a);
+void                    reverse_rotate_a(s_stack_a *stack);
+void                    reverse_rotate_b(s_stack_b *stack);
+void                    r_r_r(s_stack_a *stack_a, s_stack_b *stack_b);
+void                    ra_rb(s_stack_a *stack_a, s_stack_b *stack_b);
+
+
+// STACK FUNCTION
+
+void                    *init_stack(unsigned int max);
+int                     is_full(s_stack_a *stack);
+int                     is_empty(s_stack_a *stack);
+void                    push(s_stack_a *stack, int nbr);
+int                     pop(s_stack_a *stack);
+void                    print_stack(s_stack_a *stack_a, s_stack_b *stack_b);
