@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 17:24:26 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/01 20:11:33 by truepath         ###   ########.fr       */
+/*   Updated: 2021/04/07 17:21:44 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,5 @@ void    push_b(s_stack_b *stack_b, s_stack_a *stack_a)
 {
     if (stack_a->top == -1)
         return ;
-    push((s_stack_a*)stack_b, stack_a->a_stack[stack_a->top]);
+    b_push(stack_b, stack_a->a_stack[stack_a->top]);
 }

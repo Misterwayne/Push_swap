@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:19:49 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/06 15:44:51 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/07 17:46:24 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,62 +56,57 @@ void    check_args(int argc, char **args, s_stack_a *stack)
 	}
 }
 
-char	**load_instruction(char **instruction)
+void		checker(char *instruction, s_stack_a *stack, s_stack_b *stack_b)
+{
+	if (strcmp(instruction, "sa") == 0)
+		swap_a(stack);
+	else if (strcmp(instruction, "sb") == 0)
+		swap_b(stack_b);
+	else if (strcmp(instruction, "ss") == 0)
+		sa_sb(stack, stack_b);
+	else if (strcmp(instruction, "pa") == 0)
+		push_a(stack, stack_b);
+	else if (strcmp(instruction, "pb") == 0)
+		push_b(stack_b, stack);
+	else if (strcmp(instruction, "ra") == 0)
+		rotate_a(stack);
+	else if (strcmp(instruction, "rb") == 0)
+		rotate_b(stack_b);
+	else if (strcmp(instruction, "rr") == 0)
+		ra_rb(stack, stack_b);
+	else if (strcmp(instruction, "rra") == 0)
+		reverse_rotate_a(stack);
+	else if (strcmp(instruction, "rrb") == 0)
+		reverse_rotate_b(stack_b);
+	else if (strcmp(instruction, "rrr") == 0)
+		r_r_r(stack, stack_b);
+	else
+		printf("error %s\n",instruction);
+	printf("exec operation %s\n", instruction);
+	print_stack(stack, stack_b);
+}
+
+char	**load_instruction(char **instruction, s_stack_a *stack)
 {
 	int 	ret;
 	char	buffer[3];
 	int		i;
+	s_stack_b		*stack_b;
 	
 	i = 0;
+	stack_b = init_stack(stack->max);
+	instruction = malloc(sizeof(char*) * 100);
 	while ((ret = read(0, &buffer, 3)))
 	{
-		buffer[ret] = '\0';
+		buffer[ret - 1] = '\0';
 		instruction[i] = malloc(sizeof(char) * strlen(buffer));
 		instruction[i] = buffer;
 		instruction[i][strlen(buffer)] = '\0';
 		printf("%s = %d\n", instruction[i], i);
+		checker(instruction[i], stack, stack_b);
 		i++;
 	}
-	instruction[i] = NULL;
 	return (instruction);
-}
-
-int		checker(char **instruction, s_stack_a *stack)
-{
-	int 			i;
-	s_stack_b		*stack_b;
-
-	i = 0;
-	stack_b = init_stack(stack->top);
-	while (instruction[i] != NULL)
-	{
-		if (strcmp(instruction[i], "sa") == 0)
-			swap_a(stack);
-		else if (strcmp(instruction[i], "sb") == 0)
-			swap_b(stack_b);
-		else if (strcmp(instruction[i], "ss") == 0)
-			sa_sb(stack, stack_b);
-		else if (strcmp(instruction[i], "ss") == 0)
-			push_a(stack, stack_b);
-		else if (strcmp(instruction[i], "ss") == 0)
-			push_b(stack_b, stack);
-		else if (strcmp(instruction[i], "ss") == 0)
-			rotate_a(stack);
-		else if (strcmp(instruction[i], "ss") == 0)
-			rotate_b(stack_b);
-		else if (strcmp(instruction[i], "ss") == 0)
-			ra_rb(stack, stack_b);
-		else if (strcmp(instruction[i], "ss") == 0)
-			reverse_rotate_a(stack);
-		else if (strcmp(instruction[i], "ss") == 0)
-			reverse_rotate_b(stack_b);
-		else if (strcmp(instruction[i], "ss") == 0)
-			r_r_r(stack, stack_b);
-		else
-			return (i); 
-		i++;
-	}
-	return (0);
 }
 
 int     main(int argc, char **argv)
@@ -120,18 +115,16 @@ int     main(int argc, char **argv)
 	s_stack_a	*stack;
 	int 		i;
 
-	instruction = malloc(sizeof(char*) * 100);
-	instruction = load_instruction(instruction);
 	stack = init_stack(argc);
 	check_args(argc, argv + 1, stack);
 	print_stack(stack, NULL);
-	printf("ERROR %s\n",instruction[2]);
-	i = checker(instruction, stack);
+	instruction = malloc(sizeof(char*) * 100);
+	instruction = load_instruction(instruction, stack);
+	// printf("%s\n",instruction[0]);
+	// i = checker(instruction, stack);
 	if (i > 0)
-	{
 		printf("ERROR at instruction %d\n",i);
-	}
-	print_stack(stack, NULL);
+	// print_stack(stack, NULL);
 	
 	return (0);
 }

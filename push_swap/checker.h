@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:47:10 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/06 15:30:46 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/07 17:21:50 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,4 @@ int                     is_empty(s_stack_a *stack);
 void                    push(s_stack_a *stack, int nbr);
 int                     pop(s_stack_a *stack);
 void                    print_stack(s_stack_a *stack_a, s_stack_b *stack_b);
+void                    b_push(s_stack_b *stack, int nbr);
