@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:19:49 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/07 17:46:24 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/08 18:07:53 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,23 @@ void		checker(char *instruction, s_stack_a *stack, s_stack_b *stack_b)
 	print_stack(stack, stack_b);
 }
 
-char	**load_instruction(char **instruction, s_stack_a *stack)
+void		check_space(char*buffer)
+{
+	int 	i;
+
+	i = 0;
+	while (buffer[i])
+	{
+		if (buffer[i] == ' ' || buffer[i] == '\n')
+			buffer[i] = '\0';
+		i++;
+	}
+}
+
+void	load_instruction(char **instruction, s_stack_a *stack)
 {
 	int 	ret;
-	char	buffer[3];
+	char	buffer[5];
 	int		i;
 	s_stack_b		*stack_b;
 	
@@ -98,15 +111,14 @@ char	**load_instruction(char **instruction, s_stack_a *stack)
 	instruction = malloc(sizeof(char*) * 100);
 	while ((ret = read(0, &buffer, 3)))
 	{
-		buffer[ret - 1] = '\0';
+		check_space(buffer);
 		instruction[i] = malloc(sizeof(char) * strlen(buffer));
 		instruction[i] = buffer;
-		instruction[i][strlen(buffer)] = '\0';
-		printf("%s = %d\n", instruction[i], i);
+		instruction[i][ret] = '\0';
+		printf("%s = %d\n", buffer, ret);
 		checker(instruction[i], stack, stack_b);
 		i++;
 	}
-	return (instruction);
 }
 
 int     main(int argc, char **argv)
@@ -119,12 +131,8 @@ int     main(int argc, char **argv)
 	check_args(argc, argv + 1, stack);
 	print_stack(stack, NULL);
 	instruction = malloc(sizeof(char*) * 100);
-	instruction = load_instruction(instruction, stack);
-	// printf("%s\n",instruction[0]);
-	// i = checker(instruction, stack);
+	load_instruction(instruction, stack);
 	if (i > 0)
 		printf("ERROR at instruction %d\n",i);
-	// print_stack(stack, NULL);
-	
 	return (0);
 }
