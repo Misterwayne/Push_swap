@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:19:49 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/08 18:07:53 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/08 22:52:52 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void    check_args(int argc, char **args, s_stack_a *stack)
 
 void		checker(char *instruction, s_stack_a *stack, s_stack_b *stack_b)
 {
+	printf("exec operation %s\n", instruction);
 	if (strcmp(instruction, "sa") == 0)
 		swap_a(stack);
 	else if (strcmp(instruction, "sb") == 0)
@@ -80,10 +81,13 @@ void		checker(char *instruction, s_stack_a *stack, s_stack_b *stack_b)
 		reverse_rotate_b(stack_b);
 	else if (strcmp(instruction, "rrr") == 0)
 		r_r_r(stack, stack_b);
+	else if (instruction[0] == '\0')
+	{
+		printf("End of instructions\n");
+		return ;
+	}
 	else
-		printf("error %s\n",instruction);
-	printf("exec operation %s\n", instruction);
-	print_stack(stack, stack_b);
+		error_msg();
 }
 
 void		check_space(char*buffer)
@@ -115,7 +119,6 @@ void	load_instruction(char **instruction, s_stack_a *stack)
 		instruction[i] = malloc(sizeof(char) * strlen(buffer));
 		instruction[i] = buffer;
 		instruction[i][ret] = '\0';
-		printf("%s = %d\n", buffer, ret);
 		checker(instruction[i], stack, stack_b);
 		i++;
 	}
@@ -132,7 +135,10 @@ int     main(int argc, char **argv)
 	print_stack(stack, NULL);
 	instruction = malloc(sizeof(char*) * 100);
 	load_instruction(instruction, stack);
-	if (i > 0)
-		printf("ERROR at instruction %d\n",i);
+	print_stack(stack, NULL);
+	if (sort_checker(stack))
+		printf("OK");
+	else
+		printf("KO");
 	return (0);
 }
