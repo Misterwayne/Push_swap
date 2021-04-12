@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:47:10 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/11 20:11:28 by truepath         ###   ########.fr       */
+/*   Updated: 2021/04/12 17:05:55 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include"libft2/libft.h"
 
 typedef struct          t_stack_a
 {
@@ -49,6 +50,7 @@ void                    ra_rb(s_stack_a *stack_a, s_stack_b *stack_b);
 // STACK FUNCTION
 
 void                    *init_stack(unsigned int max);
+int	                    is_full_b(s_stack_b *stack);
 int                     is_full(s_stack_a *stack);
 int                     is_empty(s_stack_a *stack);
 void                    push(s_stack_a *stack, int nbr);
@@ -56,7 +58,7 @@ int                     pop(s_stack_a *stack);
 void                    print_stack(s_stack_a *stack_a, s_stack_b *stack_b);
 void                    b_push(s_stack_b *stack, int nbr);
 int                     pop_b(s_stack_b *stack);
-
+void	                free_stack(s_stack_a *stack, s_stack_b *stack_b);
 // CHECKER FUNCTION
 
 int                     sort_checker(s_stack_a *stack);

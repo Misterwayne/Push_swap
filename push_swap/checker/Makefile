@@ -3,24 +3,25 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: truepath <truepath@student.42.fr>          +#+  +:+       +#+         #
+#    By: mwane <mwane@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/11 19:08:29 by truepath          #+#    #+#              #
-#    Updated: 2021/04/11 20:48:01 by truepath         ###   ########.fr        #
+#    Updated: 2021/04/12 15:35:18 by mwane            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS 		= 		check_sort.c \
-					operation.c \
-					operation_2.c \
-					stack.c \
-					ft_split.c \
-					get_next_line.c \
-					get_next_line_utils.c
+SRCS 		= 		srcs/check_sort.c \
+					srcs/operation.c \
+					srcs/operation_2.c \
+					srcs/stack.c \
+					srcs/ft_split.c \
+					srcs/get_next_line.c \
+					srcs/get_next_line_utils.c \
+					srcs/stack_2.c \
 
-CHECKER 	=		checker.c
+CHECKER 	=		mains/checker.c
 
-PUSH_SWAP 	= 		push_swap.c
+PUSH_SWAP 	= 		mains/push_swap.c
 
 HEAD		=		checker.h
 
@@ -31,13 +32,11 @@ all 		:
 					make checker
 
 push_swap 	:
-					gcc $(CFLAGS) $(SRCS) $(PUSH_SWAP) -o push_swap
+					gcc $(CFLAGS) $(SRCS) $(PUSH_SWAP) libft2/libft.a -o push_swap
 
 checker 	:			
-					gcc $(CFLAGS) $(SRCS) $(CHECKER) -o checker
+					gcc $(CFLAGS) $(SRCS) $(CHECKER) libft2/libft.a -o checker
 
 re			:
 			rm -f push_swap checker
 			make
-# run			: push_swap checker
-# 					./push_swap $ARG | ./checker $ARG
