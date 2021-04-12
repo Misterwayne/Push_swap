@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:47:10 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/11 18:15:43 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/11 20:11:28 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,4 @@ int                     sort_checker(s_stack_a *stack);
 void	                error_msg(void);
 int		                duplicate(char **stack, char *item, int index);
 void                    check_args(int argc, char **args, s_stack_a *stack);
+char			        **ft_split(char const *s, char c);

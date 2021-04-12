@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:22:33 by truepath          #+#    #+#             */
-/*   Updated: 2021/04/11 18:13:18 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/11 21:37:10 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,30 @@ int		duplicate(char **stack, char *item, int index)
 	return (0);
 }
 
-void    check_args(int argc, char **args, s_stack_a *stack)
+void    check_args(int i, char **args, s_stack_a *stack)
 {
-	int		i;
 	char	*item;
 
-	i = argc - 2;
+	i--;
 	while (i >= 0)
 	{
 		item = args[i];
 		if (args[i][0] != '0')
 			if (atoi(args[i]) == 0)
-				error_msg();
+			{
+			write(1, "1\n", 2);
+			error_msg();
+			}
 		if (atol(args[i]) > 2147483647 || atol(args[i]) < -2147483648)
+		{
+			write(1, "2\n", 2);
 			error_msg();
+		}
 		if (duplicate(args, item, i))
+		{
+			write(1, "3\n", 2);
 			error_msg();
+		}
 		push(stack, atoi(args[i]));
 		i--;
 	}
@@ -60,7 +68,7 @@ int         sort_checker(s_stack_a *stack)
 	i = 0;
 	while (i < stack->top)
 	{
-		if (stack->a_stack[i + 1] <= stack->a_stack[i])
+		if (stack->a_stack[i + 1] >= stack->a_stack[i])
 			return (0);
 		i++;
 	}

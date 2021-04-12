@@ -6,7 +6,7 @@
 /*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 19:50:48 by truepath          #+#    #+#             */
-/*   Updated: 2021/04/01 21:16:56 by truepath         ###   ########.fr       */
+/*   Updated: 2021/04/11 19:40:34 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void        rotate_a(s_stack_a *stack)
 {
     int     tmp;
-    int     tmp2;
     int     i;
 
     i = stack->top;
@@ -31,7 +30,6 @@ void        rotate_a(s_stack_a *stack)
 void        rotate_b(s_stack_b *stack)
 {
     int     tmp;
-    int     tmp2;
     int     i;
 
     if (stack->top < 1)

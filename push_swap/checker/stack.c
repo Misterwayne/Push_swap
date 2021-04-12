@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:47:07 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/10 17:31:17 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/11 19:40:44 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void     *init_stack(unsigned int max)
 
 int     is_full(s_stack_a *stack)
 {
-    return (stack->top == stack->max - 1);
+    return (stack->top == (int)stack->max - 1);
 }
 
 int     is_full_b(s_stack_b *stack)
 {
-    return (stack->top == stack->max - 1);
+    return (stack->top == (int)stack->max - 1);
 }
 
 int     is_empty(s_stack_a *stack)
