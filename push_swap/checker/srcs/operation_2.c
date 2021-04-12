@@ -6,11 +6,11 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 19:50:48 by truepath          #+#    #+#             */
-/*   Updated: 2021/04/12 15:05:46 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/12 17:11:55 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../checker.h"
+#include"../header/checker.h"
 
 void	rotate_a(s_stack_a *stack)
 {

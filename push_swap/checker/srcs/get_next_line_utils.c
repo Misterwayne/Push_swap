@@ -6,11 +6,11 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 17:05:27 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/12 14:56:29 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/12 17:14:32 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../get_next_line.h"
+#include "../header/get_next_line.h"
 
 int			ft_strlen(char *str)
 {

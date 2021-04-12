@@ -6,11 +6,11 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:35:51 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/12 17:08:30 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/12 17:11:24 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../checker.h"
+#include"../header/checker.h"
 
 void	sort(s_stack_a *stack_a, s_stack_b *stack_b)
 {

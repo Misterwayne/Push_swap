@@ -6,11 +6,11 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:47:07 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/12 15:07:27 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/12 17:11:44 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include "../header/checker.h"
 
 void	b_push(s_stack_b *stack, int nbr)
 {

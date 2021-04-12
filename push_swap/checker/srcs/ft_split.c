@@ -6,11 +6,11 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 11:20:33 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/12 14:55:47 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/12 17:12:04 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include "../header/checker.h"
 
 static	int		count_word(char const *str, char c)
 {

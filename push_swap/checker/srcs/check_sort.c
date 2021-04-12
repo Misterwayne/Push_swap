@@ -6,11 +6,11 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:22:33 by truepath          #+#    #+#             */
-/*   Updated: 2021/04/12 17:02:35 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/12 17:12:26 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../checker.h"
+#include"../header/checker.h"
 
 void	error_msg(void)
 {

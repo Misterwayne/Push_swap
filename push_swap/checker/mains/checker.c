@@ -6,12 +6,12 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 19:35:22 by truepath          #+#    #+#             */
-/*   Updated: 2021/04/12 17:07:38 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/12 17:12:17 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../checker.h"
-#include"../get_next_line.h"
+#include"../header/checker.h"
+#include"../header/get_next_line.h"
 
 int	checker_2(char *instruction, s_stack_a *stack, s_stack_b *stack_b)
 {

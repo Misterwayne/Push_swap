@@ -6,11 +6,11 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:11:15 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/12 14:56:26 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/12 17:11:59 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../get_next_line.h"
+#include "../header/get_next_line.h"
 
 int		scan_save(char *save)
 {
