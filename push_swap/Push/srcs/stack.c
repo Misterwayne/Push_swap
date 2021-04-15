@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:47:07 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/15 15:35:35 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/15 17:09:50 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,22 @@ int	pop(s_stack_a *stack)
 	return (stack->a_stack[stack->top--]);
 }
 
-// void	print_stack(s_stack_a *stack_a, s_stack_b *stack_b)
-// {
-// 	// int	i;
+void	print_stack(s_stack_a *stack_a, s_stack_b *stack_b)
+{
+	int	i;
 
-// 	// i = 0;
-// 	// if (stack_a != NULL)
-// 	// {
-// 	// 	printf("A top : %d\n", stack_a->top);
-// 	// 	while (i <= stack_a->top)
-// 	// 		printf("%d\n", stack_a->a_stack[i++]);
-// 	// }
-// 	// i = 0;
-// 	// if (stack_b != NULL)
-// 	// {
-// 	// 	// printf("B top : %d\n", stack_b->top);
-// 	// 	while (i <= stack_b->top)
-// 	// 		printf("%d\n", stack_b->b_stack[i++]);
-// 	// }
-// }
+	i = 0;
+	if (stack_a != NULL)
+	{
+		printf("A top : %d\n", stack_a->top);
+		while (i <= stack_a->top)
+			printf("%d\n", stack_a->a_stack[i++]);
+	}
+	i = 0;
+	if (stack_b != NULL)
+	{
+		printf("B top : %d\n", stack_b->top);
+		while (i <= stack_b->top)
+			printf("%d\n", stack_b->b_stack[i++]);
+	}
+}

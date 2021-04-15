@@ -6,12 +6,13 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:47:10 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/14 17:15:23 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/15 17:03:03 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<unistd.h>
 #include<stdlib.h>
+#include<stdio.h>
 #include"../libft2/libft.h"
 
 typedef struct          t_stack_a
