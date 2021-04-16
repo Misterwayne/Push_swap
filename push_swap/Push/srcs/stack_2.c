@@ -6,25 +6,17 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 15:05:32 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/12 17:11:50 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/16 16:19:36 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../header/checker.h"
-
-void	free_stack(s_stack_a *stack, s_stack_b *stack_b)
-{
-	free(stack->a_stack);
-	free(stack_b->b_stack);
-	free(stack);
-	free(stack_b);
-}
+#include "../header/checker.h"
 
 void	*init_stack(unsigned int max)
 {
-	s_stack_a	*stack;
+	t_stack_a	*stack;
 
-	stack = (s_stack_a *)malloc(sizeof(s_stack_a));
+	stack = (t_stack_a *)malloc(sizeof(t_stack_a));
 	if (!(stack))
 		return (NULL);
 	stack->max = max;
@@ -35,22 +27,22 @@ void	*init_stack(unsigned int max)
 	return (stack);
 }
 
-int	is_full(s_stack_a *stack)
+int		is_full(t_stack_a *stack)
 {
 	return (stack->top == (int)stack->max - 1);
 }
 
-int	is_full_b(s_stack_b *stack)
+int		is_full_b(t_stack_b *stack)
 {
 	return (stack->top == (int)stack->max - 1);
 }
 
-int	is_empty(s_stack_a *stack)
+int		is_empty(t_stack_a *stack)
 {
 	return (stack->top == -1);
 }
 
-void	push(s_stack_a *stack, int nbr)
+void	push(t_stack_a *stack, int nbr)
 {
 	if (is_full(stack))
 		return ;

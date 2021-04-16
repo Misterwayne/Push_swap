@@ -6,11 +6,11 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:22:33 by truepath          #+#    #+#             */
-/*   Updated: 2021/04/12 17:12:26 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/16 16:52:20 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../header/checker.h"
+#include "../header/checker.h"
 
 void	error_msg(void)
 {
@@ -18,7 +18,7 @@ void	error_msg(void)
 	exit(1);
 }
 
-int	duplicate(char **stack, char *item, int index)
+int		duplicate(char **stack, char *item, int index)
 {
 	int		i;
 
@@ -32,7 +32,7 @@ int	duplicate(char **stack, char *item, int index)
 	return (0);
 }
 
-void	check_args(int i, char **args, s_stack_a *stack)
+void	check_args(int i, char **args, t_stack_a *stack)
 {
 	char	*item;
 
@@ -50,9 +50,11 @@ void	check_args(int i, char **args, s_stack_a *stack)
 		push(stack, ft_atoi(args[i]));
 		i--;
 	}
+	if (sort_checker(stack))
+		exit(0);
 }
 
-int	sort_checker(s_stack_a *stack)
+int		sort_checker(t_stack_a *stack)
 {
 	int	i;
 
@@ -63,12 +65,10 @@ int	sort_checker(s_stack_a *stack)
 			return (0);
 		i++;
 	}
-	free(stack->a_stack);
-	free(stack);
 	return (1);
 }
 
-void	r_r_r(s_stack_a *stack_a, s_stack_b *stack_b)
+void	r_r_r(t_stack_a *stack_a, t_stack_b *stack_b)
 {
 	reverse_rotate_a(stack_a);
 	reverse_rotate_b(stack_b);

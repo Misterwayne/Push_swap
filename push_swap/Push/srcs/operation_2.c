@@ -6,13 +6,13 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 19:50:48 by truepath          #+#    #+#             */
-/*   Updated: 2021/04/12 17:11:55 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/16 16:21:11 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../header/checker.h"
+#include "../header/checker.h"
 
-void	rotate_a(s_stack_a *stack)
+void	rotate_a(t_stack_a *stack)
 {
 	int	tmp;
 	int	i;
@@ -27,7 +27,7 @@ void	rotate_a(s_stack_a *stack)
 	stack->a_stack[0] = tmp;
 }
 
-void	rotate_b(s_stack_b *stack)
+void	rotate_b(t_stack_b *stack)
 {
 	int	tmp;
 	int	i;
@@ -44,13 +44,13 @@ void	rotate_b(s_stack_b *stack)
 	stack->b_stack[0] = tmp;
 }
 
-void	ra_rb(s_stack_a *stack_a, s_stack_b *stack_b)
+void	ra_rb(t_stack_a *stack_a, t_stack_b *stack_b)
 {
 	rotate_a(stack_a);
 	rotate_b(stack_b);
 }
 
-void	reverse_rotate_a(s_stack_a *stack)
+void	reverse_rotate_a(t_stack_a *stack)
 {
 	int	tmp;
 	int	i;
@@ -67,7 +67,7 @@ void	reverse_rotate_a(s_stack_a *stack)
 	stack->a_stack[stack->top] = tmp;
 }
 
-void	reverse_rotate_b(s_stack_b *stack)
+void	reverse_rotate_b(t_stack_b *stack)
 {
 	int	tmp;
 	int	i;

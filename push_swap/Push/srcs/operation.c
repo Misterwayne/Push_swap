@@ -6,13 +6,13 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 17:24:26 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/12 17:11:32 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/16 16:20:18 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/checker.h"
 
-void	swap_a(s_stack_a *stack)
+void	swap_a(t_stack_a *stack)
 {
 	int	tmp;
 
@@ -23,7 +23,7 @@ void	swap_a(s_stack_a *stack)
 	stack->a_stack[stack->top - 1] = tmp;
 }
 
-void	swap_b(s_stack_b *stack)
+void	swap_b(t_stack_b *stack)
 {
 	int	tmp;
 
@@ -34,7 +34,7 @@ void	swap_b(s_stack_b *stack)
 	stack->b_stack[stack->top - 1] = tmp;
 }
 
-void	sa_sb(s_stack_a *stack_a, s_stack_b *stack_b)
+void	sa_sb(t_stack_a *stack_a, t_stack_b *stack_b)
 {
 	if (stack_a->top == -1)
 		return ;
@@ -44,7 +44,7 @@ void	sa_sb(s_stack_a *stack_a, s_stack_b *stack_b)
 	swap_b(stack_b);
 }
 
-void	push_a(s_stack_a *stack_a, s_stack_b *stack_b)
+void	push_a(t_stack_a *stack_a, t_stack_b *stack_b)
 {
 	if (stack_b->top == -1)
 		return ;
@@ -52,7 +52,7 @@ void	push_a(s_stack_a *stack_a, s_stack_b *stack_b)
 	pop_b(stack_b);
 }
 
-void	push_b(s_stack_b *stack_b, s_stack_a *stack_a)
+void	push_b(t_stack_b *stack_b, t_stack_a *stack_a)
 {
 	if (stack_a->top == -1)
 		return ;
