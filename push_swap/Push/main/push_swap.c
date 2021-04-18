@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:35:51 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/16 16:52:43 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/18 17:05:37 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		main(int argc, char **argv)
 	}
 	stack = init_stack(argc);
 	stack_b = init_stack(argc);
-	check_args(argc, arg, stack);
+	check_args(argc, arg, stack, stack_b);
 	sort_opti(stack, stack_b);
 	free_stack(stack, stack_b);
 	return (0);

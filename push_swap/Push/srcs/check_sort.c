@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:22:33 by truepath          #+#    #+#             */
-/*   Updated: 2021/04/16 16:52:20 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/18 17:04:04 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		duplicate(char **stack, char *item, int index)
 	return (0);
 }
 
-void	check_args(int i, char **args, t_stack_a *stack)
+void	check_args(int i, char **args, t_stack_a *stack, t_stack_b *stack_b)
 {
 	char	*item;
 
@@ -50,11 +50,11 @@ void	check_args(int i, char **args, t_stack_a *stack)
 		push(stack, ft_atoi(args[i]));
 		i--;
 	}
-	if (sort_checker(stack))
+	if (sort_checker(stack, stack_b))
 		exit(0);
 }
 
-int		sort_checker(t_stack_a *stack)
+int		sort_checker(t_stack_a *stack, t_stack_b *stack_b)
 {
 	int	i;
 
@@ -65,6 +65,8 @@ int		sort_checker(t_stack_a *stack)
 			return (0);
 		i++;
 	}
+	if (stack_b->top != -1)
+		return (0);
 	return (1);
 }
 

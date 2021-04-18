@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 19:35:22 by truepath          #+#    #+#             */
-/*   Updated: 2021/04/16 16:57:51 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/18 17:06:00 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	load_instruction(t_stack_a *stack, t_stack_b *stack_b)
 	stack->a_stack = stack_b->b_stack;
 	stack->top = stack_b->top;
 	stack_b->top = -1;
-	if (sort_checker(stack))
+	if (sort_checker(stack, stack_b))
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
@@ -82,11 +82,11 @@ int		main(int argc, char **argv)
 		argc--;
 	stack = init_stack(argc);
 	stack_b = init_stack(stack->max);
-	if (sort_checker(stack))
+	if (sort_checker(stack, stack_b))
 		write(1, "OK\n", 3);
 	else
 	{
-		check_args(argc, arg, stack);
+		check_args(argc, arg, stack, stack_b);
 		load_instruction(stack, stack_b);
 	}
 	return (0);
