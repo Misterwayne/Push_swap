@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:22:30 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/16 16:53:07 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/19 17:56:06 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct			s_stack_a
 	unsigned int		max;
 	int					*a_stack;
 	int					min;
+	int					big;
+	int					biggest;
 	int					smallest;
 }						t_stack_a;
 
@@ -32,6 +34,9 @@ typedef struct			s_stack_b
 	unsigned int		max;
 	int					*b_stack;
 	int					min;
+	int					big;
+	int					biggest;
+	int					smallest;
 }						t_stack_b;
 
 void					rotate_a(t_stack_a *stack);
@@ -55,10 +60,11 @@ void					print_stack(t_stack_a *stack_a, t_stack_b *stack_b);
 void					b_push(t_stack_b *stack, int nbr);
 int						pop_b(t_stack_b *stack);
 void					free_stack(t_stack_a *stack, t_stack_b *stack_b);
-int						sort_checker(t_stack_a *stack);
-void					error_msg(void);
+int						sort_checker(t_stack_a *stack, t_stack_b *stack_b);
+void					error_msg(int code);
 int						duplicate(char **stack, char *item, int index);
-void					check_args(int argc, char **args, t_stack_a *stack);
+void					check_args(int argc, char **args, t_stack_a *stack,
+						t_stack_b *stack_b);
 char					**ft_split(char const *s, char c);
 int						checker_2(char *instruction, t_stack_a *stack,
 						t_stack_b *stack_b);
@@ -66,5 +72,6 @@ void					checker(char *instruction, t_stack_a *stack,
 						t_stack_b *stack_b);
 int						check_2(char *instruction);
 void					check(char *instruction);
+int						absolute_v(int nbr);
 
 #endif
