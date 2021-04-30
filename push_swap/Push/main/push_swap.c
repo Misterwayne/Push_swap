@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:35:51 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/20 16:14:19 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/30 17:49:32 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,54 +28,54 @@ int		find_biggest_b(t_stack_b *stack)
 		i++;
 	}
 	if (stack->biggest > stack->top / 2)
-		return ((stack->top - stack->biggest) * -1);
+		return (stack->biggest * -1);
 	else
 		return (stack->biggest);
 }
 
-int		find_biggest(t_stack_a *stack)
-{
-	int i;
+// int		find_biggest(t_stack_a *stack)
+// {
+// 	int i;
 
-	i = 0;
-	stack->big = -2147483648;
-	while (i <= stack->top)
-	{
-		if (stack->a_stack[i] > stack->big)
-		{
-			stack->big = stack->a_stack[i];
-			stack->biggest = i;
-		}
-		i++;
-	}
-	if (stack->biggest > stack->top / 2)
-		return ((stack->top - stack->biggest) * -1);
-	else
-		return (stack->biggest);
-}
+// 	i = 0;
+// 	stack->big = -2147483648;
+// 	while (i <= stack->top)
+// 	{
+// 		if (stack->a_stack[i] > stack->big)
+// 		{
+// 			stack->big = stack->a_stack[i];
+// 			stack->biggest = i;
+// 		}
+// 		i++;
+// 	}
+// 	if (stack->biggest > stack->top / 2)
+// 		return ((stack->top - stack->biggest) * -1);
+// 	else
+// 		return (stack->biggest);
+// }
 
-int		find_smallest(t_stack_a *stack)
-{
-	int i;
-	int	half;
+// int		find_smallest(t_stack_a *stack)
+// {
+// 	int i;
+// 	int	half;
 
-	i = 0;
-	stack->min = 2147483647;
-	half = stack->top / 2;
-	while (i <= stack->top)
-	{
-		if (stack->a_stack[i] < stack->min)
-		{
-			stack->min = stack->a_stack[i];
-			stack->smallest = i;
-		}
-		i++;
-	}
-	if (stack->smallest > stack->top / 2)
-		return ((stack->top - stack->smallest) * -1);
-	else
-		return (stack->smallest);
-}
+// 	i = 0;
+// 	stack->min = 2147483647;
+// 	half = stack->top / 2;
+// 	while (i <= stack->top)
+// 	{
+// 		if (stack->a_stack[i] < stack->min)
+// 		{
+// 			stack->min = stack->a_stack[i];
+// 			stack->smallest = i;
+// 		}
+// 		i++;
+// 	}
+// 	if (stack->smallest > stack->top / 2)
+// 		return ((stack->top - stack->smallest) * -1);
+// 	else
+// 		return (stack->smallest);
+// }
 
 int		fastest(t_stack_a *stack)
 {
@@ -227,6 +227,8 @@ void	sort_2(t_stack_a *stack_a, t_stack_b *stack_b)
 	}
 }
 
+
+
 int		main(int argc, char **argv)
 {
 	t_stack_a	*stack;
@@ -250,10 +252,12 @@ int		main(int argc, char **argv)
 	stack = init_stack(argc);
 	stack_b = init_stack(argc);
 	check_args(argc, arg, stack, stack_b);
+	// quick_sort(stack, stack_b, 0, argc - 1);
 	sort_opti(stack, stack_b);
 	reset(stack, stack_b);
 	// sort_2(stack, stack_b);
-	reset_2(stack, stack_b);
+	// sort_3(stack, stack_b);
+	// reset_2(stack, stack_b);
 	// print_stack(stack, stack_b);
 	free_stack(stack, stack_b);
 	return (0);

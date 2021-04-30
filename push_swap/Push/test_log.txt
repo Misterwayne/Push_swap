@@ -1,0 +1,86 @@
+     108
+
+sort_3
+test 10 :
+      10
+      44
+OK
+
+test 25 :
+      20
+     133
+OK
+
+test 50 :
+      50
+     906
+OK
+
+test 100 :
+     100
+    4018
+OK
+
+test 500 :
+     500
+   98130
+OK
+
+
+
+sort_2:
+test 10 :
+      10
+      37
+OK
+
+test 25 :
+      20
+      87
+OK
+
+test 50 :
+      50
+     437
+OK
+
+test 100 :
+     100
+    1402
+OK
+
+test 500 :
+     500
+   33362
+OK
+
+
+
+
+
+sort_opti :
+test 10 :
+      10
+      42
+OK
+
+test 25 :
+      20
+      99
+OK
+
+test 50 :
+      50
+     406
+OK
+
+test 100 :
+     100
+    1130
+OK
+
+test 500 :
+     500
+   23430
+OK
+

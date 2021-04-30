@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:22:30 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/19 17:56:06 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/29 15:33:51 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,11 @@ void					checker(char *instruction, t_stack_a *stack,
 int						check_2(char *instruction);
 void					check(char *instruction);
 int						absolute_v(int nbr);
+void        			quick_sort(t_stack_a *stack_a, t_stack_b *stack_b, int low, int high);
+int        				partition(t_stack_a *stack_a, t_stack_b *stack_b, int low, int high);
+void        			swap_nbr(t_stack_a *stack_a, t_stack_b *stack_b, int i, int j);
+int						find_smallest(t_stack_a *stack);
+int						find_biggest(t_stack_a *stack);
+void        			sort_3(t_stack_a *stack_a, t_stack_b *stack_b);
 
 #endif

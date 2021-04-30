@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:47:07 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/20 13:53:43 by mwane            ###   ########.fr       */
+/*   Updated: 2021/04/30 17:36:16 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,32 +54,29 @@ void	print_stack(t_stack_a *stack_a, t_stack_b *stack_b)
 {
 	int	i;
 
-	i = -1;
-	usleep(900000);
-	system("clear");
+	i = stack_a->top + 1;
+	// usleep(100000);
+	// system("clear");
 	if (stack_a != NULL)
 	{
-		printf("A top : %d\n", stack_a->top);
-		while (++i <= stack_a->top)
+		printf("A top : %d \n", stack_a->top);
+		while (--i > -1)
 		{
 			if (absolute_v(stack_a->biggest) < absolute_v(stack_a->smallest))
 			{
 				if (stack_a->a_stack[i] == stack_a->big)
 					printf("%s-> ", KRED);
-			}	
-			else
-			{
-				if (stack_a->a_stack[i] == stack_a->min)
-					printf("%s-> ", KBLU);
 			}
+			if (stack_a->a_stack[i] == stack_a->min)
+					printf("%s-> ", KBLU);
 			printf("%d%s\n", stack_a->a_stack[i], KWHT);
 		}
 	}
-	i = -1;
+	i = stack_b->top + 1;
 	if (stack_b != NULL)
 	{
 		printf("B top : %d\n", stack_b->top);
-		while (++i <= stack_b->top)
+		while (--i > -1)
 		{
 			if (absolute_v(stack_b->biggest) < absolute_v(stack_b->smallest))
 			{
