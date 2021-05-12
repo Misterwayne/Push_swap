@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:47:07 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/30 17:36:16 by mwane            ###   ########.fr       */
+/*   Updated: 2021/05/12 17:58:16 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ void	print_stack(t_stack_a *stack_a, t_stack_b *stack_b)
 	int	i;
 
 	i = stack_a->top + 1;
-	// usleep(100000);
-	// system("clear");
+	usleep(10000);
+	system("clear");
 	if (stack_a != NULL)
 	{
-		printf("A top : %d \n", stack_a->top);
+		printf("A top : %d | key = %d\n", stack_a->top, stack_a->key);
 		while (--i > -1)
 		{
 			if (absolute_v(stack_a->biggest) < absolute_v(stack_a->smallest))

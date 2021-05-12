@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:35:51 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/30 17:49:32 by mwane            ###   ########.fr       */
+/*   Updated: 2021/05/12 18:24:09 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	sort_opti(t_stack_a *stack_a, t_stack_b *stack_b)
 		index2 = find_biggest(stack_a);
 		if (absolute_v(index) > absolute_v(index2))
 		{
+			// print_stack(stack_a, stack_b);
 			while (stack_a->a_stack[stack_a->top] != stack_a->big)
 			{
 				// print_stack(stack_a, stack_b);
@@ -119,16 +120,13 @@ void	sort_opti(t_stack_a *stack_a, t_stack_b *stack_b)
 			{
 				write(1, "pb\n", 3);
 				push_b(stack_b, stack_a);
-				swap_b(stack_b);
-				write(1, "sb\n", 4);
-				// print_stack(stack_a, stack_b);
-				// rotate_b(stack_b);
-				// write(1, "rb\n", 4);
 			}
 			else
 			{
 				write(1, "pb\n", 3);
 				push_b(stack_b, stack_a);
+				reverse_rotate_b(stack_b);
+				write(1, "rb\n", 4);
 			}
 		}
 		else
@@ -147,11 +145,6 @@ void	sort_opti(t_stack_a *stack_a, t_stack_b *stack_b)
 					write(1, "rra\n", 4);
 				}
 			}
-			// if (stack_a->a_stack[stack_a->top] > stack_b->b_stack[stack_b->top])
-			// {
-			// 	reverse_rotate_b(stack_b);
-			// 	write(1, "rrb\n", 4);
-			// }
 			write(1, "pb\n", 3);
 			push_b(stack_b, stack_a);
 		}
@@ -165,6 +158,7 @@ void	reset_2(t_stack_a *stack_a, t_stack_b *stack_b)
 		write(1, "pa\n", 3);
 		push_a(stack_a, stack_b);
 	}
+	print_stack(stack_a, stack_b);
 }
 
 void	reset(t_stack_a *stack_a, t_stack_b *stack_b)
@@ -176,7 +170,6 @@ void	reset(t_stack_a *stack_a, t_stack_b *stack_b)
 		index = find_biggest_b(stack_b);
 		while (stack_b->b_stack[stack_b->top] != stack_b->big)
 		{
-			// print_stack(stack_a, stack_b);
 			if (index < 0)
 			{
 				rotate_b(stack_b);
@@ -206,7 +199,6 @@ void	sort_2(t_stack_a *stack_a, t_stack_b *stack_b)
 		index = find_biggest(stack_a);
 		while (stack_a->a_stack[stack_a->top] != stack_a->big)
 		{
-			// print_stack(stack_a, stack_b);
 			if (index < 0)
 			{
 				rotate_a(stack_a);
@@ -252,13 +244,8 @@ int		main(int argc, char **argv)
 	stack = init_stack(argc);
 	stack_b = init_stack(argc);
 	check_args(argc, arg, stack, stack_b);
-	// quick_sort(stack, stack_b, 0, argc - 1);
 	sort_opti(stack, stack_b);
-	reset(stack, stack_b);
-	// sort_2(stack, stack_b);
-	// sort_3(stack, stack_b);
-	// reset_2(stack, stack_b);
-	// print_stack(stack, stack_b);
+	reset_2(stack, stack_b);
 	free_stack(stack, stack_b);
 	return (0);
 }

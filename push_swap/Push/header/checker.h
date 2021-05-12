@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:22:30 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/29 15:33:51 by mwane            ###   ########.fr       */
+/*   Updated: 2021/05/12 17:50:09 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct			s_stack_a
 	int					big;
 	int					biggest;
 	int					smallest;
+	int 				key;
 }						t_stack_a;
 
 typedef struct			s_stack_b
@@ -79,5 +80,6 @@ void        			swap_nbr(t_stack_a *stack_a, t_stack_b *stack_b, int i, int j);
 int						find_smallest(t_stack_a *stack);
 int						find_biggest(t_stack_a *stack);
 void        			sort_3(t_stack_a *stack_a, t_stack_b *stack_b);
+void					sort_opti(t_stack_a *stack_a, t_stack_b *stack_b);
 
 #endif
