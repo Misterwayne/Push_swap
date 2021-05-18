@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:04:03 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/19 17:15:56 by mwane            ###   ########.fr       */
+/*   Updated: 2021/05/18 17:31:28 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		checker_2(char *instruction, t_stack_a *stack, t_stack_b *stack_b)
 	else if (instruction[0] == '\0')
 		return (1);
 	else
-		error_msg(4);
+		error_msg();
 	return (0);
 }
 
@@ -72,7 +72,7 @@ int		check_2(char *instruction)
 	else if (instruction[0] == '\0')
 		return (1);
 	else
-		error_msg(4);
+		error_msg();
 	return (0);
 }
 

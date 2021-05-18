@@ -6,16 +6,15 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:22:33 by truepath          #+#    #+#             */
-/*   Updated: 2021/04/29 16:34:07 by mwane            ###   ########.fr       */
+/*   Updated: 2021/05/18 17:30:49 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/checker.h"
 
-void	error_msg(int code)
+void	error_msg(void)
 {
-	printf("%d\n",code);
-	write(1, "ERROR\n", 6);
+	write(2, "ERROR\n", 6);
 	exit(1);
 }
 
@@ -43,11 +42,11 @@ void	check_args(int i, char **args, t_stack_a *stack, t_stack_b *stack_b)
 		item = args[i];
 		if (args[i][0] != '0')
 			if (ft_atoi(args[i]) == 0)
-				error_msg(1);
+				error_msg();
 		if (ft_atoi(args[i]) > 2147483647 || ft_atoi(args[i]) < -2147483648)
-			error_msg(2);
+			error_msg();
 		if (duplicate(args, item, i))
-			error_msg(3);
+			error_msg();
 		push(stack, ft_atoi(args[i]));
 		i--;
 	}
@@ -67,8 +66,6 @@ int		sort_checker(t_stack_a *stack, t_stack_b *stack_b)
 			return (0);
 		i++;
 	}
-	// if (stack_b->top != -1)
-	// 	return (0);
 	return (1);
 }
 

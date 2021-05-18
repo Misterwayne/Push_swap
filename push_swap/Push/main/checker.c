@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 19:35:22 by truepath          #+#    #+#             */
-/*   Updated: 2021/04/18 17:06:00 by mwane            ###   ########.fr       */
+/*   Updated: 2021/05/18 17:29:47 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,6 @@ void	load_instruction(t_stack_a *stack, t_stack_b *stack_b)
 		free(line);
 	}
 	free(stack->a_stack);
-	stack->a_stack = stack_b->b_stack;
-	stack->top = stack_b->top;
-	stack_b->top = -1;
 	if (sort_checker(stack, stack_b))
 		write(1, "OK\n", 3);
 	else

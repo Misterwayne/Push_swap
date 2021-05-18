@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:22:30 by mwane             #+#    #+#             */
-/*   Updated: 2021/05/12 17:50:09 by mwane            ###   ########.fr       */
+/*   Updated: 2021/05/18 17:30:21 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct			s_stack_a
 	int					big;
 	int					biggest;
 	int					smallest;
-	int 				key;
+	int					key;
 }						t_stack_a;
 
 typedef struct			s_stack_b
@@ -62,7 +62,7 @@ void					b_push(t_stack_b *stack, int nbr);
 int						pop_b(t_stack_b *stack);
 void					free_stack(t_stack_a *stack, t_stack_b *stack_b);
 int						sort_checker(t_stack_a *stack, t_stack_b *stack_b);
-void					error_msg(int code);
+void					error_msg(void);
 int						duplicate(char **stack, char *item, int index);
 void					check_args(int argc, char **args, t_stack_a *stack,
 						t_stack_b *stack_b);
@@ -74,12 +74,10 @@ void					checker(char *instruction, t_stack_a *stack,
 int						check_2(char *instruction);
 void					check(char *instruction);
 int						absolute_v(int nbr);
-void        			quick_sort(t_stack_a *stack_a, t_stack_b *stack_b, int low, int high);
-int        				partition(t_stack_a *stack_a, t_stack_b *stack_b, int low, int high);
-void        			swap_nbr(t_stack_a *stack_a, t_stack_b *stack_b, int i, int j);
 int						find_smallest(t_stack_a *stack);
 int						find_biggest(t_stack_a *stack);
-void        			sort_3(t_stack_a *stack_a, t_stack_b *stack_b);
+void					sort_3(t_stack_a *stack_a, t_stack_b *stack_b);
 void					sort_opti(t_stack_a *stack_a, t_stack_b *stack_b);
+int						find_biggest_b(t_stack_b *stack);
 
 #endif
