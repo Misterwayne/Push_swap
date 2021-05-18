@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:35:51 by mwane             #+#    #+#             */
-/*   Updated: 2021/05/12 18:24:09 by mwane            ###   ########.fr       */
+/*   Updated: 2021/05/12 23:01:07 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	sort_opti(t_stack_a *stack_a, t_stack_b *stack_b)
 
 	while (stack_a->top != -1)
 	{
+		// print_stack(stack_a, stack_b);
 		index = find_smallest(stack_a);
 		index2 = find_biggest(stack_a);
 		if (absolute_v(index) > absolute_v(index2))
@@ -116,18 +117,10 @@ void	sort_opti(t_stack_a *stack_a, t_stack_b *stack_b)
 					write(1, "rra\n", 4);
 				}
 			}
-			if (stack_a->a_stack[stack_a->top] > stack_b->b_stack[stack_b->top])
-			{
-				write(1, "pb\n", 3);
-				push_b(stack_b, stack_a);
-			}
-			else
-			{
-				write(1, "pb\n", 3);
-				push_b(stack_b, stack_a);
-				reverse_rotate_b(stack_b);
-				write(1, "rb\n", 4);
-			}
+			write(1, "pb\n", 3);
+			push_b(stack_b, stack_a);
+			ra_rb(stack_a,stack_b);
+			write(1, "rb\n", 4);
 		}
 		else
 		{
@@ -153,10 +146,16 @@ void	sort_opti(t_stack_a *stack_a, t_stack_b *stack_b)
 
 void	reset_2(t_stack_a *stack_a, t_stack_b *stack_b)
 {
+	find_biggest_b(stack_b);
 	while (stack_b->top != -1)
 	{
 		write(1, "pa\n", 3);
 		push_a(stack_a, stack_b);
+	}
+	while (stack_a->a_stack[0] != stack_b->big)
+	{
+		rotate_a(stack_a);
+		write(1, "ra\n", 3);
 	}
 	print_stack(stack_a, stack_b);
 }
@@ -209,8 +208,6 @@ void	sort_2(t_stack_a *stack_a, t_stack_b *stack_b)
 				reverse_rotate_a(stack_a);
 				write(1, "rra\n", 4);
 			}
-			if (stack_a->top == -1)
-				break ;
 		}
 		write(1, "pb\n", 3);
 		push_b(stack_b, stack_a);

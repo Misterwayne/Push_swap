@@ -5,8 +5,8 @@
 # ./push_swap $ARG | ./checker $ARG
 
 
-# echo "\ntest 25 :"
-# ARG=$(ruby -e "puts (-9..10).to_a.shuffle.join(' ')")
+echo "\ntest 25 :"
+ARG=$(ruby -e "puts (-9..10).to_a.shuffle.join(' ')")
 # echo $ARG | wc -w
 # ./push_swap $ARG | wc -l
 # ./push_swap $ARG | ./checker $ARG
@@ -24,10 +24,10 @@
 # ./push_swap $ARG | wc -l
 # ./push_swap $ARG | ./checker $ARG
 
-echo "\ntest 500 :"
-ARG=$(ruby -e "puts (-249..250).to_a.shuffle.join(' ')")
+# echo "\ntest 500 :"
+# ARG=$(ruby -e "puts (-249..250).to_a.shuffle.join(' ')")
 # echo $ARG | wc -w
-./push_swap $ARG | wc -l
+# ./push_swap $ARG | wc -l
 # ./push_swap $ARG | ./checker $ARG
 
 ./push_swap $ARG
