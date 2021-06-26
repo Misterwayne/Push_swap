@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:22:30 by mwane             #+#    #+#             */
-/*   Updated: 2021/05/18 17:30:21 by mwane            ###   ########.fr       */
+/*   Updated: 2021/06/26 17:47:19 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "../libft2/libft.h"
 
-typedef struct			s_stack_a
+typedef struct s_stack_a
 {
 	int					top;
 	unsigned int		max;
@@ -26,10 +25,11 @@ typedef struct			s_stack_a
 	int					big;
 	int					biggest;
 	int					smallest;
-	int					key;
+	int					smallest_1;
+	int					half;
 }						t_stack_a;
 
-typedef struct			s_stack_b
+typedef struct s_stack_b
 {
 	int					top;
 	unsigned int		max;
@@ -57,7 +57,6 @@ int						is_full(t_stack_a *stack);
 int						is_empty(t_stack_a *stack);
 void					push(t_stack_a *stack, int nbr);
 int						pop(t_stack_a *stack);
-void					print_stack(t_stack_a *stack_a, t_stack_b *stack_b);
 void					b_push(t_stack_b *stack, int nbr);
 int						pop_b(t_stack_b *stack);
 void					free_stack(t_stack_a *stack, t_stack_b *stack_b);
@@ -65,19 +64,26 @@ int						sort_checker(t_stack_a *stack, t_stack_b *stack_b);
 void					error_msg(void);
 int						duplicate(char **stack, char *item, int index);
 void					check_args(int argc, char **args, t_stack_a *stack,
-						t_stack_b *stack_b);
+							t_stack_b *stack_b);
 char					**ft_split(char const *s, char c);
 int						checker_2(char *instruction, t_stack_a *stack,
-						t_stack_b *stack_b);
+							t_stack_b *stack_b);
 void					checker(char *instruction, t_stack_a *stack,
-						t_stack_b *stack_b);
+							t_stack_b *stack_b);
 int						check_2(char *instruction);
 void					check(char *instruction);
 int						absolute_v(int nbr);
-int						find_smallest(t_stack_a *stack);
-int						find_biggest(t_stack_a *stack);
+int						find_smallest(t_stack_b *stack_b);
+int						find_biggest(t_stack_b *stack_b);
 void					sort_3(t_stack_a *stack_a, t_stack_b *stack_b);
 void					sort_opti(t_stack_a *stack_a, t_stack_b *stack_b);
 int						find_biggest_b(t_stack_b *stack);
+char					**free_tab(char **res, int i);
+long					ft_atoi(char *nbr);
+int						ft_strcmp(char *s1, char *s2);
+void					print_stack(t_stack_a *stack_a, t_stack_b *stack_b);
+void					high_rotate(int index, t_stack_a *stack_a, t_stack_b *stack_b);
+void					low_rotate(int index, t_stack_a *stack_a, t_stack_b *stack_b);
+int						find_smallest_chunk(t_stack_a *stack_a);
 
 #endif

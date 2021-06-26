@@ -6,15 +6,15 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 17:05:27 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/12 17:14:32 by mwane            ###   ########.fr       */
+/*   Updated: 2021/06/04 17:36:27 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/get_next_line.h"
 
-int			ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str)
@@ -27,7 +27,7 @@ int			ft_strlen(char *str)
 	return (i);
 }
 
-char		*reallocbuff(char *buffer, char *str)
+char	*reallocbuff(char *buffer, char *str)
 {
 	char	*newstr;
 	int		lenstr;
@@ -41,7 +41,8 @@ char		*reallocbuff(char *buffer, char *str)
 		return (NULL);
 	lenstr = ft_strlen(str);
 	lenbuffer = ft_strlen(buffer);
-	if (!(newstr = malloc(sizeof(char) * (lenstr + lenbuffer + 1))))
+	newstr = malloc(sizeof(char) * (lenstr + lenbuffer + 1));
+	if (!(newstr))
 		return (NULL);
 	while (++i < lenstr)
 		newstr[i] = str[i];
@@ -53,7 +54,7 @@ char		*reallocbuff(char *buffer, char *str)
 	return (newstr);
 }
 
-char		*giveline(char *str)
+char	*giveline(char *str)
 {
 	int		i;
 	char	*line;
@@ -67,7 +68,8 @@ char		*giveline(char *str)
 	}
 	while (i < ft_strlen(str) && str[i] != '\n')
 		i++;
-	if (!(line = malloc(sizeof(char) * (i + 1))))
+	line = malloc(sizeof(char) * (i + 1));
+	if (!(line))
 		return (NULL);
 	i = 0;
 	while (str[i] && str[i] != '\n')
@@ -79,7 +81,7 @@ char		*giveline(char *str)
 	return (line);
 }
 
-char		*setup_save(char *save)
+char	*setup_save(char *save)
 {
 	int		i;
 	int		j;
@@ -93,7 +95,8 @@ char		*setup_save(char *save)
 		i++;
 	if (save[i])
 	{
-		if (!(newsave = malloc(sizeof(char) * (ft_strlen(save) - i) + 1)))
+		newsave = malloc(sizeof(char) * (ft_strlen(save) - i) + 1);
+		if (!(newsave))
 			return (NULL);
 		i++;
 		while (save[i])
@@ -107,9 +110,9 @@ char		*setup_save(char *save)
 	return (NULL);
 }
 
-int			scan_buffer(char *buff)
+int	scan_buffer(char *buff)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (buff[i])

@@ -6,7 +6,7 @@
 #    By: mwane <mwane@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/11 19:08:29 by truepath          #+#    #+#              #
-#    Updated: 2021/04/23 14:56:15 by mwane            ###   ########.fr        #
+#    Updated: 2021/06/25 15:36:56 by mwane            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ SRCS 		= 		srcs/check_sort.c \
 					srcs/get_next_line_utils.c \
 					srcs/stack_2.c \
 					srcs/check_sort_2.c \
-					srcs/quick_sort.c
+					srcs/quick_sort.c \
+					srcs/ft_atoi.c \
+					srcs/ft_strcmp.c \
 
 OBJS		= 		$(SRCS:%.c=%.o)
 
@@ -31,8 +33,6 @@ NAME_PUSH	=		push_swap
 
 NAME_CHECK	=		checker
 
-LIB			=		libft2/.
-
 HEAD		=		checker.h
 
 CFLAGS 		= 		-Werror -Wextra -Wall
@@ -41,26 +41,22 @@ CC 			= 		gcc
 
 RM			=		rm -f
 
-all 		:
-					@make libft
-					@make push_swap
-					@make checker
+all 		:		push_swap
+					
 
-push_swap 	:
-					$(CC) $(CFLAGS) $(SRCS) $(PUSH_SWAP) libft2/libft.a -o push_swap
+push_swap 	:		$(OBJS)
+					$(CC) $(CFLAGS) $(SRCS) $(PUSH_SWAP)  -o push_swap
 
-libft		:
-					@make -C $(LIB)
+bonus	 	:		$(NAME_CHECK)
 
-checker 	:			
-					$(CC) $(CFLAGS) $(SRCS) $(CHECKER) libft2/libft.a -o checker
+$(NAME_CHECK):
+					$(CC) $(CFLAGS) $(SRCS) $(CHECKER)  -o $(NAME_CHECK)
 
 clean		:
-					@$(RM) $(NAME_PUSH) $(NAME_CHECK)
-					@make -C $(LIB) clean
+					@$(RM) $(NAME_PUSH) $(NAME_CHECK) $(OBJS)
 
 re			:
 					@make clean
 					@make
 
-.PHONY		:		all $(LIB)
+.PHONY		:		all

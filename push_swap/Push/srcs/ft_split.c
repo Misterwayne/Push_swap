@@ -6,16 +6,16 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 11:20:33 by mwane             #+#    #+#             */
-/*   Updated: 2021/04/12 17:12:04 by mwane            ###   ########.fr       */
+/*   Updated: 2021/06/06 17:27:26 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/checker.h"
 
-static	int		count_word(char const *str, char c)
+static	int	count_word(char const *str, char c)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -41,7 +41,7 @@ static	int		count_word(char const *str, char c)
 	return (count);
 }
 
-static int		count_letter(char const *s, char c)
+static int	count_letter(char const *s, char c)
 {
 	int		i;
 
@@ -56,7 +56,7 @@ static int		count_letter(char const *s, char c)
 	return (i);
 }
 
-static int		fill_tab(char const *s, char *res, char c)
+static int	fill_tab(char const *s, char *res, char c)
 {
 	int		i;
 	int		j;
@@ -82,40 +82,42 @@ static int		fill_tab(char const *s, char *res, char c)
 	return (j);
 }
 
-char			**free_tab(char **res, int i)
-{
-	int j;
+// char	**secur(char const *s, char **res)
+// {
+// 	if (s == NULL || !*s)
+// 	{
+// 		res = malloc(sizeof(char *) * 1);
+// 		if (!(res))
+// 			return (NULL);
+// 		*res = NULL;
+// 		return (res);
+// 	}
+// }
 
-	j = 0;
-	while (j <= i)
-		free(res[j++]);
-	free(res);
-	return (NULL);
-}
-
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**res;
-	int		tablen;
 	int		i;
 
 	if (s == NULL || !*s)
 	{
-		if (!(res = malloc(sizeof(char *) * 1)))
+		res = malloc(sizeof(char *) * 1);
+		if (!(res))
 			return (NULL);
 		*res = NULL;
 		return (res);
 	}
-	tablen = (count_word(s, c) + 1);
 	i = -1;
-	if (!(res = malloc(sizeof(char *) * (tablen))))
+	res = malloc(sizeof(char *) * ((count_word(s, c) + 1)));
+	if (!(res))
 		return (0);
-	while (++i < tablen && *s && tablen != 1)
+	while (++i < (count_word(s, c) + 1) && *s && (count_word(s, c) + 1) != 1)
 	{
-		if (!(res[i] = malloc(sizeof(char) * ((count_letter(s, c) + 1)))))
+		res[i] = malloc(sizeof(char) * ((count_letter(s, c) + 1)));
+		if (!(res[i]))
 			return (free_tab(res, i));
 		s += fill_tab(s, res[i], c);
 	}
-	res[tablen - 1] = NULL;
+	res[i - 1] = NULL;
 	return (res);
 }

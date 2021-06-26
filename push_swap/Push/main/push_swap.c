@@ -6,65 +6,104 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:35:51 by mwane             #+#    #+#             */
-/*   Updated: 2021/05/18 17:34:27 by mwane            ###   ########.fr       */
+/*   Updated: 2021/06/26 19:12:16 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/checker.h"
 
-void	high_rotate(int index, t_stack_a *stack_a, t_stack_b *stack_b)
+void swap(int *a, int *b)
 {
-	while (stack_a->a_stack[stack_a->top] != stack_a->big)
-	{
-		if (index < 0)
-		{
-			rotate_a(stack_a);
-			write(1, "ra\n", 3);
-		}
-		else
-		{
-			reverse_rotate_a(stack_a);
-			write(1, "rra\n", 4);
-		}
-	}
-	write(1, "pb\n", 3);
-	push_b(stack_b, stack_a);
-	ra_rb(stack_a, stack_b);
-	write(1, "rb\n", 4);
+	int t; 
+	
+	t = *a;
+  	*a = *b;
+  	*b = t;
 }
 
-void	low_rotate(int index, t_stack_a *stack_a, t_stack_b *stack_b)
+int        partition(int *stack_a, int low, int high)
 {
-	while (stack_a->a_stack[stack_a->top] != stack_a->min)
+    int     pivot;
+    int     i;
+    int     j;
+    int     index;
+
+    pivot = stack_a[high];
+    i = (low - 1);
+    index = 0;
+    for(j = low; j <= high - 1; j++)
+    {
+        if (stack_a[j] <= pivot)
+        {
+            i++;
+            swap(&stack_a[j], &stack_a[i]);
+        }
+    }
+    swap(&stack_a[i + 1], &stack_a[high]);
+    return (i + 1);
+}
+
+void        quick_sort(int *stack_a, int low, int high)
+{
+    int index;
+
+    if (low < high)
+    {
+        index = partition(stack_a, low, high);
+        quick_sort(stack_a, low, index - 1);
+        quick_sort(stack_a, index + 1, high);
+    }
+}
+
+int		*int_cmp(t_stack_a *stack_a)
+{
+	int	*copy;
+	int i;
+
+	i = 0;
+	copy = malloc(sizeof(int) * stack_a->max);
+	while ((unsigned int)i <= stack_a->max)
 	{
-		if (index < 0)
+		copy[i] = stack_a->a_stack[i];
+		i++;
+	}
+	return (copy);
+}
+
+void	chunck_sort(t_stack_a *stack_a, t_stack_b *stack_b)
+{
+	int *model;
+	int min;
+
+	model = int_cmp(stack_a);
+	quick_sort(model, 0, stack_a->top);
+	min = stack_a->top / 2;
+	stack_a->half = model[min];
+	while (min >= 0)
+	{
+		if (stack_a->a_stack[stack_a->top] <= stack_a->half)
+		{
+			write(1, "pb\n", 3);
+			push_b(stack_b, stack_a);
+			--min;
+		}
+		else
 		{
 			rotate_a(stack_a);
 			write(1, "ra\n", 3);
 		}
-		else
-		{
-			reverse_rotate_a(stack_a);
-			write(1, "rra\n", 4);
-		}
 	}
-	write(1, "pb\n", 3);
-	push_b(stack_b, stack_a);
+	free(model);
 }
 
 void	sort_opti(t_stack_a *stack_a, t_stack_b *stack_b)
 {
-	int index;
-	int index2;
+	int	index2;
 
-	while (stack_a->top != -1)
+	while (stack_b->top != -1)
 	{
-		index = find_smallest(stack_a);
-		index2 = find_biggest(stack_a);
-		if (absolute_v(index) > absolute_v(index2))
-			high_rotate(index2, stack_a, stack_b);
-		else
-			low_rotate(index, stack_a, stack_b);
+		index2 = find_biggest(stack_b);
+		high_rotate(index2, stack_a, stack_b);
 	}
 }
 
@@ -73,8 +112,8 @@ void	reset_2(t_stack_a *stack_a, t_stack_b *stack_b)
 	find_biggest_b(stack_b);
 	while (stack_b->top != -1)
 	{
-		write(1, "pa\n", 3);
 		push_a(stack_a, stack_b);
+		write(1, "pa\n", 3);
 	}
 	while (stack_a->a_stack[0] != stack_b->big)
 	{
@@ -83,7 +122,7 @@ void	reset_2(t_stack_a *stack_a, t_stack_b *stack_b)
 	}
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_stack_a	*stack;
 	t_stack_b	*stack_b;
@@ -106,8 +145,14 @@ int		main(int argc, char **argv)
 	stack = init_stack(argc);
 	stack_b = init_stack(argc);
 	check_args(argc, arg, stack, stack_b);
+	while (stack->top >= 1)
+		chunck_sort(stack, stack_b);
+	if (stack->a_stack[0] < stack->a_stack[stack->top])
+	{
+		swap_a(stack);
+		write(1, "sa\n", 3);
+	}
 	sort_opti(stack, stack_b);
-	reset_2(stack, stack_b);
 	free_stack(stack, stack_b);
 	return (0);
 }

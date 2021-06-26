@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:47:07 by mwane             #+#    #+#             */
-/*   Updated: 2021/05/18 17:28:57 by mwane            ###   ########.fr       */
+/*   Updated: 2021/06/04 17:33:33 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,23 @@ void	b_push(t_stack_b *stack, int nbr)
 	stack->b_stack[++stack->top] = nbr;
 }
 
-int		pop_b(t_stack_b *stack)
+int	pop_b(t_stack_b *stack)
 {
 	if (is_empty((t_stack_a *)stack))
 		return (0);
 	return (stack->b_stack[stack->top--]);
 }
 
-int		pop(t_stack_a *stack)
+int	pop(t_stack_a *stack)
 {
 	if (is_empty(stack))
 		return (0);
 	return (stack->a_stack[stack->top--]);
 }
 
-int		find_biggest_b(t_stack_b *stack)
+int	find_biggest_b(t_stack_b *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	stack->big = -2147483648;

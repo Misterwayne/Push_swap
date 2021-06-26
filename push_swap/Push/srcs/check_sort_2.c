@@ -6,13 +6,13 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:04:03 by mwane             #+#    #+#             */
-/*   Updated: 2021/05/18 17:31:28 by mwane            ###   ########.fr       */
+/*   Updated: 2021/06/04 17:14:34 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/checker.h"
 
-int		absolute_v(int nbr)
+int	absolute_v(int nbr)
 {
 	if (nbr < 0)
 		return (nbr * -1);
@@ -20,7 +20,7 @@ int		absolute_v(int nbr)
 		return (nbr);
 }
 
-int		checker_2(char *instruction, t_stack_a *stack, t_stack_b *stack_b)
+int	checker_2(char *instruction, t_stack_a *stack, t_stack_b *stack_b)
 {
 	if (ft_strcmp(instruction, "rb") == 0)
 		rotate_b(stack_b);
@@ -57,7 +57,7 @@ void	checker(char *instruction, t_stack_a *stack, t_stack_b *stack_b)
 		return ;
 }
 
-int		check_2(char *instruction)
+int	check_2(char *instruction)
 {
 	if (ft_strcmp(instruction, "rb") == 0)
 		return (0);

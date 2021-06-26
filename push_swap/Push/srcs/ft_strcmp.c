@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 11:15:47 by mwane             #+#    #+#             */
-/*   Updated: 2021/06/06 17:48:36 by mwane            ###   ########.fr       */
+/*   Created: 2019/06/09 16:45:00 by mwane             #+#    #+#             */
+/*   Updated: 2021/06/06 17:55:16 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include <unistd.h>
-# include <stdlib.h>
+#include "../header/checker.h"
 
-int			get_next_line(int fd, char **line);
-int			scan_save(char *save);
-int			scan_buffer(char *buff);
-char		*setup_save(char *save);
-char		*giveline(char *str);
-char		*reallocbuff(char *buffer, char *str);
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+	int	j;
 
-#endif
+	i = 0;
+	j = 0;
+	if (s1 == NULL || s2 == NULL)
+		return ((unsigned char)*s1 - (unsigned char)*s2);
+	while (s1[i] == s2[i] && (s1[i] != '\0' || s2[i] != '\0'))
+		i++;
+	j += (unsigned char)s1[i] - (unsigned char)s2[i];
+	return (j);
+}
