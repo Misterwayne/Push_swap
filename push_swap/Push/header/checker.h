@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:22:30 by mwane             #+#    #+#             */
-/*   Updated: 2021/06/26 17:47:19 by mwane            ###   ########.fr       */
+/*   Updated: 2021/07/06 18:00:42 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,15 @@ char					**free_tab(char **res, int i);
 long					ft_atoi(char *nbr);
 int						ft_strcmp(char *s1, char *s2);
 void					print_stack(t_stack_a *stack_a, t_stack_b *stack_b);
-void					high_rotate(int index, t_stack_a *stack_a, t_stack_b *stack_b);
-void					low_rotate(int index, t_stack_a *stack_a, t_stack_b *stack_b);
+void					high_rotate(int index, t_stack_a *stack_a,
+							t_stack_b *stack_b);
+void					low_rotate(int index, t_stack_a *stack_a,
+							t_stack_b *stack_b);
 int						find_smallest_chunk(t_stack_a *stack_a);
+int						*int_cmp(t_stack_a *stack_a);
+void					quick_sort(int *stack_a, int low, int high);
+void					small_sort(t_stack_a *stack_a, t_stack_b *stack_b);
+void					sort_3(t_stack_a *stack_a, t_stack_b *stack_b);
+void					sort_5(t_stack_a *stack_a, t_stack_b *stack_b);
 
 #endif

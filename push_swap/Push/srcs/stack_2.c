@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 15:05:32 by mwane             #+#    #+#             */
-/*   Updated: 2021/06/04 17:33:11 by mwane            ###   ########.fr       */
+/*   Updated: 2021/07/06 17:15:29 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	*init_stack(unsigned int max)
 		return (NULL);
 	stack->max = max;
 	stack->top = -1;
+	stack->half = max / 2;
 	stack->a_stack = (int *)malloc(stack->max * sizeof(int));
 	if (!(stack->a_stack))
 		return (NULL);

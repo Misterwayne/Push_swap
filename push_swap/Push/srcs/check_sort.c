@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:22:33 by truepath          #+#    #+#             */
-/*   Updated: 2021/06/26 19:12:53 by mwane            ###   ########.fr       */
+/*   Updated: 2021/07/06 18:02:20 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ void	check_args(int i, char **args, t_stack_a *stack, t_stack_b *stack_b)
 		push(stack, ft_atoi(args[i]));
 		i--;
 	}
+	if (stack->top < 6)
+	{
+		small_sort(stack, stack_b);
+	}
 	if (sort_checker(stack, stack_b))
 		exit(0);
 }
@@ -75,23 +79,3 @@ void	r_r_r(t_stack_a *stack_a, t_stack_b *stack_b)
 	reverse_rotate_a(stack_a);
 	reverse_rotate_b(stack_b);
 }
-
-// index = find_smallest/_chunk(stack_a);
-// 		while (stack_a->a_stack[stack_a->top] != stack_a->smallest)
-// 		{
-// 			if (index < 0)
-// 			{
-// 				rotate_a(stack_a);
-// 				write(1, "ra\n", 3);
-// 			}
-// 			else
-// 			{
-// 				reverse_rotate_a(stack_a);
-// 				write(1, "rra\n", 4);
-// 			}
-// 			print_stack(stack_a, stack_b);
-// 		}
-// 		push_b(stack_b, stack_a);
-// 		write(1, "pb\n", 3);
-// 		--min;
-// 		print_stack(stack_a, stack_b);
