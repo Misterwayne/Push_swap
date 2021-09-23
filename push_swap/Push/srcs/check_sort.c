@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:22:33 by truepath          #+#    #+#             */
-/*   Updated: 2021/07/06 18:02:20 by mwane            ###   ########.fr       */
+/*   Updated: 2021/07/10 00:22:01 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,10 @@ void	check_args(int i, char **args, t_stack_a *stack, t_stack_b *stack_b)
 		push(stack, ft_atoi(args[i]));
 		i--;
 	}
-	if (stack->top < 6)
-	{
-		small_sort(stack, stack_b);
-	}
 	if (sort_checker(stack, stack_b))
 		exit(0);
+	if (stack->top < 8)
+		small_sort(stack, stack_b);
 }
 
 int	sort_checker(t_stack_a *stack, t_stack_b *stack_b)
@@ -65,7 +63,7 @@ int	sort_checker(t_stack_a *stack, t_stack_b *stack_b)
 	i = 0;
 	if (stack_b->top != -1)
 		return (0);
-	while (i < stack->top - 1)
+	while (i < stack->top)
 	{
 		if (stack->a_stack[i + 1] >= stack->a_stack[i])
 			return (0);

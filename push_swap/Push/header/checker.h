@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:22:30 by mwane             #+#    #+#             */
-/*   Updated: 2021/07/06 18:00:42 by mwane            ###   ########.fr       */
+/*   Updated: 2021/09/22 18:48:25 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ typedef struct s_stack_a
 	unsigned int		max;
 	int					*a_stack;
 	int					min;
-	int					big;
 	int					biggest;
 	int					smallest;
-	int					smallest_1;
 	int					half;
+	int					place;
+	int					dir;
+	int					up_place;
+	int					action;
 }						t_stack_a;
 
 typedef struct s_stack_b
@@ -35,9 +37,12 @@ typedef struct s_stack_b
 	unsigned int		max;
 	int					*b_stack;
 	int					min;
-	int					big;
 	int					biggest;
 	int					smallest;
+	int					half;
+	int					dir;
+	int					place;
+	int					action;
 }						t_stack_b;
 
 void					rotate_a(t_stack_a *stack);
@@ -73,9 +78,9 @@ void					checker(char *instruction, t_stack_a *stack,
 int						check_2(char *instruction);
 void					check(char *instruction);
 int						absolute_v(int nbr);
-int						find_smallest(t_stack_b *stack_b);
-int						find_biggest(t_stack_b *stack_b);
-void					sort_3(t_stack_a *stack_a, t_stack_b *stack_b);
+void					find_smallest(t_stack_a *stack_a);
+int						find_smallest_b(t_stack_b *stack_b);
+void					find_biggest(t_stack_a *stack_a);
 void					sort_opti(t_stack_a *stack_a, t_stack_b *stack_b);
 int						find_biggest_b(t_stack_b *stack);
 char					**free_tab(char **res, int i);
@@ -90,7 +95,13 @@ int						find_smallest_chunk(t_stack_a *stack_a);
 int						*int_cmp(t_stack_a *stack_a);
 void					quick_sort(int *stack_a, int low, int high);
 void					small_sort(t_stack_a *stack_a, t_stack_b *stack_b);
-void					sort_3(t_stack_a *stack_a, t_stack_b *stack_b);
+void					sort_3(t_stack_a *stack_a);
 void					sort_5(t_stack_a *stack_a, t_stack_b *stack_b);
+void					case_3(t_stack_a *stack_a);
+void					case_2(t_stack_a *stack_a);
+void					case_1(t_stack_a *stack_a);
+int						smallest(t_stack_a *stack_a);
+void					low_rotate_b(int index, t_stack_a *stack_a, t_stack_b *stack_b);
+int     				rotate_opti(t_stack_a *stack_a);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 16:47:07 by mwane             #+#    #+#             */
-/*   Updated: 2021/06/04 17:33:33 by mwane            ###   ########.fr       */
+/*   Updated: 2021/07/15 21:45:12 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,15 @@ int	pop(t_stack_a *stack)
 int	find_biggest_b(t_stack_b *stack)
 {
 	int	i;
+	int big;
 
 	i = 0;
-	stack->big = -2147483648;
+	big = -2147483648;
 	while (i <= stack->top)
 	{
-		if (stack->b_stack[i] > stack->big)
+		if (stack->b_stack[i] > big)
 		{
-			stack->big = stack->b_stack[i];
+			big = stack->b_stack[i];
 			stack->biggest = i;
 		}
 		i++;

@@ -6,7 +6,7 @@
 #    By: mwane <mwane@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/11 19:08:29 by truepath          #+#    #+#              #
-#    Updated: 2021/07/06 18:00:57 by mwane            ###   ########.fr        #
+#    Updated: 2021/07/08 22:05:19 by mwane            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS 		= 		srcs/check_sort.c \
 					srcs/ft_strcmp.c \
 					srcs/chunk_sort.c \
 					srcs/small_sort.c \
+					srcs/sort_5.c \
 
 OBJS		= 		$(SRCS:%.c=%.o)
 
