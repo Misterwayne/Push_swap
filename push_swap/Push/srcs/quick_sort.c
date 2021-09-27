@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 15:51:20 by mwane             #+#    #+#             */
-/*   Updated: 2021/09/22 20:01:27 by mwane            ###   ########.fr       */
+/*   Updated: 2021/09/27 16:09:32 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,10 @@ void	low_rotate(int index, t_stack_a *stack_a, t_stack_b *stack_b)
 	while (stack_a->a_stack[stack_a->top] != stack_a->min)
 	{
 		if (index < 0)
-		{
 			rotate_a(stack_a);
-			write(1, "ra\n", 3);
-		}
 		else
-		{
 			reverse_rotate_a(stack_a);
-			write(1, "rra\n", 4);
-		}
 	}
-	write(1, "pb\n", 3);
 	push_b(stack_b, stack_a);
 	rotate_a(stack_a);
 }

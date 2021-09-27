@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 21:35:19 by mwane             #+#    #+#             */
-/*   Updated: 2021/07/15 00:58:45 by mwane            ###   ########.fr       */
+/*   Updated: 2021/09/27 16:06:54 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	sort_5(t_stack_a *stack_a, t_stack_b *stack_b)
 		case_3(stack_a);
 	push_a(stack_a, stack_b);
 	push_a(stack_a, stack_b);
-	write(1, "pa\n", 3);
-	write(1, "pa\n", 3);
 	return ;
 }
 
@@ -66,18 +64,10 @@ void	low_rotate_b(int index, t_stack_a *stack_a, t_stack_b *stack_b)
 	while (stack_b->b_stack[stack_b->top] != stack_b->min)
 	{
 		if (index < 0)
-		{
 			rotate_b(stack_b);
-			write(1, "rb\n", 3);
-		}
 		else
-		{
 			reverse_rotate_b(stack_b);
-			write(1, "rrb\n", 4);
-		}
 	}
-	write(1, "pa\n", 3);
 	push_a(stack_a, stack_b);
 	rotate_a(stack_a);
-	write(1, "ra\n", 3);
 }

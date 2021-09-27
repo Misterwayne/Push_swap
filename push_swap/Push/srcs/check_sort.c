@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:22:33 by truepath          #+#    #+#             */
-/*   Updated: 2021/07/10 00:22:01 by mwane            ###   ########.fr       */
+/*   Updated: 2021/09/27 16:00:33 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,5 @@ void	r_r_r(t_stack_a *stack_a, t_stack_b *stack_b)
 {
 	reverse_rotate_a(stack_a);
 	reverse_rotate_b(stack_b);
+	write(1, "rrr\n", 4);
 }

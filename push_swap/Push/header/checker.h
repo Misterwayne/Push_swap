@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:22:30 by mwane             #+#    #+#             */
-/*   Updated: 2021/09/22 18:48:25 by mwane            ###   ########.fr       */
+/*   Updated: 2021/09/27 16:33:51 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_stack_a
 	int					dir;
 	int					up_place;
 	int					action;
+	int					ra;
+	int					rra;
 }						t_stack_a;
 
 typedef struct s_stack_b
@@ -43,6 +45,8 @@ typedef struct s_stack_b
 	int					dir;
 	int					place;
 	int					action;
+	int					ra;
+	int					rra;
 }						t_stack_b;
 
 void					rotate_a(t_stack_a *stack);

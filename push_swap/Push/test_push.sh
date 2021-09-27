@@ -120,16 +120,17 @@ echo $ARG | wc -w
 # ./push_swap $ARG | wc -l
 # ./push_swap $ARG | ./checker_Mac $ARG
 
-# echo "\ntest 100 :"
-# ARG=$(ruby -e "puts (-49..50).to_a.shuffle.join(' ')") 
-# ./push_swap $ARG 
-# | wc -l; echo "/1500"
-# ./push_swap $ARG | ./checker_Mac $ARG
+echo "\ntest 100 :"
+ARG=$(ruby -e "puts (-49..50).to_a.shuffle.join(' ')") 
+# ./push_swap $ARG
+./push_swap $ARG | wc -l
+./push_swap $ARG | ./checker_Mac $ARG
 
-# echo "\ntest 500 :"
-# ARG=$(ruby -e "puts (-249..250).to_a.shuffle.join(' ')")
-# ./push_swap $ARG | wc -l; echo "/11500"
-# ./push_swap $ARG | ./checker_Mac $ARG
+
+echo "\ntest 500 :"
+ARG=$(ruby -e "puts (-249..250).to_a.shuffle.join(' ')")
+./push_swap $ARG | wc -l; echo "/11500"
+./push_swap $ARG | ./checker_Mac $ARG
 # echo "\ntest 500 :"
 # ARG=$(ruby -e "puts (-249..250).to_a.shuffle.join(' ')")
 # ./push_swap $ARG | wc -l; echo "/11500"

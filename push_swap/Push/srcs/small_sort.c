@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 17:56:29 by mwane             #+#    #+#             */
-/*   Updated: 2021/09/20 19:21:27 by mwane            ###   ########.fr       */
+/*   Updated: 2021/09/27 16:08:41 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@ void	case_1(t_stack_a *stack_a)
 	if ((stack_a->a_stack[stack_a->top - 1] > stack_a->a_stack[0]))
 	{
 		rotate_a(stack_a);
-		write(1, "ra\n", 3);
 		swap_a(stack_a);
-		write(1, "sa\n", 3);
 		reverse_rotate_a(stack_a);
-		write(1, "rra\n", 4);
 	}	
 }
 
@@ -30,21 +27,14 @@ void	case_2(t_stack_a *stack_a)
 	if (stack_a->a_stack[stack_a->top] > stack_a->a_stack[0])
 	{
 		rotate_a(stack_a);
-		write(1, "ra\n", 3);
 		if (stack_a->a_stack[stack_a->top] > stack_a->a_stack[stack_a->top - 1])
-		{
 			swap_a(stack_a);
-			write(1, "sa\n", 3);
-		}
 	}
 	else
 	{
 		reverse_rotate_a(stack_a);
-		write(1, "rra\n", 4);
 		swap_a(stack_a);
-		write(1, "sa\n", 3);
 		reverse_rotate_a(stack_a);
-		write(1, "rra\n", 4);
 	}	
 }
 
@@ -53,9 +43,7 @@ void	case_3(t_stack_a *stack_a)
 	if (stack_a->a_stack[stack_a->top] > stack_a->a_stack[stack_a->top - 1])
 	{
 		swap_a(stack_a);
-		write(1, "sa\n", 3);
 	}
-	write(1, "rra\n", 4);
 	reverse_rotate_a(stack_a);	
 }
 
