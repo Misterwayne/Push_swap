@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:04:03 by mwane             #+#    #+#             */
-/*   Updated: 2021/06/04 17:14:34 by mwane            ###   ########.fr       */
+/*   Updated: 2021/10/06 19:43:50 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	absolute_v(int nbr)
 int	checker_2(char *instruction, t_stack_a *stack, t_stack_b *stack_b)
 {
 	if (ft_strcmp(instruction, "rb") == 0)
-		rotate_b(stack_b);
+		rotate_b(stack_b, 0);
 	else if (ft_strcmp(instruction, "rr") == 0)
 		ra_rb(stack, stack_b);
 	else if (ft_strcmp(instruction, "rra") == 0)
-		reverse_rotate_a(stack);
+		reverse_rotate_a(stack, 0);
 	else if (ft_strcmp(instruction, "rrb") == 0)
-		reverse_rotate_b(stack_b);
+		reverse_rotate_b(stack_b, 0);
 	else if (ft_strcmp(instruction, "rrr") == 0)
 		r_r_r(stack, stack_b);
 	else if (instruction[0] == '\0')
@@ -52,7 +52,7 @@ void	checker(char *instruction, t_stack_a *stack, t_stack_b *stack_b)
 	else if (ft_strcmp(instruction, "pb") == 0)
 		push_b(stack_b, stack);
 	else if (ft_strcmp(instruction, "ra") == 0)
-		rotate_a(stack);
+		rotate_a(stack, 0);
 	else if (checker_2(instruction, stack, stack_b))
 		return ;
 }

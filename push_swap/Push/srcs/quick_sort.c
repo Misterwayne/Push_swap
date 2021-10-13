@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 15:51:20 by mwane             #+#    #+#             */
-/*   Updated: 2021/09/27 16:09:32 by mwane            ###   ########.fr       */
+/*   Updated: 2021/10/08 20:20:21 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ void	find_smallest(t_stack_a *stack_a)
 			stack_a->min = stack_a->a_stack[i];
 		i++;
 	}
+	if (i >= stack_a->top / 2)
+		stack_a->dir = 1;
+	else
+		stack_a->dir = 0;
 }
 
 void	print_stack(t_stack_a *stack_a, t_stack_b *stack_b)
@@ -60,7 +64,7 @@ void	print_stack(t_stack_a *stack_a, t_stack_b *stack_b)
 	i = stack_a->top;
 	// system("clear");
 	printf("CHOISI %d = current | %d = place |%d = nb action dir : %d\n", stack_b->place, stack_a->up_place, stack_b->action, stack_b->dir);
-	printf("A stack :%d\n | to place = %d\n", stack_a->top, stack_a->place);
+	printf("A stack :%d\n | to place = %d\n", stack_a->top, stack_a->up_place);
 	while (i >= 0 && stack_a->top != -1)
 	{
 		// if (stack_a->a_stack[i] == stack_a->min)
@@ -80,10 +84,10 @@ void	low_rotate(int index, t_stack_a *stack_a, t_stack_b *stack_b)
 	while (stack_a->a_stack[stack_a->top] != stack_a->min)
 	{
 		if (index < 0)
-			rotate_a(stack_a);
+			rotate_a(stack_a, 0);
 		else
-			reverse_rotate_a(stack_a);
+			reverse_rotate_a(stack_a, 0);
 	}
 	push_b(stack_b, stack_a);
-	rotate_a(stack_a);
+	rotate_a(stack_a, 0);
 }

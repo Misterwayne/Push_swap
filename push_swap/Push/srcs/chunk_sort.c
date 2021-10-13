@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 16:57:33 by mwane             #+#    #+#             */
-/*   Updated: 2021/07/15 21:45:42 by mwane            ###   ########.fr       */
+/*   Updated: 2021/10/12 21:00:08 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,28 @@ int	*int_cmp(t_stack_a *stack_a)
 		i++;
 	}
 	return (copy);
+}
+
+void	chunck_sort(t_stack_a *stack_a, t_stack_b *stack_b)
+{
+	int *model;
+	int min;
+
+	model = int_cmp(stack_a);
+	quick_sort(model, 0, stack_a->top);
+	min = stack_a->top / 2;
+	stack_a->half = model[min];
+	while (min >= 0)
+	{
+		if (stack_a->a_stack[stack_a->top] <= stack_a->half)
+		{
+			rotate_a(stack_a, 0);
+			push_b(stack_b, stack_a);
+			--min;
+		}
+		else
+			reverse_rotate_a(stack_a, 0);
+	}
+	push_b(stack_b, stack_a);
+	free(model);
 }

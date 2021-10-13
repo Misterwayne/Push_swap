@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:22:30 by mwane             #+#    #+#             */
-/*   Updated: 2021/09/27 16:33:51 by mwane            ###   ########.fr       */
+/*   Updated: 2021/10/06 19:40:59 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,19 @@ typedef struct s_stack_b
 	int					dir;
 	int					place;
 	int					action;
-	int					ra;
-	int					rra;
+	int					rb;
+	int					rrb;
 }						t_stack_b;
 
-void					rotate_a(t_stack_a *stack);
-void					rotate_b(t_stack_b *stack);
+void					rotate_a(t_stack_a *stack, int mode);
+void					rotate_b(t_stack_b *stack, int mode);
 void					swap_a(t_stack_a *stack);
 void					swap_b(t_stack_b *stack);
 void					sa_sb(t_stack_a *stack_a, t_stack_b *stack_b);
 void					push_a(t_stack_a *stack_a, t_stack_b *stack_b);
 void					push_b(t_stack_b *stack_b, t_stack_a *stack_a);
-void					reverse_rotate_a(t_stack_a *stack);
-void					reverse_rotate_b(t_stack_b *stack);
+void					reverse_rotate_a(t_stack_a *stack, int mode);
+void					reverse_rotate_b(t_stack_b *stack, int mode);
 void					r_r_r(t_stack_a *stack_a, t_stack_b *stack_b);
 void					ra_rb(t_stack_a *stack_a, t_stack_b *stack_b);
 void					*init_stack(unsigned int max);

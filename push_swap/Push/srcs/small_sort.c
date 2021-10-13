@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 17:56:29 by mwane             #+#    #+#             */
-/*   Updated: 2021/09/27 16:08:41 by mwane            ###   ########.fr       */
+/*   Updated: 2021/10/06 19:41:49 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	case_1(t_stack_a *stack_a)
 {
 	if ((stack_a->a_stack[stack_a->top - 1] > stack_a->a_stack[0]))
 	{
-		rotate_a(stack_a);
+		rotate_a(stack_a, 0);
 		swap_a(stack_a);
-		reverse_rotate_a(stack_a);
+		reverse_rotate_a(stack_a, 0);
 	}	
 }
 
@@ -26,15 +26,15 @@ void	case_2(t_stack_a *stack_a)
 {
 	if (stack_a->a_stack[stack_a->top] > stack_a->a_stack[0])
 	{
-		rotate_a(stack_a);
+		rotate_a(stack_a, 0);
 		if (stack_a->a_stack[stack_a->top] > stack_a->a_stack[stack_a->top - 1])
 			swap_a(stack_a);
 	}
 	else
 	{
-		reverse_rotate_a(stack_a);
+		reverse_rotate_a(stack_a, 0);
 		swap_a(stack_a);
-		reverse_rotate_a(stack_a);
+		reverse_rotate_a(stack_a, 0);
 	}	
 }
 
@@ -44,7 +44,7 @@ void	case_3(t_stack_a *stack_a)
 	{
 		swap_a(stack_a);
 	}
-	reverse_rotate_a(stack_a);	
+	reverse_rotate_a(stack_a, 0);	
 }
 
 int	smallest(t_stack_a *stack_a)
