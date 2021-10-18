@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:22:30 by mwane             #+#    #+#             */
-/*   Updated: 2021/10/06 19:40:59 by mwane            ###   ########.fr       */
+/*   Updated: 2021/10/16 10:24:01 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_stack_a
 	int					action;
 	int					ra;
 	int					rra;
+	int					score;
+	int					len;
 }						t_stack_a;
 
 typedef struct s_stack_b
@@ -82,9 +84,9 @@ void					checker(char *instruction, t_stack_a *stack,
 int						check_2(char *instruction);
 void					check(char *instruction);
 int						absolute_v(int nbr);
-void					find_smallest(t_stack_a *stack_a);
+int						find_smallest(t_stack_a *stack_a);
 int						find_smallest_b(t_stack_b *stack_b);
-void					find_biggest(t_stack_a *stack_a);
+int						find_biggest(t_stack_a *stack_a);
 void					sort_opti(t_stack_a *stack_a, t_stack_b *stack_b);
 int						find_biggest_b(t_stack_b *stack);
 char					**free_tab(char **res, int i);
@@ -107,5 +109,7 @@ void					case_1(t_stack_a *stack_a);
 int						smallest(t_stack_a *stack_a);
 void					low_rotate_b(int index, t_stack_a *stack_a, t_stack_b *stack_b);
 int     				rotate_opti(t_stack_a *stack_a);
+int*					reset_strign(t_stack_a *stack, int *model);
+int						is_inside(int current, int *tmp, t_stack_a *stack_a);
 
 #endif

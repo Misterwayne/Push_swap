@@ -6,11 +6,34 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 19:50:48 by truepath          #+#    #+#             */
-/*   Updated: 2021/10/06 20:08:04 by mwane            ###   ########.fr       */
+/*   Updated: 2021/10/16 09:39:16 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/checker.h"
+
+
+int*	reset_strign(t_stack_a *stack, int *model)
+{
+	int	tmp;
+	int	i;
+
+	i = stack->top;
+	tmp = model[i];
+	while (model[stack->top] != stack->min)
+	{
+		i = stack->top;
+		tmp = model[i];
+		while (i > 0)
+		{
+			model[i] = model[i - 1];
+			i--;
+		}
+		model[0] = tmp;
+	}
+	return (model);
+}
+
 
 void	rotate_a(t_stack_a *stack, int mode)
 {

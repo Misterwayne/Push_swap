@@ -6,7 +6,7 @@
 #    By: mwane <mwane@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/11 19:08:29 by truepath          #+#    #+#              #
-#    Updated: 2021/07/08 22:05:19 by mwane            ###   ########.fr        #
+#    Updated: 2021/10/16 10:27:48 by mwane            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,11 +44,11 @@ CC 			= 		gcc
 
 RM			=		rm -f
 
-all 		:		push_swap
+all 		:		$(NAME_PUSH)
 					
 
 push_swap 	:		$(OBJS)
-					$(CC) $(CFLAGS) $(SRCS) $(PUSH_SWAP)  -o push_swap
+					$(CC) $(CFLAGS) $(SRCS) $(PUSH_SWAP)  -o $(NAME_PUSH)
 
 bonus	 	:		$(NAME_CHECK)
 

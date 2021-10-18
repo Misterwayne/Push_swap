@@ -6,7 +6,7 @@
 /*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 15:51:20 by mwane             #+#    #+#             */
-/*   Updated: 2021/10/08 20:20:21 by mwane            ###   ########.fr       */
+/*   Updated: 2021/10/14 19:02:40 by mwane            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**free_tab(char **res, int i)
 	return (NULL);
 }
 
-void	find_biggest(t_stack_a *stack_a)
+int		find_biggest(t_stack_a *stack_a)
 {
 	int	i;
 	int	index;
@@ -37,9 +37,10 @@ void	find_biggest(t_stack_a *stack_a)
 			stack_a->biggest = stack_a->a_stack[i];
 		i++;
 	}
+	return (i);
 }
 
-void	find_smallest(t_stack_a *stack_a)
+int		find_smallest(t_stack_a *stack_a)
 {
 	int	i;
 
@@ -51,10 +52,7 @@ void	find_smallest(t_stack_a *stack_a)
 			stack_a->min = stack_a->a_stack[i];
 		i++;
 	}
-	if (i >= stack_a->top / 2)
-		stack_a->dir = 1;
-	else
-		stack_a->dir = 0;
+	return (i);
 }
 
 void	print_stack(t_stack_a *stack_a, t_stack_b *stack_b)
