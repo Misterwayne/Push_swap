@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:22:30 by mwane             #+#    #+#             */
-/*   Updated: 2021/10/16 10:24:01 by mwane            ###   ########.fr       */
+/*   Updated: 2021/10/19 00:09:59 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_stack_a
 	int					rra;
 	int					score;
 	int					len;
+	int				a_action;
 }						t_stack_a;
 
 typedef struct s_stack_b
@@ -49,6 +50,7 @@ typedef struct s_stack_b
 	int					action;
 	int					rb;
 	int					rrb;
+	int					b_action;
 }						t_stack_b;
 
 void					rotate_a(t_stack_a *stack, int mode);
@@ -111,5 +113,13 @@ void					low_rotate_b(int index, t_stack_a *stack_a, t_stack_b *stack_b);
 int     				rotate_opti(t_stack_a *stack_a);
 int*					reset_strign(t_stack_a *stack, int *model);
 int						is_inside(int current, int *tmp, t_stack_a *stack_a);
+int						place(t_stack_a *stack_a, t_stack_b *stack_b, int current, int *model);
+void					matrix(t_stack_a *stack_a, t_stack_b *stack_b, int *model);
+int						*sorted_chunk(t_stack_a *stack_a, int j, int *model);
+void					reset_2(t_stack_a *stack_a);
+void					apply(t_stack_a *stack_a, t_stack_b *stack_b);
+int						is_inside(int current, int *tmp, t_stack_a *stack_a);
+void					small_sort(t_stack_a *stack_a, t_stack_b *stack_b);
+void					apply(t_stack_a *stack_a, t_stack_b *stack_b);
 
 #endif

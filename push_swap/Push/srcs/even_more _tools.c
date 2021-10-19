@@ -1,23 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   even_more _tools.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 15:08:52 by mwane             #+#    #+#             */
-/*   Updated: 2019/10/13 18:31:49 by mwane            ###   ########.fr       */
+/*   Created: 2021/04/09 14:35:51 by mwane             #+#    #+#             */
+/*   Updated: 2021/10/19 00:30:36 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft.h"
+#include "../header/checker.h"
 
-void	ft_bzero(void *s, size_t size)
-{
-	unsigned char *str;
-
-	str = (unsigned char*)s;
-	while (size-- > 0)
-		*(str++) = 0;
-}

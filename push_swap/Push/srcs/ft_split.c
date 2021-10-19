@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 11:20:33 by mwane             #+#    #+#             */
-/*   Updated: 2021/06/06 17:27:26 by mwane            ###   ########.fr       */
+/*   Updated: 2021/10/18 20:15:40 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,6 @@ static int	fill_tab(char const *s, char *res, char c)
 	}
 	return (j);
 }
-
-// char	**secur(char const *s, char **res)
-// {
-// 	if (s == NULL || !*s)
-// 	{
-// 		res = malloc(sizeof(char *) * 1);
-// 		if (!(res))
-// 			return (NULL);
-// 		*res = NULL;
-// 		return (res);
-// 	}
-// }
 
 char	**ft_split(char const *s, char c)
 {

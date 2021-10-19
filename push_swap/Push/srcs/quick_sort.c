@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quick_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 15:51:20 by mwane             #+#    #+#             */
-/*   Updated: 2021/10/14 19:02:40 by mwane            ###   ########.fr       */
+/*   Updated: 2021/10/19 00:44:08 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,4 @@ void	low_rotate(int index, t_stack_a *stack_a, t_stack_b *stack_b)
 			reverse_rotate_a(stack_a, 0);
 	}
 	push_b(stack_b, stack_a);
-	rotate_a(stack_a, 0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mwane <mwane@student.42.fr>                +#+  +:+       +#+         #
+#    By: truepath <truepath@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/11 19:08:29 by truepath          #+#    #+#              #
-#    Updated: 2021/10/16 10:27:48 by mwane            ###   ########.fr        #
+#    Updated: 2021/10/19 00:11:07 by truepath         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ SRCS 		= 		srcs/check_sort.c \
 					srcs/chunk_sort.c \
 					srcs/small_sort.c \
 					srcs/sort_5.c \
+					srcs/tools.c \
+					srcs/set_up.c \
+					srcs/more_tools.c
 
 OBJS		= 		$(SRCS:%.c=%.o)
 
@@ -56,7 +59,7 @@ $(NAME_CHECK):
 					$(CC) $(CFLAGS) $(SRCS) $(CHECKER)  -o $(NAME_CHECK)
 
 clean		:
-					@$(RM) $(NAME_PUSH) $(NAME_CHECK) $(OBJS)
+					@$(RM) $(NAME_PUSH) $(OBJS)
 
 re			:
 					@make clean

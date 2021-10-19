@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 22:22:33 by truepath          #+#    #+#             */
-/*   Updated: 2021/10/15 20:06:30 by mwane            ###   ########.fr       */
+/*   Updated: 2021/10/19 00:31:39 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ int	sort_checker(t_stack_a *stack, t_stack_b *stack_b)
 
 	i = 0;
 	(void)stack_b;
-	// if (stack_b->top != -1)
-	// 	return (0);
 	while (i < stack->top)
 	{
 		if (stack->a_stack[i + 1] >= stack->a_stack[i])

@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwane <mwane@student.42.fr>                +#+  +:+       +#+        */
+/*   By: truepath <truepath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 16:57:33 by mwane             #+#    #+#             */
-/*   Updated: 2021/10/12 21:00:08 by mwane            ###   ########.fr       */
+/*   Updated: 2021/10/18 20:15:28 by truepath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/checker.h"
-
-// void	high_rotate(int index, t_stack_a *stack_a, t_stack_b *stack_b)
-// {
-// 	while (stack_b->b_stack[stack_b->top] != stack_b->big)
-// 	{
-// 		if (index < 0)
-// 		{
-// 			rotate_b(stack_b);
-// 			write(1, "rb\n", 3);
-// 		}
-// 		else
-// 		{
-// 			reverse_rotate_b(stack_b);
-// 			write(1, "rrb\n", 4);
-// 		}
-// 	}
-// 	write(1, "pa\n", 3);
-// 	push_a(stack_a, stack_b);
-// }
 
 void	swap(int *a, int *b)
 {
